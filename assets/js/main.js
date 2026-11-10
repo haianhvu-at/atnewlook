@@ -1,5 +1,6 @@
 /* ==========================================================================
-   AUTHENTIK — TRANG CHỦ · JS thuần (không thư viện)
+   AUTHENTIK — JS thuần (không thư viện), dùng chung cho mọi trang.
+   Mỗi khối chỉ chạy khi trang có phần tử tương ứng.
    ========================================================================== */
 (() => {
   const $ = (s, c = document) => c.querySelector(s);
@@ -16,7 +17,10 @@
   });
 
   /* ---------- Ảnh lỗi → giữ nền tối (không hiện icon ảnh vỡ) ---------- */
-  $$('img').forEach(img => img.addEventListener('error', () => { img.style.visibility = 'hidden'; }));
+  $$('img').forEach(img => {
+    if (img.loading !== 'lazy' && img.complete && img.naturalWidth === 0 && !img.closest('.brand')) img.style.visibility = 'hidden';
+    img.addEventListener('error', () => { img.style.visibility = 'hidden'; });
+  });
 
   /* ---------- Navbar : thu gọn khi cuộn, ẩn khi cuộn xuống, hiện khi cuộn lên ---------- */
   const nav = $('#nav');
@@ -117,24 +121,91 @@
     const track = $('#cards'); if (track) track.scrollLeft = 0;
   };
   tabs.forEach(t => t.addEventListener('click', () => applyFilter(t.dataset.filter)));
-  $$('[data-filter-link]').forEach(a => a.addEventListener('click', () => applyFilter(a.dataset.filterLink)));
+  // Link menu « Circuits » (href = trang chủ#circuits-prive / #circuits-groupe):
+  // trên trang chủ → lọc + cuộn tới khối Circuits; ở trang khác → mở trang chủ, lọc khi tải xong.
+  const goCircuits = f => {
+    applyFilter(f);
+    const sec = $('#circuits');
+    if (sec) sec.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', '#circuits');
+  };
+  if ($('#cards')) {
+    $$('[data-filter-link]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); $$('[data-dd].is-open').forEach(dd => dd.classList.remove('is-open')); goCircuits(a.dataset.filterLink); }));
+    const m = location.hash.match(/^#circuits-(prive|groupe)$/);
+    if (m) window.addEventListener('load', () => goCircuits(m[1]));
+  }
 
   /* ---------- Avis : slider citations (không tự chạy) ---------- */
   const quotes = $$('#quotes .quote');
   let qi = 0;
   const pad = n => String(n).padStart(2, '0');
-  const showQ = i => {
-    qi = (i + quotes.length) % quotes.length;
-    quotes.forEach((q, k) => q.classList.toggle('is-active', k === qi));
-    $('#qNow').textContent = pad(qi + 1);
-  };
-  $('#qTotal').textContent = pad(quotes.length);
-  $$('[data-q]').forEach(b => b.addEventListener('click', () => showQ(qi + (b.dataset.q === 'next' ? 1 : -1))));
-  // vuốt trên mobile
-  let x0 = null;
-  const track = $('#quotes');
-  track.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) showQ(qi + (dx < 0 ? 1 : -1)); x0 = null; });
+  if (quotes.length) {
+    const showQ = i => {
+      qi = (i + quotes.length) % quotes.length;
+      quotes.forEach((q, k) => q.classList.toggle('is-active', k === qi));
+      $('#qNow').textContent = pad(qi + 1);
+    };
+    $('#qTotal').textContent = pad(quotes.length);
+    $$('[data-q]').forEach(b => b.addEventListener('click', () => showQ(qi + (b.dataset.q === 'next' ? 1 : -1))));
+    // vuốt trên mobile
+    let x0 = null;
+    const track = $('#quotes');
+    track.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) showQ(qi + (dx < 0 ? 1 : -1)); x0 = null; });
+  }
+
+  /* ---------- Blog : lọc bài theo chủ đề + điểm đến (URL ?theme=…&dest=… để chia sẻ được) ---------- */
+  const posts = $$('#posts .post-card');
+  if (posts.length) {
+    const state = { theme: 'all', dest: 'all' };
+    const params = new URLSearchParams(location.search);
+    ['theme', 'dest'].forEach(k => { if (params.get(k) && $(`[data-blog-filter="${k}"][data-value="${params.get(k)}"]`)) state[k] = params.get(k); });
+    const count = $('#postCount');
+    const empty = $('#postEmpty');
+    const applyBlog = () => {
+      let n = 0;
+      posts.forEach(p => {
+        const okT = state.theme === 'all' || p.dataset.theme === state.theme;
+        const okD = state.dest === 'all' || (p.dataset.dest || '').split(' ').includes(state.dest);
+        p.hidden = !(okT && okD);
+        if (!p.hidden) { n++; p.classList.add('is-in'); }
+      });
+      $$('[data-blog-filter]').forEach(b => b.setAttribute('aria-pressed', String(state[b.dataset.blogFilter] === b.dataset.value)));
+      if (count) count.textContent = n + (n > 1 ? ' articles' : ' article');
+      if (empty) empty.hidden = n > 0;
+      const q = new URLSearchParams();
+      if (state.theme !== 'all') q.set('theme', state.theme);
+      if (state.dest !== 'all') q.set('dest', state.dest);
+      history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);
+    };
+    $$('[data-blog-filter]').forEach(b => b.addEventListener('click', () => { state[b.dataset.blogFilter] = b.dataset.value; applyBlog(); }));
+    $$('[data-blog-reset]').forEach(b => b.addEventListener('click', () => { state.theme = 'all'; state.dest = 'all'; applyBlog(); }));
+    applyBlog();
+  }
+
+  /* ---------- Bài viết : mục lục (mobile thu gọn, desktop dính cột phải, tô mục đang đọc) ---------- */
+  const toc = $('#toc');
+  if (toc) {
+    const det = $('details', toc);
+    const mq = window.matchMedia('(max-width: 1024px)');
+    const setOpen = () => { if (det) det.open = !mq.matches; };
+    setOpen(); mq.addEventListener('change', setOpen);
+    $$('a', toc).forEach(a => a.addEventListener('click', () => { if (mq.matches && det) det.open = false; }));
+    const links = $$('a[href^="#"]', toc);
+    const heads = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    if (heads.length) {
+      // mục đang đọc = tiêu đề cuối cùng đã đi qua 1/3 trên của màn hình
+      let ticking = false;
+      const update = () => {
+        let current = '';
+        heads.forEach(h => { if (h.getBoundingClientRect().top < window.innerHeight * 0.35) current = h.id; });
+        links.forEach(a => a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + current));
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
+    }
+  }
 
   /* ---------- Form devis ---------- */
   // Tháng : từ tháng sau, 15 tháng

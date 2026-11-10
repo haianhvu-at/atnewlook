@@ -1,0 +1,92 @@
+<!-- =====================================================================
+     PARTIAL DÙNG CHUNG: footer + nút nổi (WhatsApp, back-to-top) + popup film
+     Sửa ở ĐÂY rồi chạy sync_partials.py (xem _partials/header.html)
+     ===================================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="{{home}}#top" aria-label="Authentik Vietnam">
+          <img class="brand__logo" src="https://authentikvietnam.com/themes/web/img/authentiktravel.png" alt="Authentik Vietnam" width="436" height="140" loading="lazy">
+          <span class="brand__fallback">AUTHENTIK<small>VIETNAM</small></span>
+        </a>
+        <p class="footer__tag">Le Vietnam <em>en profondeur</em>,<br>depuis Hanoï.</p>
+      </div>
+      <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='Merci !'">
+        <label for="nl">Carnet de voyage, une fois par mois</label>
+        <div class="newsletter__row">
+          <input id="nl" type="email" placeholder="Votre e-mail" required>
+          <button type="submit">S’inscrire <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer__cols">
+      <div>
+        <h3 class="h4">Aide</h3>
+        <ul>
+          <li><a href="{{home}}#devis">Demander un devis</a></li>
+          <li><a href="#">Nous contacter</a></li>
+          <li><a href="#">Questions fréquentes</a></li>
+          <li><a href="https://authentikvietnam.com/avant-de-partir-au-vietnam">Préparer son voyage</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Nos voyages</h3>
+        <ul>
+          <li><a href="https://authentikvietnam.com/voyage-au-vietnam">Inspirations</a></li>
+          <li><a href="https://authentikvietnam.com/petit-groupe/circuit-vietnam-petit-groupe">Petits groupes</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-laos">Voyages au Laos</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-cambodge">Voyages au Cambodge</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Authentik</h3>
+        <ul>
+          <li><a href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Qui sommes-nous&nbsp;?</a></li>
+          <li><a href="https://authentikvietnam.com/notre-equipe">Notre équipe</a></li>
+          <li><a href="https://authentikvietnam.com/avis-client">Avis clients</a></li>
+          <li><a href="https://authentikvietnam.com/authentik-vietnam-en-press">Presse</a></li>
+          <li><a href="https://authentikvietnam.com/recrutement">Recrutement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Coordonnées</h3>
+        <ul class="footer__contact">
+          <li><svg><use href="#i-pin"/></svg><span>62 Yên Phụ, Ba Đình<br>Hà Nội, Vietnam</span></li>
+          <li><svg><use href="#i-phone"/></svg><a href="tel:+84912121091">+84 912 121 091</a></li>
+          <li><svg><use href="#i-wa"/></svg><a href="https://wa.me/84912121091" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><svg><use href="#i-mail"/></svg><a href="mailto:info@authentikvietnam.com">info@authentikvietnam.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Authentik Vietnam · Licence de voyagiste international n° <span data-todo>[à compléter]</span></span>
+      <nav class="footer__legal" aria-label="Informations légales">
+        <a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/authentikvietnamtravel" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Nút nổi: WhatsApp + back-to-top (mỗi trang cần 1 phần tử id="top" ở đầu trang) -->
+<div class="fab-stack">
+  <a class="fab fab--top" href="#top" id="toTop" aria-label="Revenir en haut">
+    <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="23"/><circle class="fg" cx="24" cy="24" r="23"/></svg>
+    <svg class="arrow"><use href="#i-up"/></svg>
+  </a>
+  <a class="fab fab--wa" href="https://wa.me/84912121091?text=Bonjour%20Authentik%20Vietnam%2C%20je%20souhaite%20pr%C3%A9parer%20un%20voyage." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp" data-label="Une question ? WhatsApp">
+    <svg><use href="#i-wa"/></svg>
+  </a>
+</div>
+
+<!-- Popup film (YouTube chỉ tải khi bấm nút có data-film) -->
+<div class="modal" id="filmModal" role="dialog" aria-modal="true" aria-label="Film Authentik Vietnam">
+  <button class="round-btn modal__close" type="button" data-close-modal aria-label="Fermer"><svg><use href="#i-close"/></svg></button>
+  <div class="modal__box" id="filmBox"></div>
+</div>

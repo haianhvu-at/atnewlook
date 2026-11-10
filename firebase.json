@@ -1,9 +1,24 @@
 {
   "hosting": {
     "public": ".",
-    "ignore": ["firebase.json", "README.md", "**/.*", "**/node_modules/**", "**/desktop.ini"],
+    "ignore": [
+      "firebase.json",
+      "README.md",
+      "**/.*",
+      "**/node_modules/**",
+      "**/desktop.ini",
+      "_partials/**"
+    ],
     "headers": [
-      { "source": "**/*.@(css|js|webp|jpg|png|svg|mp4|webm)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+      {
+        "source": "**/*.@(css|js|webp|jpg|png|svg|mp4|webm)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=604800"
+          }
+        ]
+      }
     ]
   }
 }
