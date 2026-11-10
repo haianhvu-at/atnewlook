@@ -7,7 +7,9 @@ Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) đ�
 index.html                                   Trang chủ (8 module)
 blog-de-voyage-au-vietnam/index.html         Trang danh sách blog (giữ URL cũ)
 visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài viết)
-_partials/header.html · footer.html          Navbar + footer DÙNG CHUNG — chỉ sửa ở đây
+_partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
+favicon.ico                                  Favicon 16/32/48 (file gốc của designer) — giữ ở thư mục gốc
+assets/favicon/                              icon.svg · apple-touch-icon.png (180) · icon-192/512.png · site.webmanifest
 styleguide.html       Bảng màu, thang chữ Montserrat, nút, lớp phủ cinematic
 assets/css/tokens.css Biến thiết kế dùng chung cho FR / EN / ES
 assets/css/main.css   Giao diện các module
@@ -98,6 +100,6 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 
 - Trên máy (`D:\web`, ngoài Google Drive): **`atnewlook`** = bản mới nhất, cũng là repo GitHub `atnewlook` và thư mục upload hosting · **`atnewlook-backup`** = bản ngay trước lần sửa gần nhất (nằm ngoài repo, có `BACKUP-INFO.txt`).
 - Mỗi lần sửa: chốt nội dung trong chat → Claude chép final sang backup → ghi bản mới vào final → Nhung Commit + Push trong GitHub Desktop (kiểm tra *Current repository* = atnewlook).
-- Navbar / footer: chỉ sửa `_partials/header.html`, `_partials/footer.html` → Claude chạy `D:\web\tools\sync_partials.py` để chép sang mọi trang (khối giữa `<!-- @partial … -->` và `<!-- @/partial … -->` trong mỗi trang được ghi đè tự động).
+- Favicon / navbar / footer: chỉ sửa `_partials/favicon.html`, `_partials/header.html`, `_partials/footer.html` → Claude chạy `D:\web\tools\sync_partials.py` để chép sang mọi trang (khối giữa `<!-- @partial … -->` và `<!-- @/partial … -->` trong mỗi trang được ghi đè tự động). Favicon: nguồn ở `D:\web\anh-goc\favicon` (designer); icon điện thoại = logo trên nền ivory #F7F3EC.
 - Mỗi lần sửa CSS/JS: tăng số `?v=` ở mọi trang HTML — `sync_partials.py D:\web\atnewlook --v 1.4` làm việc này cho tất cả trang một lúc.
 - **Trước khi đưa lên domain thật:** xoá thẻ `<meta name="robots" content="noindex, nofollow">` ở mọi trang HTML.
