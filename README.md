@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện trang chủ (v1.2 · 10/11/2026)
+# Authentik Vietnam — Mẫu giao diện trang chủ (v1.2 · repo atnewlook · 10/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -20,8 +20,9 @@ firebase.json         Cấu hình Firebase Hosting
 **Cách nhanh nhất:** giải nén → mở `index.html` bằng Chrome (ảnh tải trực tiếp từ authentikvietnam.com).
 
 **GitHub Pages (link xem chung cho team + test trên điện thoại)**
-Repo GitHub = chính thư mục `authentik-final` (tạo bằng GitHub Desktop → *Add local repository* → *create a repository* → *Publish repository*, bỏ tick *Keep this code private*).
-Bật Pages: Settings → Pages → *Deploy from a branch* → `main` / `(root)` → Save. Link: `https://<tên-tài-khoản>.github.io/<tên-repo>/`
+Repo GitHub **`atnewlook`** (github.com/haianhvu-at/atnewlook, công khai) = chính thư mục **`D:\web\atnewlook`** trên máy Nhung.
+⚠️ Không đặt repo trong Google Drive: Drive tự tạo `desktop.ini` trong thư mục `.git` → Git báo lỗi `bad ref refs/tags/desktop.ini`.
+Bật Pages: Settings → Pages → *Deploy from a branch* → `main` / `(root)` → Save. Link: **https://haianhvu-at.github.io/atnewlook/**
 Mỗi lần cập nhật: GitHub Desktop → gõ *Summary* (vd `v1.3 – đổi hero`) → **Commit to main** → **Push origin** → chờ 1–2 phút.
 
 **Firebase Hosting — không đụng site đang chạy (authentik-vietnam.web.app)**
@@ -79,7 +80,7 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 
 ## 6. Quy trình lưu & cập nhật
 
-- Trên máy (Google Drive `AT\web`): **`authentik-final`** = bản mới nhất, cũng là repo GitHub và thư mục upload hosting · **`authentik-backup`** = bản ngay trước lần sửa gần nhất (nằm ngoài repo, có `BACKUP-INFO.txt`).
-- Mỗi lần sửa: chốt nội dung trong chat → Claude chép final sang backup → ghi bản mới vào final → Nhung Commit + Push trong GitHub Desktop.
+- Trên máy (`D:\web`, ngoài Google Drive): **`atnewlook`** = bản mới nhất, cũng là repo GitHub `atnewlook` và thư mục upload hosting · **`atnewlook-backup`** = bản ngay trước lần sửa gần nhất (nằm ngoài repo, có `BACKUP-INFO.txt`).
+- Mỗi lần sửa: chốt nội dung trong chat → Claude chép final sang backup → ghi bản mới vào final → Nhung Commit + Push trong GitHub Desktop (kiểm tra *Current repository* = atnewlook).
 - Mỗi lần sửa CSS/JS: tăng số `?v=` trong `index.html` và `styleguide.html` (vd `?v=1.3`) để điện thoại tải bản mới.
 - **Trước khi đưa lên domain thật:** xoá thẻ `<meta name="robots" content="noindex, nofollow">` trong `index.html`.
