@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Authentik Vietnam — Voyages privés sur mesure, le Vietnam en profondeur</title>
+  <meta name="description" content="Agence locale francophone basée à Hanoï : voyages privés sur mesure au Vietnam, au Laos et au Cambodge, dans le confort et au rythme des rencontres.">
+  <meta name="theme-color" content="#0b1712">
+  <!-- Bản thử trên GitHub Pages: không cho Google index. XOÁ dòng dưới khi đưa lên domain thật. -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- MẪU GIAO DIỆN — ảnh đang hotlink từ authentikvietnam.com / izitour.com để xem thử. Khi lên production: dùng ảnh local WebP + srcset. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.2">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b1712'/%3E%3Cpath d='M5 24l8-12 5 7 3-4 6 9z' fill='%23d8b48e'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ===== Icon sprite ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H5m6 6-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="currentColor"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.8 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.9 7.6c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.2 0 .4-.1.6l-.6.7c-.1.1-.1.3 0 .5a7.4 7.4 0 0 0 3.1 2.9c.2.1.3.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .3-.2.7-.6.9-.6.4-1.6.6-2.7.2a10 10 0 0 1-5.6-5.4c-.4-1.1-.2-2.1.2-2.6z" fill="currentColor"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5.5h18v13H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.3h-3c-3.3 0-4 2.4-4 4v2.2H8V12h2v9.7h4V12h2.7l.4-3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12c0 1.3.1 2.6.4 3.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.1V8.9l5.2 3.1z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- =====================================================================
+     1. NAVBAR — trái: Accueil · Circuits (Inspirations / Petits groupes) · Blog
+                 giữa: logo — phải: langue · téléphone · Demander un devis
+     ===================================================================== -->
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <nav class="nav__group nav__group--left" aria-label="Navigation principale">
+      <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+      <a class="nav__link" href="#top" aria-current="page">Accueil</a>
+      <div class="dd" data-dd>
+        <button class="nav__link" aria-expanded="false" aria-controls="dd-circuits">Circuits <svg><use href="#i-chevron"/></svg></button>
+        <div class="dd__panel dd__panel--mega" id="dd-circuits">
+          <a class="mega-card cine" href="#circuits" data-filter-link="prive">
+            <img class="img-cover" src="https://authentikvietnam.com/media/tour/04edd798704dde573598035c06de9992.jpg" alt="" loading="lazy">
+            <span class="mega-card__body">
+              <span class="h4">Circuits privés</span>
+              <span class="mega-card__title">Inspirations</span>
+              <span class="mega-card__text">Des itinéraires à composer ensemble, rien que pour vous.</span>
+            </span>
+          </a>
+          <a class="mega-card cine" href="#circuits" data-filter-link="groupe">
+            <img class="img-cover" src="https://authentikvietnam.com/media/tour/a1e99cb1a6ad0b3e87e509f12053bbac.jpg" alt="" loading="lazy">
+            <span class="mega-card__body">
+              <span class="h4">Petits groupes</span>
+              <span class="mega-card__title">Petite communauté</span>
+              <span class="mega-card__text">Partir en petit groupe de voyageurs, avec la même attention.</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <a class="nav__link" href="https://authentikvietnam.com/blog-de-voyage-au-vietnam">Blog</a>
+    </nav>
+
+    <a class="brand" href="#top" aria-label="Authentik Vietnam — accueil" id="brand">
+      <!-- Production: thay bằng logo_authentik_white.png / .svg (bản trắng). Bản màu được đổi sang trắng bằng CSS filter. -->
+      <img class="brand__logo" src="https://authentikvietnam.com/themes/web/img/authentiktravel.png" alt="Authentik Vietnam" width="436" height="140">
+      <span class="brand__fallback">AUTHENTIK<small>VIETNAM</small></span>
+    </a>
+
+    <div class="nav__group nav__group--right">
+      <div class="dd" data-dd>
+        <button class="nav__link" aria-expanded="false" aria-controls="dd-lang" aria-label="Choisir la langue">FR <svg><use href="#i-chevron"/></svg></button>
+        <div class="dd__panel dd__panel--lang" id="dd-lang">
+          <a href="https://authentikvietnam.com/" aria-current="true">Français <small>FR</small></a>
+          <a href="https://authentiktravel.com/" hreflang="en">English <small>EN</small></a>
+          <a href="https://authentiktravel.es/" hreflang="es">Español <small>ES</small></a>
+        </div>
+      </div>
+      <a class="nav__phone" href="tel:+84912121091"><svg><use href="#i-phone"/></svg><span>+84 912 121 091</span></a>
+      <a class="btn btn--primary btn--sm" href="#devis">Demander un devis</a>
+      <a class="nav__icon-btn" href="tel:+84912121091" aria-label="Appeler"><svg><use href="#i-phone"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<!-- Menu mobile -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <ul class="mnav__list">
+    <li><a href="#top" data-close>Accueil <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
+    <li>
+      <details>
+        <summary>Circuits <svg><use href="#i-chevron"/></svg></summary>
+        <div class="mnav__sub">
+          <a href="#circuits" data-close data-filter-link="prive">Inspirations <small>Circuits privés</small></a>
+          <a href="#circuits" data-close data-filter-link="groupe">Petite communauté <small>Petits groupes</small></a>
+        </div>
+      </details>
+    </li>
+    <li><a href="https://authentikvietnam.com/blog-de-voyage-au-vietnam">Blog <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
+  </ul>
+  <div class="mnav__foot">
+    <a class="btn btn--primary" href="#devis" data-close>Demander un devis</a>
+    <a class="btn btn--ghost" href="tel:+84912121091"><svg><use href="#i-phone"/></svg> +84 912 121 091</a>
+    <div class="mnav__langs">
+      <a href="https://authentikvietnam.com/" aria-current="true">FR</a>
+      <a href="https://authentiktravel.com/" hreflang="en">EN</a>
+      <a href="https://authentiktravel.es/" hreflang="es">ES</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- =====================================================================
+     2. HERO — clip vidéo plein écran (poster + effet Ken Burns si pas de vidéo)
+     ===================================================================== -->
+<section class="hero" id="top">
+  <div class="hero__media cine">
+    <img src="https://authentikvietnam.com/themes/web/img/silde/slide-2.webp" alt="" fetchpriority="high">
+    <!-- Đặt clip 15–25 s (1920×1080, H.264, không tiếng, ≤ 6 Mo) tại assets/video/hero.mp4 -->
+    <video id="heroVideo" muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="assets/video/hero.webm" type="video/webm">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <div class="hero__text">
+      <p class="eyebrow on-dark reveal">Voyages privés · Vietnam, Laos &amp; Cambodge</p>
+      <h1 class="h-display hero__title reveal" data-delay="1">Le Vietnam,<br><em>en profondeur.</em></h1>
+      <p class="lead hero__lead reveal" data-delay="2">Des voyages sur mesure, dans le confort et au rythme des rencontres.</p>
+      <div class="hero__ctas reveal" data-delay="3">
+        <a class="btn btn--primary" href="#devis">Créer mon voyage <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="#circuits">Nos inspirations</a>
+      </div>
+    </div>
+
+    <div class="hero__bar reveal" data-delay="3">
+      <button class="play" type="button" data-film="cJ5zqTRs7PE">
+        <span class="play__ring"><svg><use href="#i-play"/></svg></span>
+        Regarder le film
+      </button>
+      <div class="hero__trust" aria-label="Notes des voyageurs">
+        <span><svg><use href="#i-star"/></svg>Tripadvisor <b>5,0</b></span>
+        <span><svg><use href="#i-star"/></svg>Google <b>4,9</b></span>
+        <span><svg><use href="#i-star"/></svg>Trustpilot <b>4,9</b></span>
+      </div>
+      <a class="scroll-cue" href="#intro"><i></i>Découvrir</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     3. GIỚI THIỆU CÔNG TY — ít chữ, 3 trụ cột
+     ===================================================================== -->
+<section class="section section--paper" id="intro">
+  <div class="container">
+    <div class="intro__grid">
+      <div class="intro__text">
+        <p class="eyebrow reveal">Agence locale francophone · Hanoï</p>
+        <h2 class="h2 reveal" data-delay="1">Ici, le luxe, c’est <em>le temps</em> et <em>les rencontres</em>.</h2>
+        <p class="lead muted reveal" data-delay="2">Nous dessinons avec vous des voyages privés, pensés dans les moindres détails&nbsp;: des maisons de caractère, un guide francophone pour vous seul, et des portes qui s’ouvrent, chez l’habitant comme chez l’artisan.</p>
+        <div class="intro__sign reveal" data-delay="3">
+          <a class="link-arrow" href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Notre histoire <svg><use href="#i-arrow"/></svg></a>
+          <a class="link-arrow" href="https://authentikvietnam.com/notre-equipe">L’équipe <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="intro__visual reveal" data-delay="1">
+        <figure class="intro__img-main cine ph">
+          <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-1.webp" alt="Rencontre sur le seuil d’une maison traditionnelle, Nord du Vietnam" loading="lazy">
+        </figure>
+        <figure class="intro__img-small cine ph">
+          <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-3.webp" alt="Deux femmes partagent un moment de travail" loading="lazy">
+        </figure>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="pillar__num">01</span>
+        <h3 class="h3">Privé</h3>
+        <p>Votre guide, votre chauffeur, votre rythme. Rien n’est imposé.</p>
+      </div>
+      <div class="pillar reveal" data-delay="1">
+        <span class="pillar__num">02</span>
+        <h3 class="h3">Dans le confort</h3>
+        <p>Des adresses choisies une à une, pour leur âme autant que pour leur confort.</p>
+      </div>
+      <div class="pillar reveal" data-delay="2">
+        <span class="pillar__num">03</span>
+        <h3 class="h3">Porteur de sens</h3>
+        <p>Des rencontres sincères et un tourisme responsable, qui profite à ceux qui vous accueillent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     4. MEDIA — mosaïque d'images, overlay cinématique sombre
+     ===================================================================== -->
+<section class="section section--dark" id="instants">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow reveal">Instants</p>
+        <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Ce qui reste, <em>après le voyage</em>.</h2>
+      </div>
+      <p class="muted reveal" data-delay="2">Une lumière, un geste, un regard. Le Vietnam que nous aimons partager.</p>
+    </div>
+
+    <div class="media-grid swipe">
+      <a class="tile tile--a cine reveal" href="https://authentikvietnam.com/blog-de-voyage-au-vietnam">
+        <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-5.webp" alt="Bâtonnets d’encens séchant au soleil" loading="lazy">
+        <span class="tile__cap"><span><span class="h4">Artisanat</span><strong>Les gestes d’un village de métier</strong></span></span>
+      </a>
+      <a class="tile tile--b cine reveal" data-delay="1" href="https://authentikvietnam.com/quatre-cols-nord-vietnam">
+        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/col-o-quy-ho.jpeg" alt="Col d’Ô Quy Hồ dans la lumière du matin" loading="lazy">
+        <span class="tile__cap"><span><span class="h4">Lào Cai</span><strong>Col d’Ô Quy Hồ</strong></span></span>
+      </a>
+      <a class="tile tile--c cine reveal" data-delay="2" href="https://authentikvietnam.com/blog-de-voyage-au-vietnam">
+        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/halong-meilleure-periode-vietnam.jpg" alt="Baie d’Hạ Long au coucher du soleil" loading="lazy">
+        <span class="tile__cap"><span><span class="h4">Baie d’Hạ Long</span><strong>L’heure dorée, loin de la foule</strong></span></span>
+      </a>
+      <a class="tile tile--d cine reveal" href="https://authentikvietnam.com/bao-lac-cao-bang">
+        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/lolo-noirs-cao-bang.jpg" alt="Femme Lô Lô noire en tenue traditionnelle" loading="lazy">
+        <span class="tile__cap"><span><span class="h4">Cao Bằng</span><strong>Chez les Lô Lô noirs</strong></span></span>
+      </a>
+      <a class="tile tile--e cine reveal" data-delay="1" href="https://authentikvietnam.com/saison-des-fleurs-de-sarrasin-ha-giang">
+        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/floraison-du-sarrasin-4.jpg" alt="Champs de sarrasin en fleurs à Hà Giang" loading="lazy">
+        <span class="tile__cap"><span><span class="h4">Hà Giang</span><strong>La saison du sarrasin en fleurs</strong></span></span>
+      </a>
+      <a class="tile tile--f tile--film cine reveal" data-delay="2" href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener">
+        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/col-pha-din.jpg" alt="" loading="lazy">
+        <span class="tile__play"><svg><use href="#i-play"/></svg></span>
+        <span class="tile__cap"><span><span class="h4">Nos films</span><strong>Le Vietnam en mouvement</strong></span></span>
+      </a>
+    </div>
+
+    <div class="media__foot">
+      <p class="muted" style="font-size:.85rem">Suivez-nous au fil des saisons</p>
+      <div class="social">
+        <a href="https://www.facebook.com/authentikvietnamtravel" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     5. CIRCUITS — sans prix ; filtre Inspirations / Petite communauté
+     ===================================================================== -->
+<section class="section section--circuits" id="circuits">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow reveal">Inspirations</p>
+        <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Des voyages <em>à composer</em> ensemble.</h2>
+      </div>
+      <div class="tabs reveal" data-delay="2" role="tablist" aria-label="Façon de voyager">
+        <button role="tab" aria-selected="true" data-filter="all">Tous</button>
+        <button role="tab" aria-selected="false" data-filter="prive">Circuits privés</button>
+        <button role="tab" aria-selected="false" data-filter="groupe">Petits groupes</button>
+      </div>
+    </div>
+
+    <div class="cards swipe" id="cards">
+      <a class="card cine reveal" data-type="groupe" href="https://authentikvietnam.com/detail-du-circuit/vietnam-en-profondeur-grand-nord-au-mekong">
+        <img class="img-cover" src="https://izitour.com/media/tour/mekong-2_2026-04-22_875.webp" alt="Barque sur le Mékong au lever du jour" loading="lazy">
+        <span class="card__top"><span class="chip chip--earth">Petit groupe</span><span class="card__days"><b>19</b>jours</span></span>
+        <span class="card__body">
+          <span class="card__route">Grand Nord · Delta du Mékong</span>
+          <span class="card__title">Vietnam en profondeur&nbsp;: du Grand Nord au Mékong</span>
+          <span class="card__more">Découvrir <svg><use href="#i-arrow"/></svg></span>
+        </span>
+      </a>
+      <a class="card cine reveal" data-delay="1" data-type="prive" href="https://authentikvietnam.com/voyage-au-vietnam/traversee-du-vietnam">
+        <img class="img-cover" src="https://authentikvietnam.com/media/tour/7f971085aee9ac9f0b7af03f14208428.jpg" alt="Marché de montagne dans le Nord du Vietnam" loading="lazy">
+        <span class="card__top"><span class="chip">Circuit privé</span><span class="card__days"><b>14</b>jours</span></span>
+        <span class="card__body">
+          <span class="card__route">Nord · Centre · Sud</span>
+          <span class="card__title">Traversée du Vietnam</span>
+          <span class="card__more">Découvrir <svg><use href="#i-arrow"/></svg></span>
+        </span>
+      </a>
+      <a class="card cine reveal" data-delay="2" data-type="prive" href="https://authentikvietnam.com/voyage-au-vietnam/grand-boucle-du-nord-ouest">
+        <img class="img-cover" src="https://authentikvietnam.com/media/tour/04edd798704dde573598035c06de9992.jpg" alt="Rizières et maisons sur pilotis du Nord-Ouest" loading="lazy">
+        <span class="card__top"><span class="chip">Circuit privé</span><span class="card__days"><b>7</b>jours</span></span>
+        <span class="card__body">
+          <span class="card__route">Nord-Ouest</span>
+          <span class="card__title">Grande boucle du Nord-Ouest</span>
+          <span class="card__more">Découvrir <svg><use href="#i-arrow"/></svg></span>
+        </span>
+      </a>
+      <a class="card cine reveal" data-type="prive" href="https://authentikvietnam.com/voyage-au-vietnam/rencontre-des-peuples-indochinois">
+        <img class="img-cover" src="https://authentikvietnam.com/media/tour/a1e99cb1a6ad0b3e87e509f12053bbac.jpg" alt="Rencontre avec des femmes en costume traditionnel" loading="lazy">
+        <span class="card__top"><span class="chip">Circuit privé</span><span class="card__days"><b>30</b>jours</span></span>
+        <span class="card__body">
+          <span class="card__route">Vietnam · Laos · Cambodge</span>
+          <span class="card__title">Rencontre des peuples indochinois</span>
+          <span class="card__more">Découvrir <svg><use href="#i-arrow"/></svg></span>
+        </span>
+      </a>
+      <a class="card cine reveal" data-delay="1" data-type="prive" href="https://authentikvietnam.com/voyage-au-vietnam/vietnam-du-nord-et-du-sud-plage-de-phu-quoc">
+        <img class="img-cover" src="https://authentikvietnam.com/media/tour/31190c3bc10b476080cb1a9c3d41cd0e.jpg" alt="Plage de sable blanc et rochers" loading="lazy">
+        <span class="card__top"><span class="chip">Circuit privé</span><span class="card__days"><b>15</b>jours</span></span>
+        <span class="card__body">
+          <span class="card__route">Nord · Sud · Phú Quốc</span>
+          <span class="card__title">Du Nord au Sud, avec une pause à Phú Quốc</span>
+          <span class="card__more">Découvrir <svg><use href="#i-arrow"/></svg></span>
+        </span>
+      </a>
+      <a class="card card--cta reveal" data-delay="2" data-type="all" href="#devis" style="background:var(--forest-900)">
+        <span class="card__body" style="top:0;display:flex;flex-direction:column;justify-content:flex-end">
+          <span class="card__route">Sur mesure</span>
+          <span class="card__title" style="font-size:clamp(1.5rem,2.2vw,2rem)">Votre voyage n’est pas ici&nbsp;? <em style="font-style:italic;color:var(--sand-300)">Imaginons-le</em> ensemble.</span>
+          <span class="btn btn--ghost btn--sm" style="margin-top:24px;align-self:flex-start">Parler à un conseiller</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="circuits__foot reveal">
+      <a class="btn btn--dark" href="https://authentikvietnam.com/voyage-au-vietnam">Toutes nos inspirations <svg><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--outline-dark" href="#circuits" data-filter-link="groupe">Partir en petit groupe</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     6. AVIS — Tripadvisor · Google · Trustpilot + citations
+     ===================================================================== -->
+<section class="section section--earth reviews" id="avis">
+  <div class="container reviews__grid">
+    <div>
+      <p class="eyebrow reveal">Avis voyageurs</p>
+      <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Ils en parlent <em>mieux que nous</em>.</h2>
+      <!-- Số liệu relevé 14/10/2026 — cập nhật định kỳ (hoặc lấy tự động qua API/widget) -->
+      <div class="ratings reveal" data-delay="2">
+        <div class="rating">
+          <span class="rating__name">Tripadvisor</span>
+          <span class="rating__count">2 028 avis</span>
+          <span class="rating__score"><span class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><b>5,0</b></span>
+        </div>
+        <div class="rating">
+          <span class="rating__name">Google</span>
+          <span class="rating__count">940 avis</span>
+          <span class="rating__score"><span class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><b>4,9</b></span>
+        </div>
+        <div class="rating">
+          <span class="rating__name">Trustpilot</span>
+          <span class="rating__count">342 avis</span>
+          <span class="rating__score"><span class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><b>4,9</b></span>
+        </div>
+      </div>
+      <p class="ratings__note">Notes relevées en octobre 2026.</p>
+    </div>
+
+    <div class="quotes reveal" data-delay="1">
+      <div class="quotes__mark" aria-hidden="true">“</div>
+      <div class="quotes__track" id="quotes" aria-live="polite">
+        <figure class="quote is-active">
+          <blockquote class="quote__text">Ce que nous avons particulièrement apprécié, c’est leur véritable souci de nous faire vivre quelque chose d’exceptionnel.</blockquote>
+          <figcaption class="quote__who"><b>Jean-Philippe</b><span>Septembre 2026</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote class="quote__text">Ce fut une découverte extraordinaire&nbsp;: paysages, guides connaissant bien votre pays et sachant nous faire partager ses traditions.</blockquote>
+          <figcaption class="quote__who"><b>Alain</b><span>Avril 2026</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote class="quote__text">Nous sommes rentrés avec des étoiles dans les yeux.</blockquote>
+          <figcaption class="quote__who"><b>Nathalie</b><span>Avril 2026</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote class="quote__text">Le circuit que vous nous avez préparé était vraiment extraordinaire.</blockquote>
+          <figcaption class="quote__who"><b>Sylvie</b><span>Vietnam &amp; Cambodge · mai 2026</span></figcaption>
+        </figure>
+      </div>
+      <div class="quotes__nav">
+        <button class="round-btn" type="button" data-q="prev" aria-label="Avis précédent"><svg><use href="#i-arrow-left"/></svg></button>
+        <button class="round-btn" type="button" data-q="next" aria-label="Avis suivant"><svg><use href="#i-arrow"/></svg></button>
+        <span class="quotes__count"><b id="qNow">01</b> / <span id="qTotal">04</span></span>
+        <a class="link-arrow quotes__all" href="https://authentikvietnam.com/avis-client">Tous les avis <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     7. FORM — demande de devis courte, sans budget
+     ===================================================================== -->
+<section class="devis" id="devis">
+  <div class="devis__grid">
+    <div class="devis__visual cine ph">
+      <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/col-khau-pha_2024-08-14_993.jpg" alt="" loading="lazy">
+      <div class="devis__visual-text on-dark">
+        <p class="eyebrow reveal">Votre voyage</p>
+        <h2 class="h2 reveal" data-delay="1">Parlons de <em>vos envies</em>.</h2>
+        <ul class="promise reveal" data-delay="2">
+          <li><svg><use href="#i-check"/></svg>Réponse personnalisée sous 24&nbsp;h</li>
+          <li><svg><use href="#i-check"/></svg>Un conseiller francophone, du premier échange au retour</li>
+          <li><svg><use href="#i-check"/></svg>Proposition gratuite et sans engagement</li>
+        </ul>
+        <a class="devis__wa reveal" data-delay="3" href="https://wa.me/84912121091?text=Bonjour%20Authentik%20Vietnam%2C%20je%20souhaite%20pr%C3%A9parer%20un%20voyage." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Préférez-vous WhatsApp&nbsp;? Écrivez-nous</a>
+      </div>
+    </div>
+
+    <div class="devis__form-wrap">
+      <form class="form" id="devisForm" novalidate>
+        <!-- PHP: action="/devis/envoyer" method="post" + CSRF + captcha ẩn (Turnstile/reCAPTCHA v3) -->
+        <div class="field">
+          <label for="f-name">Prénom et nom <i>*</i></label>
+          <input id="f-name" name="name" autocomplete="name" required placeholder="Claire Martin">
+          <span class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail <i>*</i></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="claire@exemple.fr">
+          <span class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="f-phone">Téléphone / WhatsApp</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78">
+          <span class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="f-travellers">Vous voyagez</label>
+          <select id="f-travellers" name="travellers">
+            <option>En couple</option><option>Seul(e)</option><option>En famille</option><option>Entre amis</option><option>En groupe</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-month">Période envisagée</label>
+          <select id="f-month" name="month"><option value="flexible">Dates flexibles</option></select>
+        </div>
+        <div class="field">
+          <label for="f-length">Durée</label>
+          <select id="f-length" name="length">
+            <option>Moins de 10 jours</option><option selected>10 à 15 jours</option><option>15 à 21 jours</option><option>Plus de 3 semaines</option>
+          </select>
+        </div>
+        <fieldset class="fieldset full">
+          <legend>Façon de voyager</legend>
+          <div class="choice">
+            <input type="radio" id="w1" name="way" value="prive" checked><label for="w1">Circuit privé</label>
+            <input type="radio" id="w2" name="way" value="groupe"><label for="w2">Petit groupe</label>
+            <input type="radio" id="w3" name="way" value="unknown"><label for="w3">Je ne sais pas encore</label>
+          </div>
+        </fieldset>
+        <div class="field full">
+          <label for="f-msg">Votre projet</label>
+          <textarea id="f-msg" name="message" rows="3" placeholder="Ce qui compte pour vous, les lieux qui vous font rêver, le rythme souhaité…"></textarea>
+        </div>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field full">
+          <label class="consent"><input type="checkbox" name="consent" required> <span>J’accepte que mes données soient utilisées pour traiter ma demande, conformément à la <a href="#">politique de confidentialité</a>. <i>*</i></span></label>
+          <span class="field__err" aria-live="polite"></span>
+        </div>
+        <div class="form__submit full">
+          <button class="btn btn--primary" type="submit">Envoyer ma demande <svg><use href="#i-arrow"/></svg></button>
+          <small>* champs obligatoires</small>
+        </div>
+      </form>
+
+      <div class="form-success" id="formSuccess" tabindex="-1">
+        <p class="eyebrow on-dark">Merci</p>
+        <h2 class="h2 on-dark">Votre demande <em>est bien partie</em>.</h2>
+        <p>Un conseiller francophone vous écrit sous 24&nbsp;h pour en parler avec vous. En attendant, laissez-vous inspirer par nos carnets de voyage.</p>
+        <a class="link-arrow" style="margin-top:2rem;color:var(--sand-300)" href="https://authentikvietnam.com/blog-de-voyage-au-vietnam">Lire le blog <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =====================================================================
+     8. FOOTER
+     ===================================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="Authentik Vietnam">
+          <img class="brand__logo" src="https://authentikvietnam.com/themes/web/img/authentiktravel.png" alt="Authentik Vietnam" width="436" height="140" loading="lazy">
+          <span class="brand__fallback">AUTHENTIK<small>VIETNAM</small></span>
+        </a>
+        <p class="footer__tag">Le Vietnam <em>en profondeur</em>,<br>depuis Hanoï.</p>
+      </div>
+      <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='Merci !'">
+        <label for="nl">Carnet de voyage, une fois par mois</label>
+        <div class="newsletter__row">
+          <input id="nl" type="email" placeholder="Votre e-mail" required>
+          <button type="submit">S’inscrire <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer__cols">
+      <div>
+        <h3 class="h4">Aide</h3>
+        <ul>
+          <li><a href="#devis">Demander un devis</a></li>
+          <li><a href="#">Nous contacter</a></li>
+          <li><a href="#">Questions fréquentes</a></li>
+          <li><a href="https://authentikvietnam.com/avant-de-partir-au-vietnam">Préparer son voyage</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Nos voyages</h3>
+        <ul>
+          <li><a href="https://authentikvietnam.com/voyage-au-vietnam">Inspirations</a></li>
+          <li><a href="https://authentikvietnam.com/petit-groupe/circuit-vietnam-petit-groupe">Petits groupes</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-laos">Voyages au Laos</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-cambodge">Voyages au Cambodge</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Authentik</h3>
+        <ul>
+          <li><a href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Qui sommes-nous&nbsp;?</a></li>
+          <li><a href="https://authentikvietnam.com/notre-equipe">Notre équipe</a></li>
+          <li><a href="https://authentikvietnam.com/avis-client">Avis clients</a></li>
+          <li><a href="https://authentikvietnam.com/authentik-vietnam-en-press">Presse</a></li>
+          <li><a href="https://authentikvietnam.com/recrutement">Recrutement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Coordonnées</h3>
+        <ul class="footer__contact">
+          <li><svg><use href="#i-pin"/></svg><span>62 Yên Phụ, Ba Đình<br>Hà Nội, Vietnam</span></li>
+          <li><svg><use href="#i-phone"/></svg><a href="tel:+84912121091">+84 912 121 091</a></li>
+          <li><svg><use href="#i-wa"/></svg><a href="https://wa.me/84912121091" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><svg><use href="#i-mail"/></svg><a href="mailto:info@authentikvietnam.com">info@authentikvietnam.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Authentik Vietnam · Licence de voyagiste international n° <span data-todo>[à compléter]</span></span>
+      <nav class="footer__legal" aria-label="Informations légales">
+        <a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/authentikvietnamtravel" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Floating: WhatsApp + back-to-top ===== -->
+<div class="fab-stack">
+  <a class="fab fab--top" href="#top" id="toTop" aria-label="Revenir en haut">
+    <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="23"/><circle class="fg" cx="24" cy="24" r="23"/></svg>
+    <svg class="arrow"><use href="#i-up"/></svg>
+  </a>
+  <a class="fab fab--wa" href="https://wa.me/84912121091?text=Bonjour%20Authentik%20Vietnam%2C%20je%20souhaite%20pr%C3%A9parer%20un%20voyage." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp" data-label="Une question ? WhatsApp">
+    <svg><use href="#i-wa"/></svg>
+  </a>
+</div>
+
+<!-- ===== Modal film ===== -->
+<div class="modal" id="filmModal" role="dialog" aria-modal="true" aria-label="Film Authentik Vietnam">
+  <button class="round-btn modal__close" type="button" data-close-modal aria-label="Fermer"><svg><use href="#i-close"/></svg></button>
+  <div class="modal__box" id="filmBox"></div>
+</div>
+
+<script src="assets/js/main.js?v=1.2" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Đặt clip hero tại đây:
+  hero.mp4  (bắt buộc)  — 1920×1080, H.264, KHÔNG tiếng, 15–25 giây, vòng lặp mượt, ≤ 6 Mo
+  hero.webm (tuỳ chọn)  — cùng nội dung, VP9, nhẹ hơn
+Gợi ý cảnh: chậm, ánh sáng sớm/chiều, ít chuyển cảnh (3–5 shot dài), tông tối.
+Nếu chưa có file: trang tự dùng ảnh poster + hiệu ứng zoom chậm (Ken Burns).
+Xuất nhanh bằng ffmpeg:
+  ffmpeg -i source.mov -t 20 -an -vf "scale=1920:-2,fps=25" -c:v libx264 -crf 26 -preset slow -movflags +faststart hero.mp4
+  ffmpeg -i hero.mp4 -c:v libvpx-vp9 -crf 36 -b:v 0 -an hero.webm

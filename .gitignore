@@ -1,0 +1,8 @@
+# File hệ thống do Windows / Google Drive tự tạo — không đưa lên GitHub
+desktop.ini
+Thumbs.db
+~$*
+*.tmp
+
+# Thư mục ứng dụng Claude desktop có thể tạo khi gửi file
+Claude outputs/

@@ -1,0 +1,3 @@
+Bản mẫu đang hotlink ảnh từ authentikvietnam.com và izitour.com để xem thử nhanh.
+Khi làm thật: đặt ảnh WebP vào thư mục này, đổi đường dẫn trong index.html, thêm srcset.
+Quy chuẩn: hero 16:9 ≥ 1920px · thẻ tour 4:5 ≥ 900px · mosaic ≥ 1400px (ô lớn) · logo trắng SVG/PNG nền trong.

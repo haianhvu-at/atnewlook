@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bản thử trên GitHub Pages: không cho Google index. XOÁ dòng dưới khi đưa lên domain thật. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Authentik — Design system</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.2">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.2">
+  <style>
+    body { background: var(--ivory); }
+    .sg-head { background: var(--forest-950); color: var(--ivory); padding: 72px 0 56px; }
+    .sg-head p { margin-top: 12px; color: rgba(247,243,236,.7); max-width: 640px; }
+    .sg { padding: 64px 0; border-bottom: 1px solid var(--line-light); }
+    .sg h2.h4 { margin-bottom: 28px; color: var(--emerald-700); }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .sw { border: 1px solid var(--line-light); }
+    .sw i { display: block; height: 96px; }
+    .sw div { padding: 10px 12px 12px; font-size: .75rem; line-height: 1.5; }
+    .sw b { display: block; font-weight: 600; font-size: .8rem; }
+    .sw code { color: var(--ink-soft); }
+    .group-label { margin: 28px 0 12px; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line-light); }
+    .type-row small { font-size: .75rem; color: var(--ink-soft); line-height: 1.6; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding: 28px; }
+    .dark-box { background: var(--forest-950); color: var(--ivory); }
+    .cine-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cine-demo figure { position: relative; aspect-ratio: 16/10; }
+    .cine-demo figcaption { position: absolute; left: 14px; bottom: 12px; z-index: 3; color: var(--ivory); font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    @media (max-width: 760px) { .type-row { grid-template-columns: 1fr; gap: 6px; } .cine-demo { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<header class="sg-head">
+  <div class="container">
+    <p class="eyebrow on-dark">Authentik Vietnam · Design system v0.1</p>
+    <h1 class="h2" style="margin-top:20px">Couleurs foncées, <em style="font-style:italic;color:var(--sand-300)">Montserrat</em> seule.</h1>
+    <p>Màu dựa trên màu gốc của logo, ưu tiên xanh (#0EA048) phủ tối ; nút hành động xanh đậm #0D6B3C. Một font duy nhất, phân cấp bằng độ dày, nghiêng, chữ hoa và giãn chữ. Biến CSS nằm trong <code>assets/css/tokens.css</code>.</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="sg">
+    <h2 class="h4">1 · Palette</h2>
+    <p class="group-label">Xanh rừng — nền tối chủ đạo</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:var(--forest-950)"></i><div><b>forest-950</b><code>#0B1712</code> · nền hero, footer, Instants</div></div>
+      <div class="sw"><i style="background:var(--forest-900)"></i><div><b>forest-900</b><code>#0F2019</code> · nền form, nút tối</div></div>
+      <div class="sw"><i style="background:var(--forest-800)"></i><div><b>forest-800</b><code>#15301F</code> · nền ảnh chờ tải</div></div>
+      <div class="sw"><i style="background:var(--forest-700)"></i><div><b>forest-700</b><code>#1D4430</code> · hover</div></div>
+      <div class="sw"><i style="background:var(--green-logo)"></i><div><b>green-logo</b><code>#0EA048</code> · màu gốc, chỉ dùng rất ít</div></div>
+      <div class="sw"><i style="background:var(--sage-300)"></i><div><b>sage-300</b><code>#9FBFA8</code> · nhãn trên nền tối</div></div>
+    </div>
+    <p class="group-label">Xanh đậm từ logo — nút & điểm nhấn hành động</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:var(--emerald-800)"></i><div><b>emerald-800</b><code>#0A5A32</code> · nút khi nhấn</div></div>
+      <div class="sw"><i style="background:var(--emerald-700)"></i><div><b>emerald-700</b><code>#0D6B3C</code> · NÚT CHÍNH « Demander un devis », eyebrow & chữ nghiêng trên nền sáng</div></div>
+      <div class="sw"><i style="background:var(--emerald-600)"></i><div><b>emerald-600</b><code>#118A4C</code> · hover nút chính</div></div>
+      <div class="sw"><i style="background:var(--emerald-300)"></i><div><b>emerald-300</b><code>#6CC795</code> · viền nút trên nền tối</div></div>
+      <div class="sw"><i style="background:var(--sand-300)"></i><div><b>sand-300</b><code>#D8B48E</code> · chữ nghiêng / nhấn trên nền tối, sao</div></div>
+    </div>
+    <p class="group-label">Nâu logo — chỉ dùng phủ ấm cho ảnh (không dùng cho nút)</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:var(--brown-logo)"></i><div><b>brown-logo</b><code>#822C08</code> · lớp phủ multiply 22 % trong .cine</div></div>
+    </div>
+    <p class="group-label">Trung tính ấm</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:var(--ivory)"></i><div><b>ivory</b><code>#F7F3EC</code> · nền sáng, chữ trên nền tối</div></div>
+      <div class="sw"><i style="background:var(--paper)"></i><div><b>paper</b><code>#EFE8DC</code> · nền khối Circuits</div></div>
+      <div class="sw"><i style="background:var(--ink)"></i><div><b>ink</b><code>#141A16</code> · chữ chính</div></div>
+      <div class="sw"><i style="background:var(--ink-soft)"></i><div><b>ink-soft</b><code>#4B524C</code> · chữ phụ (AA 7:1)</div></div>
+    </div>
+  </section>
+
+  <section class="sg">
+    <h2 class="h4">2 · Typographie — Montserrat</h2>
+    <div class="type-row"><small>H1 Display<br>200 · 42→90px · -1.5%</small><p class="h-display" style="font-size:clamp(2.4rem,5vw,4.5rem)">Le Vietnam, <em style="color:var(--emerald-700)">en profondeur.</em></p></div>
+    <div class="type-row"><small>H2 Section<br>300 (+ em nghiêng 300) · 32→56px</small><p class="h2">Ici, le luxe, c’est <em>le temps</em>.</p></div>
+    <div class="type-row"><small>H3 Bloc / tour<br>400 · 20→26px</small><p class="h3">Traversée du Vietnam</p></div>
+    <div class="type-row"><small>H4 Label<br>600 · 13px · HOA · giãn 18%</small><p class="h4">Nos voyages</p></div>
+    <div class="type-row"><small>Eyebrow<br>600 · 12px · HOA · giãn 24%</small><p class="eyebrow">Agence locale francophone</p></div>
+    <div class="type-row"><small>Lead / chapeau<br>300 · 17→20px · lh 1.7</small><p class="lead">Des voyages sur mesure, dans le confort et au rythme des rencontres.</p></div>
+    <div class="type-row"><small>Body<br>400 · 16px · lh 1.75</small><p>Nous dessinons avec vous des voyages privés, pensés dans les moindres détails : des maisons de caractère, un guide francophone pour vous seul.</p></div>
+    <div class="type-row"><small>Highlight<br>600 / 500 nghiêng</small><p>Réponse <span class="hl">sous 24 h</span>, par un conseiller <span class="hl-i">francophone</span>.</p></div>
+    <div class="type-row"><small>Bouton<br>600 · 12px · HOA · giãn 16%</small><p><span class="btn btn--primary">Créer mon voyage</span></p></div>
+  </section>
+
+  <section class="sg">
+    <h2 class="h4">3 · Boutons & liens</h2>
+    <div class="btn-row dark-box">
+      <a class="btn btn--primary" href="#">Demander un devis</a>
+      <a class="btn btn--ghost" href="#">Nos inspirations</a>
+      <a class="link-arrow" href="#" style="color:var(--sand-300)">Tous les avis <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+    <div class="btn-row" style="background:var(--paper)">
+      <a class="btn btn--dark" href="#">Toutes nos inspirations</a>
+      <a class="btn btn--outline-dark" href="#">Partir en petit groupe</a>
+      <a class="link-arrow" href="#">Notre histoire <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+  </section>
+
+  <section class="sg">
+    <h2 class="h4">4 · Lớp phủ ảnh « cinematic »</h2>
+    <p class="muted" style="margin-bottom:20px;max-width:720px">Ảnh gốc → giảm bão hoà 14 %, tăng tương phản 6 %, giảm sáng 14 % → phủ nâu đất 22 % (multiply) → gradient tối dần xuống chân ảnh + vignette. Chữ luôn đặt ở phần tối.</p>
+    <div class="cine-demo">
+      <figure class="ph"><img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-5.webp" alt=""><figcaption>Ảnh gốc</figcaption></figure>
+      <figure class="cine ph"><img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-5.webp" alt=""><figcaption>Class .cine</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sg" style="border:0">
+    <h2 class="h4">5 · Règles</h2>
+    <ul class="muted" style="display:grid;gap:10px;max-width:760px;list-style:disc;padding-left:20px">
+      <li>Không hiển thị giá trên trang chủ ; nói về trải nghiệm, sự riêng tư, sự thoải mái.</li>
+      <li>Ít chữ : 1 tiêu đề + tối đa 2 dòng mô tả cho mỗi khối.</li>
+      <li>Một màu hành động duy nhất : xanh đậm từ logo #0D6B3C (nút devis). Không dùng nâu/đỏ cho nút để tách biệt với đối thủ.</li>
+      <li>Góc gần vuông (2px) cho nút & thẻ ; bo tròn chỉ cho chip, nút tròn.</li>
+      <li>Khoảng cách theo bội số 8 ; padding section 72 → 136px.</li>
+      <li>Mobile : các dãy thẻ vuốt ngang (80 % chiều rộng), không xếp chồng dài.</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
