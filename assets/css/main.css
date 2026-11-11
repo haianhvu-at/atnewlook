@@ -1,7 +1,7 @@
 /* ==========================================================================
    AUTHENTIK — TRANG CHỦ (mẫu giao diện)
    Thứ tự: base · type · buttons · navbar · hero · intro · media · circuits
-           · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit
+           · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit · trang tổng hợp circuit
            · reveal · responsive
    ========================================================================== */
 
@@ -1053,6 +1053,118 @@ body.is-locked { overflow: hidden; }
   .lightbox__nav { position: absolute; bottom: 24px; }
   .lightbox__nav--prev { left: calc(50% - 64px); }
   .lightbox__nav--next { right: calc(50% - 64px); }
+}
+
+/* ==========================================================================
+   TRANG TỔNG HỢP CIRCUIT — voyage-au-vietnam/  · v1.5
+   Nhịp tham khảo exoticvoyages.com/vietnam-tours : hero → 3 bước → 1 coup de cœur
+   → lưới thẻ gọn có lọc + dải CTA giữa danh sách → avis. Không giá.
+   ========================================================================== */
+.page-hero--list { min-height: clamp(540px, 80vh, 840px); min-height: clamp(540px, 80svh, 840px); }
+.page-hero--list .page-hero__media::after {
+  background:
+    linear-gradient(180deg, rgba(11,23,18,.55) 0%, rgba(11,23,18,.12) 30%, rgba(11,23,18,.55) 62%, rgba(11,23,18,.95) 100%),
+    linear-gradient(90deg, rgba(11,23,18,.6), transparent 70%);
+}
+.page-hero--list .page-hero__title { max-width: 900px; }
+.page-hero--list .btn--primary, .cards__band .btn--primary { --bd: rgba(108,199,149,.55); box-shadow: 0 10px 30px -12px rgba(14,160,72,.55); }
+.list-hero__trust { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--line-dark); flex-wrap: wrap; gap: 10px 28px; max-width: 760px; }
+
+/* ---------- Sur mesure en 3 étapes ---------- */
+.steps-sec { padding-block: clamp(3rem, 6vw, 4.5rem) 0; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 4rem); margin: 0; padding: 0; list-style: none; }
+.step { padding-top: 20px; border-top: 1px solid var(--ink); }
+.step__num { font-size: .6875rem; font-weight: 600; letter-spacing: .18em; color: var(--emerald-700); }
+.step .h3 { margin-top: 10px; }
+.step p { margin-top: 8px; max-width: 340px; font-size: .9375rem; line-height: 1.6; color: var(--ink-soft); }
+
+/* ---------- Coup de cœur ---------- */
+.feat { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.feat__img { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--forest-800); }
+.feat__img img { transition: transform 1.6s var(--ease-out); }
+.feat__img:hover img { transform: scale(1.04); }
+.feat__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; margin-top: var(--s-3); font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+.feat__meta span + span::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 12px 2px; border-radius: 50%; background: currentColor; opacity: .5; vertical-align: middle; }
+.feat__title { margin-top: var(--s-2); font-size: clamp(1.9rem, 3.4vw, 3rem); font-weight: 300; line-height: 1.12; letter-spacing: -.01em; }
+.feat__title a { transition: color var(--t-fast); }
+.feat__title a:hover { color: var(--emerald-700); }
+.feat__title em { font-style: italic; color: var(--emerald-700); }
+.feat__route { margin-top: var(--s-2); font-size: .875rem; line-height: 1.8; color: var(--ink-soft); }
+.feat__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-3); }
+.feat__tags li { padding: 6px 12px; border: 1px solid var(--line-light); border-radius: var(--radius-pill); font-size: .75rem; color: var(--ink-soft); }
+.feat__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-4); }
+
+/* ---------- Danh sách : lọc + thẻ ---------- */
+.list-sec { background: var(--paper); color: var(--ink); }
+.list-sec .tabs { align-self: end; }
+.tabs button[aria-pressed="true"] { background: var(--forest-900); color: var(--ivory); }
+.tabs button[aria-pressed="false"]:hover { color: var(--ink); }
+.lfilters { padding-block: var(--s-2); border-block: 1px solid var(--line-light); }
+.lfilters__toggle { display: none; }
+.lfilters__rows { display: grid; gap: 12px; padding-block: 6px; }
+.lfilters__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: var(--s-3) 0 var(--s-3); }
+.lfilters__foot .posts__count { margin: 0; }
+.link-reset { min-height: 44px; font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 4px; }
+.link-reset:hover { color: var(--ink); }
+.link-reset[hidden] { display: none; }
+
+.cards--list { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); }
+.cards--list .card__top { padding: 16px; }
+.cards--list .card__body { padding: 20px 18px 18px; }
+.cards--list .card__route { font-size: .625rem; letter-spacing: .14em; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cards--list .card__title { margin-top: 8px; font-size: clamp(1.05rem, 1.25vw, 1.25rem); line-height: 1.28; }
+.cards--list .card__days b { font-size: 1.35rem; }
+.cards__band {
+  grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;
+  padding: clamp(24px, 4vw, 44px); background: var(--forest-900); color: var(--ivory);
+}
+.cards__band[hidden] { display: none; }
+.cards__band-title { margin-top: 14px; font-size: clamp(1.3rem, 2.2vw, 1.9rem); font-weight: 300; line-height: 1.25; }
+.cards__band-title em { font-style: italic; color: var(--sand-300); }
+.cards__band-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.list-more { display: flex; justify-content: center; margin-top: var(--s-5); }
+.list-more[hidden] { display: none; }
+.list-more span { opacity: .6; }
+
+@media (max-width: 1024px) {
+  .steps { grid-template-columns: 1fr; gap: 0; }
+  .step { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; padding: 16px 0; }
+  .step .h3 { margin-top: 0; }
+  .step p { grid-column: 2; margin-top: 4px; }
+  .feat { grid-template-columns: 1fr; }
+  .cards--list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .list-sec .tabs { align-self: start; }
+}
+@media (max-width: 760px) {
+  .list-hero__trust { font-size: .72rem; }
+  /* bộ lọc thu gọn : nút « Filtrer » mở hàng chip (LS01) */
+  .list-sec .tabs { width: 100%; }
+  .list-sec .tabs button { flex: 1 1 auto; padding: 10px 8px; font-size: .625rem; letter-spacing: .1em; white-space: nowrap; }
+  .lfilters { padding-block: 0; }
+  .lfilters__toggle {
+    display: flex; align-items: center; gap: 10px; min-height: 52px; cursor: pointer; list-style: none;
+    font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  }
+  .lfilters__toggle::-webkit-details-marker { display: none; }
+  .lfilters__toggle b { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--forest-900); color: var(--ivory); font-size: .625rem; letter-spacing: 0; }
+  .lfilters__toggle b[hidden] { display: none; }
+  .lfilters__toggle svg { width: 16px; height: 16px; margin-left: auto; transition: transform var(--t-fast); }
+  .lfilters[open] .lfilters__toggle svg { transform: rotate(180deg); }
+  .lfilters__rows { padding-bottom: 16px; }
+  /* thẻ : lưới 2 cột gọn (không vuốt, để thấy số kết quả) */
+  .cards--list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .cards--list .card__top { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px; }
+  .cards--list .chip { padding: 5px 8px; font-size: .5625rem; letter-spacing: .12em; }
+  .cards--list .card__days b { font-size: 1.1rem; }
+  .cards--list .card__body { padding: 12px 12px 12px; }
+  .cards--list .card__route { display: none; }
+  .cards--list .card__title { margin-top: 0; font-size: .9375rem; }
+  .cards__band { flex-direction: column; align-items: flex-start; }
+  .cards__band-btns, .cards__band-btns .btn { width: 100%; }
+  .feat__btns .btn { flex: 1 1 auto; }
+}
+@media (min-width: 761px) {
+  .lfilters > summary { pointer-events: none; }
 }
 
 /* ---------- Reveal on scroll ---------- */

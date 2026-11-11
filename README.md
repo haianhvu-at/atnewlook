@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.4 · repo atnewlook · 11/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.5 · repo atnewlook · 11/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -7,7 +7,9 @@ Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) đ�
 index.html                                   Trang chủ (8 module)
 blog-de-voyage-au-vietnam/index.html         Trang danh sách blog (giữ URL cũ)
 visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài viết)
+petit-groupe/circuit-vietnam-petit-groupe/index.html  Trang chuyển hướng URL cũ → voyage-au-vietnam/?type=groupe
 detail-du-circuit/vietnam-en-profondeur-du-grand-nord-au-mekong-2027/index.html   Trang circuit mẫu (fiche voyage, giữ URL cũ)
+voyage-au-vietnam/index.html                 Trang tổng hợp circuit (59 voyage, lọc; giữ URL cũ /voyage-au-vietnam)
 assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit…)
 _partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
 favicon.ico                                  Favicon 16/32/48 (file gốc của designer) — giữ ở thư mục gốc
@@ -80,6 +82,26 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 | Vous aimerez aussi (TD13) | 3 thẻ circuit chuẩn (dùng chung trang chủ), ảnh vị trí `circuit` |
 | Thanh CTA mobile (TD04) | ≤ 1024px: thanh cố định cuối màn hình (devis + WhatsApp), hiện sau hero, ẩn ở CTA cuối trang |
 
+**Trang tổng hợp circuit (v1.5)** — `/voyage-au-vietnam/`, nhịp tham khảo exoticvoyages.com/vietnam-tours (khác trang blog: không phải danh sách bài, mà là trang « điểm đến » có 1 tour nổi bật + lưới thẻ dày). 59 voyage thật lấy ngày 11/11/2026: 53 circuit privé (trang cũ /voyage-au-vietnam, 6 trang) + 6 petit groupe 2027. Không giá.
+
+| Khối | Nội dung |
+|------|----------|
+| Hero | Ảnh người thật (chợ phiên, phụ nữ H’Mông) · breadcrumb · « Inspirations · 59 voyages » · H1 « Voyages au Vietnam, à votre rythme » · 1 dòng · nút devis + « Voir les voyages » · điểm Tripadvisor / Google / Trustpilot |
+| 3 étapes | Vos envies · Votre itinéraire · Votre voyage — 1 dòng mỗi bước |
+| Coup de cœur | Vietnam en profondeur : du Grand Nord au Mékong (petit groupe, 19 j — Nhung chọn 11/11; admin: cờ `featured`): ảnh trái, nhãn (Petit groupe · 19 jours · Départ garanti), tên, lộ trình, từ khóa, nút « Découvrir le voyage » + « Départs 2027 » (→ #departs của trang tour) |
+| Tous nos voyages (LS01–LS05, LS07) | Tab Tous / Circuits privés / Petits groupes · lọc Destination (Vietnam, Laos, Cambodge, Combinés) · Envie (Première découverte, Vietnam authentique, Peuples du Nord, Randonnée, Mer & plages — theo catégorie của site cũ) · Durée (≤ 7 j, 8–14 j, ≥ 15 j) · đếm « X voyages » · « Effacer les filtres » · URL `?type=&dest=&envie=&duree=` · thẻ circuit chuẩn 4:5, 4 cột (tablette 3, mobile 2 cột gọn) · 12 thẻ đầu + « Afficher plus » (+12) · dải CTA sur mesure luôn sau thẻ thứ 8 · trạng thái 0 kết quả. Mobile: bộ lọc gọn sau nút « Filtrer » (có số lọc đang bật). |
+| Avis | 3 trích dẫn khách thật (giống trang chủ) + điểm 3 nền tảng |
+
+Menu « Circuits » (navbar + menu mobile + footer) từ v1.5: Inspirations → `/voyage-au-vietnam/?type=prive` (ảnh thẻ menu = `circuit/nguoi-dao-hai-che.webp`, ảnh gốc IMG_8702 của Nhung), Petite communauté → `/voyage-au-vietnam/?type=groupe` (đến từ menu thì tự cuộn tới danh sách).
+
+URL cũ `/petit-groupe/circuit-vietnam-petit-groupe` → **chuyển sang** `/voyage-au-vietnam/?type=groupe` (quyết định 11/11/2026): bản thử có trang chuyển hướng `petit-groupe/circuit-vietnam-petit-groupe/index.html` (meta refresh + JS, noindex, canonical) · Firebase Hosting: rule 301 trong `firebase.json` · **Production PHP: coder đặt 301 phía máy chủ**, vd Apache `.htaccess`:
+```apache
+RewriteEngine On
+RewriteRule ^petit-groupe/circuit-vietnam-petit-groupe/?$ /voyage-au-vietnam?type=groupe [R=301,L]
+```
+
+Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouverte` · `?envie=authentique` · `?envie=ethnies` · `?envie=trek` · `?envie=balneaire` · kết hợp `?type=groupe&envie=ethnies`.
+
 ## 3. Design system (chi tiết trong `styleguide.html`)
 
 - **Màu:** ưu tiên xanh logo `#0EA048` → nền xanh rừng tối `#0B1712 … #1D4430`; **nút chính xanh đậm `#0D6B3C`** (hover `#118A4C`, trên nền tối có viền xanh sáng). Không dùng nâu/đỏ cho nút (tránh giống đối thủ); nâu logo chỉ còn là lớp phủ ấm cho ảnh. Trung tính ấm ivory `#F7F3EC` / paper `#EFE8DC`. Chữ nhấn trên nền tối: sand `#D8B48E`.
@@ -97,6 +119,7 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 - Thẻ tour: lấy từ admin (cờ `featured`), không có trường giá.
 - Avis: số liệu nên lấy tự động (widget/API) hoặc cập nhật định kỳ; trích dẫn từ trang `/avis-client`.
 - Ảnh: trang chủ / blog còn hotlink để demo; trang circuit đã dùng WebP local theo vị trí (`assets/img/<vị-trí>/`). Khi làm thật: WebP local + `loading="lazy"`; logo dùng bản trắng (logo_authentik_white).
+- Trang tổng hợp: thẻ mang `data-type` (prive|groupe) · `data-dest` (vn|la|kh|combine) · `data-envie` (nhiều giá trị, cách nhau dấu cách) · `data-days` → lấy từ admin (catégorie site cũ: Vietnam première découverte = decouverte, Vietnam authentique = authentique, Rencontre des ethnies du Nord = ethnies, Trekking et Randonnée = trek, Séjours balnéaires = balneaire, Combiné multi-pays = combine). URL cũ `/petit-groupe/circuit-vietnam-petit-groupe` → redirect 301 sang `/voyage-au-vietnam?type=groupe` (hoặc giữ trang cũ, chốt với SEO).
 - Trang circuit: mỗi ngày = 1 bản ghi admin (tiêu đề, tóm tắt 1 dòng, nội dung, repas, hébergement, ảnh, nhãn hoạt động); hébergements gộp tự động từ các ngày; départs = bảng ngày (không giá); link devis truyền `circuit`, `depart`, `type`, `duree`.
 - Hiệu năng: video ≤ 6 Mo, `preload="metadata"`; YouTube chỉ tải khi bấm.
 
@@ -114,6 +137,7 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 - [ ] Blog: duyệt nội dung bài mẫu « Visiter le Vietnam en profondeur » (tiếng Pháp, các câu về dịch vụ) ; tên + ảnh tác giả thật (E-E-A-T) thay cho « l’équipe Authentik Vietnam »
 - [ ] Blog: danh sách chủ đề (Inspiration · Rencontres & culture · Nature & paysages · Cuisine · Conseils pratiques) và gán chủ đề / vùng cho từng bài cũ
 - [ ] Blog: bài ghim « À la une » ; ảnh thật cho các vị trí blog-thumb / article / inline (anh_webp.py)
+- [ ] Tổng hợp circuit: ảnh thẻ tour privé hiện là ảnh site cũ 740×442 (thẻ chỉ còn ~354×442, hơi mờ trên màn hình nét) → cần ảnh dọc chất lượng cao, có người ; duyệt « Envie » MẪU của 6 petit groupe (Vietnam en profondeur = authentique + ethnies · Grand Tour du Nord = ethnies · Vietnam authentique = authentique + decouverte · Essence = decouverte · Sentiers cachés = ethnies + trek · Meilleur du Nord = decouverte) ; rà tên tour (vd « Le Long du Côte du Tonkin… », « Cambodge : Flores et Faune ») và lộ trình không dấu — TD16 (Content kiểm tra sau)
 - [ ] Circuit: xác nhận « Départ garanti » cho 11 ngày 2027 ; trích dẫn avis gắn đúng tour này (hiện lấy avis petit groupe chung) ; ảnh có người cho Ba Bể / Huế / Saigon (đang là phong cảnh) ; Content rà chữ lịch trình (giờ « 8:00 : », tên địa danh có dấu / không dấu) — TD16
 
 ## 6. Quy trình lưu & cập nhật

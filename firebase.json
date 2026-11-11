@@ -19,6 +19,18 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "source": "/petit-groupe/circuit-vietnam-petit-groupe",
+        "destination": "/voyage-au-vietnam/?type=groupe",
+        "type": 301
+      },
+      {
+        "source": "/petit-groupe/circuit-vietnam-petit-groupe/**",
+        "destination": "/voyage-au-vietnam/?type=groupe",
+        "type": 301
+      }
     ]
   }
 }

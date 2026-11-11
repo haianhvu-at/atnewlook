@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=1.4">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.4">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.5">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.5">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon/icon.svg" type="image/svg+xml">
@@ -53,15 +53,15 @@
       <div class="dd" data-dd>
         <button class="nav__link" aria-expanded="false" aria-controls="dd-circuits" data-nav="circuits">Circuits <svg><use href="#i-chevron"/></svg></button>
         <div class="dd__panel dd__panel--mega" id="dd-circuits">
-          <a class="mega-card cine" href="#circuits-prive" data-filter-link="prive">
-            <img class="img-cover" src="https://authentikvietnam.com/media/tour/04edd798704dde573598035c06de9992.jpg" alt="" loading="lazy">
+          <a class="mega-card cine" href="voyage-au-vietnam/index.html?type=prive">
+            <img class="img-cover" src="assets/img/circuit/nguoi-dao-hai-che.webp" alt="" width="900" height="1125" loading="lazy" decoding="async" style="--focus: 50% 35%">
             <span class="mega-card__body">
               <span class="h4">Circuits privés</span>
               <span class="mega-card__title">Inspirations</span>
               <span class="mega-card__text">Des itinéraires à composer ensemble, rien que pour vous.</span>
             </span>
           </a>
-          <a class="mega-card cine" href="#circuits-groupe" data-filter-link="groupe">
+          <a class="mega-card cine" href="voyage-au-vietnam/index.html?type=groupe">
             <img class="img-cover" src="https://authentikvietnam.com/media/tour/a1e99cb1a6ad0b3e87e509f12053bbac.jpg" alt="" loading="lazy">
             <span class="mega-card__body">
               <span class="h4">Petits groupes</span>
@@ -104,8 +104,8 @@
       <details>
         <summary>Circuits <svg><use href="#i-chevron"/></svg></summary>
         <div class="mnav__sub">
-          <a href="#circuits-prive" data-close data-filter-link="prive">Inspirations <small>Circuits privés</small></a>
-          <a href="#circuits-groupe" data-close data-filter-link="groupe">Petite communauté <small>Petits groupes</small></a>
+          <a href="voyage-au-vietnam/index.html?type=prive" data-close>Inspirations <small>Circuits privés</small></a>
+          <a href="voyage-au-vietnam/index.html?type=groupe" data-close>Petite communauté <small>Petits groupes</small></a>
         </div>
       </details>
     </li>
@@ -334,7 +334,7 @@
     </div>
 
     <div class="circuits__foot reveal">
-      <a class="btn btn--dark" href="https://authentikvietnam.com/voyage-au-vietnam">Toutes nos inspirations <svg><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--dark" href="voyage-au-vietnam/index.html">Toutes nos inspirations <svg><use href="#i-arrow"/></svg></a>
       <a class="btn btn--outline-dark" href="#circuits" data-filter-link="groupe">Partir en petit groupe</a>
     </div>
   </div>
@@ -520,8 +520,8 @@
       <div>
         <h3 class="h4">Nos voyages</h3>
         <ul>
-          <li><a href="https://authentikvietnam.com/voyage-au-vietnam">Inspirations</a></li>
-          <li><a href="https://authentikvietnam.com/petit-groupe/circuit-vietnam-petit-groupe">Petits groupes</a></li>
+          <li><a href="voyage-au-vietnam/index.html?type=prive">Inspirations</a></li>
+          <li><a href="voyage-au-vietnam/index.html?type=groupe">Petits groupes</a></li>
           <li><a href="https://authentikvietnam.com/voyages-au-laos">Voyages au Laos</a></li>
           <li><a href="https://authentikvietnam.com/voyages-au-cambodge">Voyages au Cambodge</a></li>
         </ul>
@@ -578,6 +578,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="assets/js/main.js?v=1.4" defer></script>
+<script src="assets/js/main.js?v=1.5" defer></script>
 </body>
 </html>

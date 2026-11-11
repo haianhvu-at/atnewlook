@@ -390,6 +390,63 @@
     });
   }
 
+  /* ---------- Trang tổng hợp circuit : lọc + « Afficher plus » (LS01–LS05, LS07) ----------
+     Thẻ: data-type (prive|groupe) · data-dest (vn|la|kh|combine) · data-envie (nhiều giá trị) · data-days
+     URL chia sẻ được: ?type=groupe&dest=vn&envie=ethnies&duree=long */
+  const tourList = $('#tourList');
+  if (tourList) {
+    const items = $$('.card[data-type]', tourList);
+    const band = $('#listBand');
+    const more = $('#listMore'), moreN = $('#listMoreN');
+    const count = $('#listCount'), empty = $('#listEmpty'), fCount = $('#filterCount');
+    const STEP = 12;
+    const st = { type: 'all', dest: 'all', envie: 'all', duree: 'all' };
+    let limit = STEP;
+    const qp = new URLSearchParams(location.search);
+    Object.keys(st).forEach(k => { const v = qp.get(k); if (v && $(`[data-list-filter="${k}"][data-value="${v}"]`)) st[k] = v; });
+    const bucket = d => (d <= 7 ? 'court' : d <= 14 ? 'moyen' : 'long');
+    const match = c => (st.type === 'all' || c.dataset.type === st.type)
+      && (st.dest === 'all' || c.dataset.dest === st.dest)
+      && (st.envie === 'all' || (c.dataset.envie || '').split(' ').includes(st.envie))
+      && (st.duree === 'all' || bucket(+c.dataset.days) === st.duree);
+    const render = (pushUrl = true) => {
+      const ok = items.filter(match);
+      items.forEach(c => { c.hidden = true; });
+      ok.forEach((c, i) => { c.hidden = i >= limit; if (!c.hidden) c.classList.add('is-in'); });
+      if (band) {   // dải CTA luôn nằm sau thẻ thứ 8 đang hiện (hoặc sau thẻ cuối nếu ít hơn)
+        band.hidden = ok.length === 0;
+        const shown = ok.slice(0, limit);
+        if (shown.length) shown[Math.min(7, shown.length - 1)].after(band);
+      }
+      count.textContent = ok.length + (ok.length > 1 ? ' voyages' : ' voyage');
+      empty.hidden = ok.length > 0;
+      more.hidden = ok.length <= limit;
+      if (moreN) moreN.textContent = `(${ok.length - Math.min(limit, ok.length)})`;
+      $$('[data-list-filter]').forEach(b => b.setAttribute('aria-pressed', String(st[b.dataset.listFilter] === b.dataset.value)));
+      const active = ['dest', 'envie', 'duree'].filter(k => st[k] !== 'all').length;
+      if (fCount) { fCount.textContent = active; fCount.hidden = !active; }
+      $$('[data-list-reset]').forEach(b => { if (!b.closest('#listEmpty')) b.hidden = !(active || st.type !== 'all'); });
+      if (pushUrl) {
+        const q = new URLSearchParams();
+        Object.entries(st).forEach(([k, v]) => { if (v !== 'all') q.set(k, v); });
+        history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);
+      }
+    };
+    $$('[data-list-filter]').forEach(b => b.addEventListener('click', () => { st[b.dataset.listFilter] = b.dataset.value; limit = STEP; render(); }));
+    $$('[data-list-reset]').forEach(b => b.addEventListener('click', () => { Object.keys(st).forEach(k => { st[k] = 'all'; }); limit = STEP; render(); }));
+    $('button', more).addEventListener('click', () => { limit += STEP; render(false); });
+    // mobile: bộ lọc thu gọn (mở sẵn nếu đang có lọc) · desktop: luôn mở
+    const lf = $('#listFilters');
+    if (lf) {
+      const mq = window.matchMedia('(max-width: 760px)');
+      const setLf = () => { lf.open = !mq.matches || ['dest', 'envie', 'duree'].some(k => st[k] !== 'all'); };
+      setLf(); mq.addEventListener('change', setLf);
+    }
+    render(false);
+    // đến từ menu « Petite communauté » (?type=groupe) → cuộn tới danh sách
+    if (qp.toString() && !location.hash) window.addEventListener('load', () => $('#voyages').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
+  }
+
   /* ---------- Năm copyright tự động ---------- */
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();
