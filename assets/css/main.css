@@ -1,7 +1,8 @@
 /* ==========================================================================
    AUTHENTIK — TRANG CHỦ (mẫu giao diện)
    Thứ tự: base · type · buttons · navbar · hero · intro · media · circuits
-           · reviews · form · footer · floating · reveal · responsive
+           · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit
+           · reveal · responsive
    ========================================================================== */
 
 /* ---------- Base ---------- */
@@ -761,6 +762,297 @@ body.is-locked { overflow: hidden; }
   .tour-cta__img { min-height: 0; aspect-ratio: 16 / 9; }
   .end-cta__btns .btn { flex: 1 1 auto; }
   .byline { gap: 6px 18px; }
+}
+
+/* ==========================================================================
+   TRANG CIRCUIT (fiche voyage) — detail-du-circuit/<slug>/  · v1.4
+   Thứ tự: hero · tab dính · le voyage + fiche clé · galerie · itinéraire
+           · hébergements · inclus · départs · bon à savoir · avis · thanh CTA mobile · lightbox
+   Không hiển thị giá (brief). Mỗi khối = 1 partial PHP về sau.
+   ========================================================================== */
+
+/* ---------- Hero circuit (ảnh banner + banner-mobile trong <picture>) ---------- */
+.cine > picture > img { filter: var(--cine-filter); }
+.page-hero__media picture { display: block; width: 100%; height: 100%; }
+.page-hero--tour { min-height: clamp(560px, 90vh, 920px); min-height: clamp(560px, 90svh, 920px); }
+.page-hero--tour .page-hero__media::after {
+  background:
+    linear-gradient(180deg, rgba(11,23,18,.55) 0%, rgba(11,23,18,.10) 28%, rgba(11,23,18,.50) 60%, rgba(11,23,18,.95) 100%),
+    linear-gradient(90deg, rgba(11,23,18,.55), transparent 65%);
+}
+.tour-hero__eyebrow {
+  margin-top: var(--s-5);
+  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--sand-300);
+}
+.tour-hero__title { max-width: 1000px; margin-top: var(--s-2); }
+.tour-hero__route { margin-top: var(--s-3); max-width: 780px; font-size: .8125rem; font-weight: 500; letter-spacing: .08em; line-height: 1.9; color: rgba(247,243,236,.8); }
+.tour-hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-4); }
+.page-hero--tour .btn--primary, .tour-tabs .btn--primary, .facts .btn--primary, .tour-bar .btn--primary {
+  --bd: rgba(108,199,149,.55); box-shadow: 0 10px 30px -12px rgba(14,160,72,.55);
+}
+
+/* ---------- Thanh tab dính (TD03) ---------- */
+.tour-tabs {
+  position: sticky; top: var(--nav-h-small); z-index: 60;
+  background: rgba(11,23,18,.96); color: var(--ivory); border-bottom: 1px solid var(--line-dark);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  transition: top var(--t) var(--ease);
+}
+.nav.is-hidden ~ main .tour-tabs { top: 0; }
+.tour-tabs__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); min-height: 60px; }
+.tour-tabs__list { display: flex; gap: clamp(1.25rem, 2.2vw, 2.25rem); min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.tour-tabs__list::-webkit-scrollbar { display: none; }
+.tour-tabs__list a {
+  position: relative; flex: none; padding: 21px 0 19px;
+  font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(247,243,236,.62); transition: color var(--t-fast);
+}
+.tour-tabs__list a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--sand-300);
+  transform: scaleX(0); transform-origin: left; transition: transform var(--t-fast) var(--ease);
+}
+.tour-tabs__list a:hover, .tour-tabs__list a[aria-current="true"] { color: var(--ivory); }
+.tour-tabs__list a[aria-current="true"]::after { transform: scaleX(1); }
+.tour-tabs__cta { flex: none; }
+
+/* ---------- Khung section ---------- */
+.tour-sec { position: relative; padding-block: clamp(3.5rem, 8vw, 6.5rem); scroll-margin-top: calc(var(--nav-h-small) + 56px); }
+.tour-sec--ivory { background: var(--ivory); color: var(--ink); }
+.tour-sec--paper { background: var(--paper); color: var(--ink); }
+.tour-head { margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.tour-head .h2 { margin-top: 1.25rem; }
+.tour-head__aside { justify-self: end; }
+
+/* ---------- Le voyage : chapeau + points forts + fiche clé (TD02) ---------- */
+.tour-over { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
+.tour-over__text .h2 { margin-top: 1.25rem; }
+.tour-over__text .lead { margin-top: var(--s-3); max-width: 600px; }
+.highlights { margin: var(--s-5) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line-light); }
+.highlights li { display: grid; grid-template-columns: 44px 1fr; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line-light); line-height: 1.5; }
+.highlights span { font-size: .6875rem; font-weight: 600; letter-spacing: .1em; color: var(--emerald-700); }
+.film-link {
+  display: inline-flex; align-items: center; gap: 14px; margin-top: var(--s-4); min-height: 52px;
+  font-size: var(--fs-btn); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
+}
+.film-link .play__ring { border-color: rgba(20,26,22,.4); transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast); }
+.film-link .play__ring::after { border-color: var(--emerald-700); }
+.film-link:hover .play__ring { background: var(--forest-900); color: var(--ivory); border-color: var(--forest-900); }
+
+.facts { padding: clamp(24px, 3vw, 40px); background: var(--forest-900); color: var(--ivory); }
+.facts__badge { display: inline-flex; align-items: center; gap: 12px; font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--emerald-300); }
+.facts__badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green-logo); box-shadow: 0 0 0 4px rgba(14,160,72,.2); }
+.facts__list { margin: var(--s-3) 0 0; }
+.facts__list div { display: grid; grid-template-columns: 116px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line-dark); }
+.facts__list dt { padding-top: 3px; font-size: .625rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--sage-300); }
+.facts__list dd { margin: 0; font-size: .9375rem; line-height: 1.5; }
+.facts__btns { display: grid; gap: 10px; margin-top: var(--s-4); }
+.facts__note { margin-top: 14px; font-size: .78rem; color: rgba(247,243,236,.6); }
+
+/* ---------- Galerie mosaïque (TD01) — 1 lớn + 4 nhỏ, mở lightbox ---------- */
+.gal {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 8px;
+  margin-top: clamp(3rem, 6vw, 5rem); aspect-ratio: 16 / 7;
+}
+.gal__tile { position: relative; display: block; overflow: hidden; background: var(--forest-800); }
+.gal__tile--1 { grid-row: 1 / span 2; }
+.gal__tile img { transition: transform 1.6s var(--ease-out); }
+.gal__tile:hover img { transform: scale(1.05); }
+.gal__more {
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+  background: rgba(11,23,18,.58); color: var(--ivory); transition: background var(--t-fast);
+  font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+}
+.gal__more b { display: block; font-size: 2.4rem; font-weight: 200; letter-spacing: 0; line-height: 1.1; }
+.gal__tile:hover .gal__more { background: rgba(11,23,18,.42); }
+
+/* ---------- Itinéraire : bản đồ + ngày (TD05, TD06) ---------- */
+.itin { display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.itin__map { position: sticky; top: calc(var(--nav-h-small) + 84px); margin: 0; }
+.itin__map a { position: relative; display: block; background: #fff; border: 1px solid var(--line-light); }
+.itin__map img { width: 100%; height: auto; }
+.itin__zoom {
+  position: absolute; left: 12px; bottom: 12px; padding: 9px 12px; background: var(--forest-900); color: var(--ivory);
+  font-size: .625rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+}
+.days { margin: 0; padding: 0; list-style: none; }
+.days__stage { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 34px 0 12px; border-bottom: 1px solid var(--ink); }
+.days__stage:first-child { padding-top: 0; }
+.days__stage span { font-size: .6875rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--emerald-700); }
+.days__stage small { font-size: .78rem; color: var(--ink-soft); }
+.day { border-bottom: 1px solid var(--line-light); }
+.day__head {
+  display: grid; grid-template-columns: 60px minmax(0, 1fr) 24px; gap: 16px; align-items: start;
+  padding: 22px 0; cursor: pointer; list-style: none;
+}
+.day__head::-webkit-details-marker { display: none; }
+.day__num { display: flex; flex-direction: column; font-size: 2rem; font-weight: 200; line-height: 1; font-variant-numeric: tabular-nums; }
+.day__num small { margin-bottom: 6px; font-size: .5625rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+.day__title { display: block; font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 400; line-height: 1.3; transition: color var(--t-fast); }
+.day__head:hover .day__title { color: var(--emerald-700); }
+.day__sum { display: block; margin-top: 6px; font-size: .9rem; line-height: 1.55; color: var(--ink-soft); }
+.day__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.day__tag {
+  display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 11px;
+  border: 1px solid var(--line-light); border-radius: var(--radius-pill);
+  font-size: .6875rem; line-height: 1.35; color: var(--ink-soft);
+}
+.day__tag b { font-size: .5625rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+.day__tag--stay { background: rgba(247,243,236,.7); }
+.day__chev { width: 20px; height: 20px; margin-top: 12px; color: var(--ink-soft); transition: transform var(--t-fast) var(--ease); }
+.day[open] .day__chev { transform: rotate(180deg); }
+.day__body { display: grid; gap: 20px; padding: 0 0 30px 76px; }
+.day__fig { position: relative; max-width: 640px; aspect-ratio: 16 / 9; margin: 0; overflow: hidden; background: var(--paper-2); }
+.day__text, .faq__body { max-width: 680px; font-size: .9375rem; line-height: 1.75; }
+.day__text > * + *, .faq__body > * + * { margin-top: .85em; }
+.day__text ul, .faq__body ul { display: grid; gap: .4em; }
+.day__text li, .faq__body li { position: relative; padding-left: 24px; }
+.day__text li::before, .faq__body li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 11px; height: 1px; background: var(--emerald-700); }
+.day__text strong, .faq__body strong { font-weight: 600; }
+.day__text .sub, .faq__body .sub { font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--emerald-700); }
+.day__text .time { margin-right: 4px; font-weight: 600; color: var(--emerald-700); font-variant-numeric: tabular-nums; }
+.day__stay { max-width: 680px; padding-top: 14px; border-top: 1px dashed rgba(20,26,22,.22); font-size: .875rem; line-height: 1.6; color: var(--ink-soft); }
+.day__stay b { margin-right: 8px; font-size: .625rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+
+/* ---------- Hébergements (TD08) ---------- */
+.stay { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: clamp(2rem, 5vw, 4.5rem); }
+.stay__row {
+  display: grid; grid-template-columns: 96px 128px minmax(0, 1fr); gap: 14px; align-items: baseline;
+  padding: 16px 0; border-bottom: 1px solid var(--line-light); break-inside: avoid;
+}
+.stay__nights { font-size: .625rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--emerald-700); }
+.stay__place { font-size: 1.05rem; font-weight: 300; line-height: 1.3; }
+.stay__name { font-size: .9375rem; font-weight: 500; line-height: 1.4; }
+.stay__name small { display: block; margin-top: 3px; font-size: .78rem; font-weight: 400; color: var(--ink-soft); }
+
+/* ---------- Inclus / Non inclus (TD07) ---------- */
+.incl { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.incl .h4 { padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+.incl__list li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line-light); font-size: .9375rem; line-height: 1.55; }
+.incl__list svg { width: 18px; height: 18px; margin-top: 2px; color: var(--emerald-700); }
+.incl__col--no svg { width: 14px; height: 14px; margin: 4px 0 0 2px; color: var(--ink-soft); }
+
+/* ---------- Départs 2027 (PG01) — không giá ---------- */
+.dep { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: clamp(2rem, 5vw, 4.5rem); }
+.dep__row {
+  display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  padding: 16px 0; border-bottom: 1px solid var(--line-dark); break-inside: avoid;
+}
+.dep__row small { display: block; margin-bottom: 4px; font-size: .5625rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--sage-300); }
+.dep__row time { font-size: 1.05rem; font-weight: 300; white-space: nowrap; }
+.dep__arrow svg { display: block; width: 16px; height: 16px; color: var(--sand-300); }
+.dep__btn { min-height: 44px; }
+
+/* ---------- Bon à savoir (TD10) ---------- */
+.tour-infos { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.tour-infos .section-head { position: sticky; top: calc(var(--nav-h-small) + 84px); }
+.tour-infos .link-arrow { justify-self: start; margin-top: var(--s-2); }
+.faqs { border-top: 1px solid var(--line-light); }
+.faq { border-bottom: 1px solid var(--line-light); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 60px; padding: 14px 0;
+  cursor: pointer; list-style: none; font-size: 1.0625rem; line-height: 1.4; transition: color var(--t-fast);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--emerald-700); }
+.faq summary svg { flex: none; width: 18px; height: 18px; color: var(--ink-soft); transition: transform var(--t-fast); }
+.faq[open] summary svg { transform: rotate(180deg); }
+.faq__body { padding-bottom: 26px; color: var(--ink); }
+
+/* ---------- Avis ---------- */
+.tour-scores { justify-self: end; display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(247,243,236,.7); }
+.tour-scores b { margin-right: 8px; font-size: 2rem; font-weight: 200; letter-spacing: 0; color: var(--ivory); vertical-align: -5px; }
+.revs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); }
+.rev { display: flex; flex-direction: column; gap: 18px; padding: clamp(24px, 3vw, 36px); border: 1px solid var(--line-dark); background: rgba(11,23,18,.35); }
+.rev__text { flex: 1; font-size: 1.05rem; font-weight: 300; font-style: italic; line-height: 1.6; }
+.rev__who { display: grid; gap: 4px; font-size: .78rem; }
+.rev__who b { font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.rev__who span { color: rgba(247,243,236,.6); }
+.revs__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: var(--s-4); }
+.revs__foot .ratings__note { margin: 0; }
+.revs__foot .link-arrow { color: var(--sand-300); }
+.inline-link { color: var(--sand-300); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.inline-link:hover { color: var(--ivory); }
+
+/* ---------- Thanh CTA cố định (mobile / tablette) ---------- */
+.tour-bar { display: none; }
+
+/* ---------- Lightbox ảnh ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 160; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  padding: 72px clamp(8px, 2vw, 24px) 24px; background: rgba(5,10,8,.96); color: var(--ivory);
+}
+.lightbox[hidden] { display: none; }
+.lightbox__fig { display: grid; justify-items: center; align-content: center; gap: 14px; height: 100%; min-height: 0; margin: 0; }
+.lightbox__fig img { width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 170px); max-height: calc(100svh - 170px); object-fit: contain; }
+.lightbox figcaption { display: flex; justify-content: space-between; gap: 16px; width: 100%; max-width: 1100px; font-size: .8rem; line-height: 1.5; color: rgba(247,243,236,.78); }
+.lightbox__count { flex: none; letter-spacing: .12em; font-variant-numeric: tabular-nums; color: var(--sand-300); }
+.lightbox .round-btn { color: var(--ivory); }
+.lightbox__close { position: absolute; top: 14px; right: 14px; }
+.lightbox__nav[hidden] { display: none; }
+
+@media (max-width: 1024px) {
+  .tour-over, .incl, .tour-infos, .itin { grid-template-columns: 1fr; }
+  .tour-head__aside, .tour-scores { justify-self: start; }
+  .tour-infos .section-head, .itin__map { position: static; }
+  .itin__map { max-width: 420px; }
+  .revs { grid-template-columns: 1fr; }
+  .tour-tabs__cta { display: none; }
+  /* Thanh CTA cố định cuối màn hình (TD04 / GL11) */
+  .tour-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 85; display: flex; align-items: center; gap: 10px;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: rgba(11,23,18,.96); color: var(--ivory); border-top: 1px solid var(--line-dark);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    transform: translateY(110%); transition: transform var(--t) var(--ease);
+  }
+  .tour-bar.is-visible { transform: none; }
+  .tour-bar__info { flex: 1; min-width: 0; font-size: .75rem; line-height: 1.35; color: rgba(247,243,236,.75); }
+  .tour-bar__info b { font-weight: 600; color: var(--ivory); }
+  .tour-bar .btn { min-height: 44px; }
+  .tour-bar__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #1e9e57; color: #fff; }
+  .tour-bar__icon svg { width: 22px; height: 22px; }
+  .tourbar-on .fab--wa { display: none; }
+  .tourbar-on .fab-stack { bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 760px) {
+  .tour-hero__route { font-size: .75rem; letter-spacing: .06em; }
+  .tour-hero__ctas .btn { flex: 1 1 auto; }
+  .tour-tabs__inner { min-height: 52px; }
+  .tour-tabs__list { width: calc(100% + var(--gutter) * 2); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); gap: 1.5rem; }
+  .tour-tabs__list a { padding: 17px 0 15px; }
+  .facts__list div { grid-template-columns: 96px 1fr; }
+  /* galerie : vuốt ngang */
+  .gal {
+    grid-template-columns: none; grid-template-rows: none; grid-auto-flow: column; grid-auto-columns: 80%; aspect-ratio: auto;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
+  }
+  .gal::-webkit-scrollbar { display: none; }
+  .gal__tile { aspect-ratio: 4 / 3; scroll-snap-align: start; }
+  .gal__tile--1 { grid-row: auto; }
+  /* bản đồ : hàng gọn (ảnh nhỏ + « agrandir ») */
+  .itin__map { max-width: none; }
+  .itin__map a { display: grid; grid-template-columns: 72px 1fr; align-items: center; gap: 16px; padding: 10px; }
+  .itin__zoom { position: static; justify-self: start; }
+  .day__head { grid-template-columns: 44px minmax(0, 1fr) 20px; gap: 12px; padding: 18px 0; }
+  .day__num { font-size: 1.6rem; }
+  .day__body { padding-left: 0; }
+  .stay, .dep { columns: 1; }
+  .stay__row { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "n p" ". s"; gap: 4px 12px; }
+  .stay__nights { grid-area: n; }
+  .stay__place { grid-area: p; }
+  .stay__name { grid-area: s; }
+  .dep__row { grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr) auto; gap: 8px; }
+  .dep__row time { font-size: .9375rem; }
+  .dep__arrow svg { width: 12px; height: 12px; }
+  .dep__btn { padding: 0 .9em; }
+  .rev { padding: 22px; }
+  .revs__foot { flex-direction: column; align-items: flex-start; }
+  .lightbox { grid-template-columns: 1fr; padding: 64px 0 96px; }
+  .lightbox figcaption { padding-inline: 16px; }
+  .lightbox__nav { position: absolute; bottom: 24px; }
+  .lightbox__nav--prev { left: calc(50% - 64px); }
+  .lightbox__nav--next { right: calc(50% - 64px); }
 }
 
 /* ---------- Reveal on scroll ---------- */

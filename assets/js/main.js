@@ -265,6 +265,131 @@
     });
   }
 
+  /* ---------- Form devis : điền sẵn khi đến từ trang circuit (FD06) ----------
+     Link dạng index.html?circuit=…&depart=2027-03-04&type=groupe&duree=19#devis */
+  const qs = new URLSearchParams(location.search);
+  if (form && qs.get('circuit')) {
+    const circuit = qs.get('circuit').slice(0, 120);
+    const dep = /^\d{4}-\d{2}-\d{2}$/.test(qs.get('depart') || '') ? qs.get('depart') : '';
+    let txt = `Circuit : ${circuit}`;
+    if (dep) txt += ` — départ du ${new Date(dep + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+    const msg = $('#f-msg');
+    if (msg && !msg.value) msg.value = txt + '.\n';
+    if (dep && monthSel && $(`option[value="${dep.slice(0, 7)}"]`, monthSel)) monthSel.value = dep.slice(0, 7);
+    const way = $(`input[name="way"][value="${(qs.get('type') || '').replace(/[^a-z]/g, '')}"]`, form);
+    if (way) way.checked = true;
+    const du = parseInt(qs.get('duree'), 10), len = $('#f-length');
+    if (du && len) len.selectedIndex = du < 10 ? 0 : du <= 15 ? 1 : du <= 21 ? 2 : 3;
+  }
+
+  /* ---------- Trang circuit : thanh tab dính, tô mục đang xem (TD03) ---------- */
+  const tourTabs = $('#tourTabs');
+  if (tourTabs) {
+    const list = $('.tour-tabs__list', tourTabs);
+    const links = $$('a[href^="#"]', list);
+    const secs = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    let cur = null, tick = false;
+    const update = () => {
+      const line = tourTabs.getBoundingClientRect().bottom + 90; // khớp scroll-margin-top của .tour-sec
+      let id = '';
+      secs.forEach(s => { if (s.getBoundingClientRect().top <= line) id = s.id; });
+      if (id !== cur) {
+        cur = id;
+        links.forEach(a => { if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        const act = links.find(a => a.hasAttribute('aria-current'));
+        if (act && list.scrollWidth > list.clientWidth) list.scrollTo({ left: act.offsetLeft - list.offsetLeft - 24, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+      tick = false;
+    };
+    window.addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+
+  /* ---------- Trang circuit : lịch trình — « Tout déplier / Tout replier » (TD05) ---------- */
+  const daysToggle = $('#daysToggle');
+  if (daysToggle) {
+    const dets = $$('.days details');
+    const sync = () => {
+      const all = dets.every(d => d.open);
+      daysToggle.textContent = all ? 'Tout replier' : 'Tout déplier';
+      daysToggle.setAttribute('aria-expanded', String(all));
+    };
+    daysToggle.addEventListener('click', () => { const all = dets.every(d => d.open); dets.forEach(d => { d.open = !all; }); sync(); });
+    dets.forEach(d => d.addEventListener('toggle', sync));
+    const h = location.hash.match(/^#jour-\d{2}$/);   // link thẳng tới 1 ngày : …#jour-05
+    if (h && $(h[0])) $(h[0]).open = true;
+    sync();
+  }
+
+  /* ---------- Trang circuit : thanh CTA cố định mobile (TD04) — hiện sau hero, ẩn ở CTA cuối trang ---------- */
+  const tourBar = $('#tourBar');
+  if (tourBar) {
+    const heroEl = $('.page-hero');
+    const endEl = $('.end-cta');
+    const tb = () => {
+      const past = heroEl ? heroEl.getBoundingClientRect().bottom < 80 : window.scrollY > 400;
+      const atEnd = endEl ? endEl.getBoundingClientRect().top < window.innerHeight : false;
+      const on = past && !atEnd;
+      tourBar.classList.toggle('is-visible', on);
+      document.body.classList.toggle('tourbar-on', on);
+    };
+    window.addEventListener('scroll', tb, { passive: true });
+    tb();
+  }
+
+  /* ---------- Lightbox ảnh (TD01) : a[data-gallery="nhóm"] + nút [data-open-gallery="nhóm"] ---------- */
+  const lb = $('#lightbox');
+  if (lb) {
+    const lbImg = $('#lbImg'), lbCap = $('#lbCap'), lbCount = $('#lbCount');
+    let items = [], li = 0, opener = null;
+    const show = i => {
+      li = (i + items.length) % items.length;
+      const a = items[li];
+      lbImg.style.visibility = '';
+      lbImg.src = a.getAttribute('href');
+      lbImg.alt = a.dataset.caption || '';
+      lbCap.textContent = a.dataset.caption || '';
+      lbCount.textContent = items.length > 1 ? `${pad(li + 1)} / ${pad(items.length)}` : '';
+      $$('.lightbox__nav', lb).forEach(b => { b.hidden = items.length < 2; });
+      if (items.length > 1) (new Image()).src = items[(li + 1) % items.length].getAttribute('href'); // tải trước ảnh sau
+    };
+    const openLb = (group, i = 0) => {
+      items = $$(`[data-gallery="${group}"]`);
+      if (!items.length) return;
+      opener = document.activeElement;
+      lb.hidden = false; document.body.classList.add('is-locked');
+      show(i);
+      $('[data-lb="close"]', lb).focus();
+    };
+    const closeLb = () => {
+      lb.hidden = true; lbImg.removeAttribute('src'); document.body.classList.remove('is-locked');
+      if (opener) opener.focus();
+    };
+    $$('[data-gallery]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      openLb(a.dataset.gallery, $$(`[data-gallery="${a.dataset.gallery}"]`).indexOf(a));
+    }));
+    $$('[data-open-gallery]').forEach(b => b.addEventListener('click', () => openLb(b.dataset.openGallery, 0)));
+    $('[data-lb="close"]', lb).addEventListener('click', closeLb);
+    $('[data-lb="prev"]', lb).addEventListener('click', () => show(li - 1));
+    $('[data-lb="next"]', lb).addEventListener('click', () => show(li + 1));
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lightbox__fig')) closeLb(); });
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') closeLb();
+      else if (e.key === 'ArrowLeft') show(li - 1);
+      else if (e.key === 'ArrowRight') show(li + 1);
+    });
+    let lx = null;
+    lb.addEventListener('touchstart', e => { lx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      if (lx === null) return;
+      const dx = e.changedTouches[0].clientX - lx;
+      if (Math.abs(dx) > 40 && items.length > 1) show(li + (dx < 0 ? 1 : -1));
+      lx = null;
+    });
+  }
+
   /* ---------- Năm copyright tự động ---------- */
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

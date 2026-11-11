@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.3 · repo atnewlook · 10/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.4 · repo atnewlook · 11/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -7,13 +7,15 @@ Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) đ�
 index.html                                   Trang chủ (8 module)
 blog-de-voyage-au-vietnam/index.html         Trang danh sách blog (giữ URL cũ)
 visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài viết)
+detail-du-circuit/vietnam-en-profondeur-du-grand-nord-au-mekong-2027/index.html   Trang circuit mẫu (fiche voyage, giữ URL cũ)
+assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit…)
 _partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
 favicon.ico                                  Favicon 16/32/48 (file gốc của designer) — giữ ở thư mục gốc
 assets/favicon/                              icon.svg · apple-touch-icon.png (180) · icon-192/512.png · site.webmanifest
 styleguide.html       Bảng màu, thang chữ Montserrat, nút, lớp phủ cinematic
 assets/css/tokens.css Biến thiết kế dùng chung cho FR / EN / ES
 assets/css/main.css   Giao diện các module
-assets/js/main.js     Tương tác (navbar, dropdown, menu mobile, video, lọc tour, slider avis, form, nút nổi)
+assets/js/main.js     Tương tác (navbar, dropdown, menu mobile, video, lọc tour, slider avis, form + điền sẵn, nút nổi, trang circuit: tab dính, lịch trình, lightbox, thanh CTA mobile)
 assets/video/         Đặt hero.mp4 (+ hero.webm) — xem LISEZ-MOI.txt
 firebase.json         Cấu hình Firebase Hosting
 .gitignore            Bỏ qua desktop.ini (Google Drive) khi đẩy lên GitHub
@@ -62,6 +64,22 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 | Danh sách `/blog-de-voyage-au-vietnam/` | Hero gọn (breadcrumb + H1 + 1 dòng) · bài nổi bật « À la une » · lọc Thème + Destination (không tải lại trang, URL `?theme=…&dest=…` chia sẻ được) · thẻ bài 3:2 (chủ đề · vùng · tiêu đề) · trạng thái « không có bài ». Mobile: thẻ dạng hàng gọn ảnh trái + chữ phải, chip lọc vuốt ngang. |
 | Bài viết `/visiter-le-vietnam-en-profondeur/` | Breadcrumb · chủ đề · H1 · chapeau · tác giả + ngày cập nhật + thời gian đọc · ảnh lớn 16:9 · mục lục (desktop dính cột phải, tô mục đang đọc; mobile thu gọn đầu bài) · CTA tour giữa bài · trích dẫn khách thật · CTA devis + WhatsApp cuối bài · 3 bài liên quan. Schema BlogPosting + BreadcrumbList. |
 
+**Trang circuit (v1.4)** — mẫu: « Vietnam en profondeur : du Grand Nord au Mékong (2027) », nội dung + ảnh lấy từ trang cũ ngày 11/11/2026, không giá.
+
+| Khối | Nội dung |
+|------|----------|
+| Hero | Ảnh người thật (chợ Hà Giang) `<picture>` banner / banner-mobile · breadcrumb · « Petit groupe · 19 jours · 2027 » · H1 · dòng từ khóa lộ trình · nút devis + « Voir les 17 photos » (lightbox) |
+| Tab dính (TD03) | Le voyage · Itinéraire · Hébergements · Inclus · Départs · Bon à savoir · Avis — tô mục đang xem, mobile cuộn ngang; nút devis bên phải (desktop) |
+| Le voyage (TD02, TD01) | 1 tiêu đề + 2 dòng + 5 điểm chính · nút film YouTube · fiche clé (Départ garanti, durée, voyage, guide, départs, nuits, repas) + devis / WhatsApp có sẵn tên tour · mosaic 1 + 4 ảnh → lightbox 17 ảnh |
+| Itinéraire (TD05, TD06) | Bản đồ (có Hoàng Sa, Trường Sa; desktop dính cột trái, mobile hàng gọn) · 19 ngày dạng `<details>` chia 6 chặng: tiêu đề + 1 dòng + nhãn (repas, nuit, marche/vélo, bateau…); xổ xuống = chữ gốc trang cũ + 1 ảnh + hébergement · « Tout déplier » · link thẳng `#jour-05` |
+| Hébergements (TD08) | 13 nơi ở gộp theo chặng: nuits · lieu · tên + loại phòng (« ou similaire ») |
+| Inclus (TD07) | 2 cột Inclus / Non inclus, icon ✓ / ✗ dạng nét (SVG) |
+| Départs 2027 (PG01) | 11 ngày đi → về, không giá; nút « Demander » mở form devis trang chủ đã điền sẵn tour + tháng + petit groupe + thời lượng (`?circuit=…&depart=…&type=…&duree=…#devis`) |
+| Bon à savoir (TD10) | 13 mục accordion, chữ gốc trang cũ |
+| Avis | 3 trích dẫn khách thật (mục « Nos clients parlent de nous » của trang cũ) + điểm Tripadvisor / Google / Trustpilot |
+| Vous aimerez aussi (TD13) | 3 thẻ circuit chuẩn (dùng chung trang chủ), ảnh vị trí `circuit` |
+| Thanh CTA mobile (TD04) | ≤ 1024px: thanh cố định cuối màn hình (devis + WhatsApp), hiện sau hero, ẩn ở CTA cuối trang |
+
 ## 3. Design system (chi tiết trong `styleguide.html`)
 
 - **Màu:** ưu tiên xanh logo `#0EA048` → nền xanh rừng tối `#0B1712 … #1D4430`; **nút chính xanh đậm `#0D6B3C`** (hover `#118A4C`, trên nền tối có viền xanh sáng). Không dùng nâu/đỏ cho nút (tránh giống đối thủ); nâu logo chỉ còn là lớp phủ ấm cho ảnh. Trung tính ấm ivory `#F7F3EC` / paper `#EFE8DC`. Chữ nhấn trên nền tối: sand `#D8B48E`.
@@ -78,7 +96,8 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 - Form: điền `FORM_ENDPOINT` trong `main.js` hoặc đổi sang `action` PHP; thêm CSRF + captcha ẩn (Turnstile / reCAPTCHA v3); lưu kèm trang nguồn, ngôn ngữ, UTM.
 - Thẻ tour: lấy từ admin (cờ `featured`), không có trường giá.
 - Avis: số liệu nên lấy tự động (widget/API) hoặc cập nhật định kỳ; trích dẫn từ trang `/avis-client`.
-- Ảnh: đang hotlink để demo → khi làm thật dùng WebP local + `srcset` + `loading="lazy"`; logo dùng bản trắng (logo_authentik_white).
+- Ảnh: trang chủ / blog còn hotlink để demo; trang circuit đã dùng WebP local theo vị trí (`assets/img/<vị-trí>/`). Khi làm thật: WebP local + `loading="lazy"`; logo dùng bản trắng (logo_authentik_white).
+- Trang circuit: mỗi ngày = 1 bản ghi admin (tiêu đề, tóm tắt 1 dòng, nội dung, repas, hébergement, ảnh, nhãn hoạt động); hébergements gộp tự động từ các ngày; départs = bảng ngày (không giá); link devis truyền `circuit`, `depart`, `type`, `duree`.
 - Hiệu năng: video ≤ 6 Mo, `preload="metadata"`; YouTube chỉ tải khi bấm.
 
 ## 5. Điểm cần MKT chốt
@@ -95,6 +114,7 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 - [ ] Blog: duyệt nội dung bài mẫu « Visiter le Vietnam en profondeur » (tiếng Pháp, các câu về dịch vụ) ; tên + ảnh tác giả thật (E-E-A-T) thay cho « l’équipe Authentik Vietnam »
 - [ ] Blog: danh sách chủ đề (Inspiration · Rencontres & culture · Nature & paysages · Cuisine · Conseils pratiques) và gán chủ đề / vùng cho từng bài cũ
 - [ ] Blog: bài ghim « À la une » ; ảnh thật cho các vị trí blog-thumb / article / inline (anh_webp.py)
+- [ ] Circuit: xác nhận « Départ garanti » cho 11 ngày 2027 ; trích dẫn avis gắn đúng tour này (hiện lấy avis petit groupe chung) ; ảnh có người cho Ba Bể / Huế / Saigon (đang là phong cảnh) ; Content rà chữ lịch trình (giờ « 8:00 : », tên địa danh có dấu / không dấu) — TD16
 
 ## 6. Quy trình lưu & cập nhật
 
