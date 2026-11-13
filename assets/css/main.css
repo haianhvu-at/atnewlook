@@ -1,7 +1,7 @@
 /* ==========================================================================
    AUTHENTIK — TRANG CHỦ (mẫu giao diện)
    Thứ tự: base · type · buttons · navbar · hero · intro · media · circuits
-           · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit · trang tổng hợp circuit
+           · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit · trang tổng hợp circuit · trang contact
            · reveal · responsive
    ========================================================================== */
 
@@ -472,7 +472,7 @@ body.is-locked { overflow: hidden; }
 .field input::placeholder, .field textarea::placeholder { color: rgba(247,243,236,.38); }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--sand-300); }
 .field.is-invalid input, .field.is-invalid select, .field.is-invalid textarea { border-color: #e08a6a; }
-.field__err { min-height: 0; font-size: .75rem; color: #f0a98d; }
+.field__err { position: absolute; left: 0; right: 0; top: calc(100% + 4px); font-size: .75rem; line-height: 1.35; color: #f0a98d; } /* v1.6: nằm ngoài luồng → hiện/ẩn lỗi không làm form nhảy (bấm trượt) */
 .fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 12px; }
 .choice { display: flex; flex-wrap: wrap; gap: 8px; }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
@@ -1165,6 +1165,130 @@ body.is-locked { overflow: hidden; }
 }
 @media (min-width: 761px) {
   .lfilters > summary { pointer-events: none; }
+}
+
+/* ==========================================================================
+   TRANG CONTACT — nous-contacter/  · v1.6
+   Thứ tự: hero gọn · canaux · message + conseillers · bureaux
+   Mỗi khối = 1 partial PHP về sau. Form : CONTACT_ENDPOINT (main.js) — coder nối sau.
+   ========================================================================== */
+
+/* ---------- Hero gọn ---------- */
+.page-hero--contact { min-height: clamp(460px, 66vh, 660px); min-height: clamp(460px, 66svh, 660px); }
+.page-hero--contact .page-hero__media::after {
+  background:
+    linear-gradient(180deg, rgba(11,23,18,.6) 0%, rgba(11,23,18,.1) 32%, rgba(11,23,18,.5) 62%, rgba(11,23,18,.95) 100%),
+    linear-gradient(90deg, rgba(11,23,18,.65), transparent 72%);
+}
+.c-hero__time { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--line-dark); flex-wrap: wrap; gap: 8px 28px; max-width: 640px; }
+.c-hero__time svg { width: 15px; height: 15px; }
+.c-hero__time b { font-variant-numeric: tabular-nums; }
+
+/* ---------- Khung section ---------- */
+.c-sec { position: relative; padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.c-sec--ivory { background: var(--ivory); color: var(--ink); padding-block: clamp(2.5rem, 5vw, 4rem); }
+.c-sec--paper { background: var(--paper); color: var(--ink); }
+
+/* ---------- Canaux : 4 cột ngăn bằng đường kẻ (không hộp) ---------- */
+.ways { display: grid; grid-template-columns: 1.15fr 1fr 1fr 1fr; border-top: 1px solid var(--line-light); }
+.way { min-width: 0; border-right: 1px solid var(--line-light); }
+.way:last-child { border-right: 0; }
+.way--devis { display: flex; flex-direction: column; padding: 34px 32px 34px 0; }
+.way__link { display: flex; flex-direction: column; height: 100%; padding: 34px 28px; transition: background var(--t-fast); }
+.way__link:hover { background: rgba(13,107,60,.05); }
+.way__icon { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; margin-bottom: 22px; border: 1px solid var(--line-light); border-radius: 50%; color: var(--emerald-700); }
+.way__icon svg { width: 19px; height: 19px; }
+.way__body { display: flex; flex-direction: column; flex: 1; }
+.way__label { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--emerald-700); }
+.way__value { display: block; margin-top: 10px; font-size: clamp(1.2rem, 1.55vw, 1.5rem); font-weight: 300; line-height: 1.25; letter-spacing: -.005em; white-space: nowrap; }
+.way__value--mail { font-size: clamp(1rem, 1.2vw, 1.15rem); font-weight: 400; }
+.way--devis .way__value { font-size: clamp(1.6rem, 2.3vw, 2.2rem); font-weight: 200; }
+.way__note { display: block; margin-top: 10px; font-size: .875rem; line-height: 1.6; color: var(--ink-soft); }
+.way__who { display: flex; align-items: center; gap: 10px; }
+.way__who img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex: none; }
+.way__go { display: inline-flex; align-items: center; gap: .7em; margin-top: 22px; font-size: var(--fs-btn); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+.way__go svg { width: 15px; height: 15px; transition: transform var(--t-fast) var(--ease); }
+.way__link:hover .way__go svg { transform: translateX(4px); }
+.way--devis .way__note { max-width: 300px; margin-bottom: 26px; }
+.way__btn { align-self: flex-start; margin-top: auto; }
+
+/* ---------- Message + conseillers ---------- */
+.c-msg { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
+.c-msg .h2 { margin-top: var(--s-3); }
+.c-msg__intro { margin-top: var(--s-2); color: var(--ink-soft); }
+.c-msg .form { margin-top: var(--s-5); }
+/* Form trên nền sáng (form devis gốc dành cho nền tối) */
+.form--light .field label { color: var(--ink-soft); }
+.form--light .field label i { color: var(--emerald-700); }
+.form--light .field input, .form--light .field select, .form--light .field textarea { color: var(--ink); border-bottom-color: rgba(20,26,22,.28); }
+.form--light .field input::placeholder, .form--light .field textarea::placeholder { color: rgba(20,26,22,.4); }
+.form--light .field input:focus, .form--light .field select:focus, .form--light .field textarea:focus { border-color: var(--emerald-700); }
+.form--light .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d6b3c' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); }
+.form--light .field .consent { color: var(--ink-soft); }
+.form--light .field__err { color: #a23a17; }
+.form--light :focus-visible { outline-color: var(--emerald-700); }
+.c-msg__devis { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--ink-soft); }
+.c-msg__devis b { font-weight: 600; color: var(--ink); border-bottom: 1px solid currentColor; }
+.c-msg__devis svg { width: 14px; height: 14px; color: var(--emerald-700); }
+.form-success--light { margin-top: var(--s-5); }
+.form-success--light p { color: var(--ink-soft); }
+
+.c-team { padding: clamp(24px, 3vw, 40px); background: var(--ivory); }
+.c-team .h3 { margin-top: var(--s-2); font-weight: 300; }
+.c-team__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 14px; margin: var(--s-4) 0; }
+.person { display: grid; gap: 2px; font-size: .78rem; line-height: 1.35; }
+.person img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 25%; margin-bottom: 10px; background: var(--paper-2); filter: saturate(.92); }
+.person b { font-size: .875rem; font-weight: 500; }
+.person span { color: var(--ink-soft); }
+
+/* ---------- Bureaux : ảnh rộng trên + chữ dưới ---------- */
+.c-head { margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.offices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 32px); }
+.office { display: flex; flex-direction: column; background: rgba(11,23,18,.35); border: 1px solid var(--line-dark); }
+.office__img { aspect-ratio: 11 / 5; background: var(--forest-800); }
+.office__img img { position: absolute; inset: 0; }
+.office__body { display: flex; flex-direction: column; flex: 1; gap: 10px; padding: clamp(22px, 2.6vw, 36px); }
+.office__tag { font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--sand-300); }
+.office__city { font-size: clamp(1.6rem, 2.4vw, 2.2rem); font-weight: 200; line-height: 1.1; }
+.office__addr { font-size: .95rem; line-height: 1.6; color: rgba(247,243,236,.85); }
+.office__line { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.office__line svg { width: 16px; height: 16px; color: var(--sand-300); flex: none; }
+.office .link-arrow { align-self: flex-start; margin-top: auto; padding-top: 14px; color: var(--ivory); }
+.c-legal { margin-top: clamp(2rem, 4vw, 3rem); padding-top: var(--s-3); border-top: 1px solid var(--line-dark); font-size: .75rem; line-height: 1.7; color: rgba(247,243,236,.5); }
+
+@media (max-width: 1180px) {
+  .ways { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .way { border-bottom: 1px solid var(--line-light); }
+  .way:nth-child(2n) { border-right: 0; }
+  .way--devis { padding-right: 28px; }
+}
+@media (max-width: 1024px) {
+  .c-msg { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .page-hero--contact { min-height: 86vh; min-height: 86svh; }
+  .page-hero--contact .tour-hero__eyebrow { display: none; }   /* giữ mặt người trong ảnh không bị chữ đè */
+  .page-hero--contact .page-hero__title { margin-top: var(--s-2); }
+  .c-hero__time { gap: 6px 18px; font-size: .75rem; }
+  /* Canaux : devis = khối tối nổi bật, 3 kênh còn lại = hàng chạm được */
+  .ways { grid-template-columns: 1fr; border-top: 0; }
+  .way { border-right: 0; border-bottom: 1px solid var(--line-light); }
+  .way--devis { margin: 0 calc(var(--gutter) * -1) 8px; padding: 26px 22px 24px; border-bottom: 0; background: var(--forest-900); color: var(--ivory); }
+  .way--devis .way__label { color: var(--emerald-300); }
+  .way--devis .way__note { margin-bottom: 18px; color: rgba(247,243,236,.75); }
+  .way--devis .way__btn { width: 100%; --bd: rgba(108,199,149,.55); }
+  .way__link { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 18px 0; }
+  .way__icon { margin: 0; }
+  .way__value { margin-top: 4px; font-size: 1.1rem; }
+  .way__value--mail { font-size: .95rem; }
+  .way__note { margin-top: 4px; font-size: .78rem; }
+  .way__who img { width: 22px; height: 22px; }
+  .way__go { margin: 0; font-size: 0; gap: 0; }
+  .way__go svg { width: 18px; height: 18px; }
+  .form__submit .btn { width: 100%; }
+  .c-team { margin-inline: calc(var(--gutter) * -1); padding: 32px 24px; }
+  .c-team__grid.swipe { grid-template-columns: none; grid-auto-columns: 40%; gap: 12px; margin-inline: -24px; padding-inline: 24px; scroll-padding-inline: 24px; }
+  .offices { grid-template-columns: 1fr; }
 }
 
 /* ---------- Reveal on scroll ---------- */

@@ -447,6 +447,51 @@
     if (qp.toString() && !location.hash) window.addEventListener('load', () => $('#voyages').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
   }
 
+  /* ---------- Trang contact : form « Écrivez-nous » ----------
+     CONTACT_ENDPOINT : coder nối xử lý PHP + lưu database sau khi triển khai (tạm thời chỉ demo) */
+  const cForm = $('#contactForm');
+  if (cForm) {
+    const CONTACT_ENDPOINT = ''; // vd '/contact/envoyer'
+    const cMsg = $('textarea[name="message"]', cForm);
+    const cInputs = $$('input[name="name"], input[name="email"], input[name="phone"], input[name="consent"]', cForm);
+    const checkMsg = () => { const bad = cMsg.value.trim().length < 5; setErr(cMsg, bad ? 'Merci d’écrire votre message.' : ''); return !bad; };
+    cInputs.forEach(i => i.addEventListener(i.type === 'checkbox' ? 'change' : 'blur', () => check(i)));
+    cMsg.addEventListener('blur', checkMsg);
+    cForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (cForm.website.value) return; // honeypot
+      const ok = [...cInputs.map(check), checkMsg()].every(Boolean);
+      if (!ok) { $('.is-invalid input, .is-invalid textarea', cForm)?.focus(); return; }
+      const btn = $('button[type="submit"]', cForm);
+      btn.disabled = true; btn.style.opacity = '.6';
+      const data = Object.fromEntries(new FormData(cForm));
+      data.page = location.href; data.lang = document.documentElement.lang;
+      try {
+        if (CONTACT_ENDPOINT) await fetch(CONTACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        else console.info('[Demo] Message contact :', data);
+        cForm.style.display = 'none';
+        const s = $('#contactSuccess'); s.classList.add('is-visible'); s.focus();
+      } catch (err) {
+        btn.disabled = false; btn.style.opacity = '';
+        alert('Une erreur est survenue. Écrivez-nous sur WhatsApp ou à info@authentikvietnam.com');
+      }
+    });
+  }
+
+  /* ---------- Trang contact : giờ Hà Nội (Asia/Ho_Chi_Minh), cập nhật mỗi 30 s ---------- */
+  const clock = $('[data-clock]');
+  if (clock) {
+    try {
+      const fmt = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Asia/Ho_Chi_Minh', hour: 'numeric', minute: '2-digit', hourCycle: 'h23' });
+      const tick = () => {
+        const p = Object.fromEntries(fmt.formatToParts(new Date()).map(x => [x.type, x.value]));
+        clock.textContent = `${p.hour} h ${p.minute}`;
+      };
+      tick(); setInterval(tick, 30000);
+      clock.closest('[hidden]')?.removeAttribute('hidden');
+    } catch (e) { /* trình duyệt cũ : giữ ẩn dòng giờ */ }
+  }
+
   /* ---------- Năm copyright tự động ---------- */
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

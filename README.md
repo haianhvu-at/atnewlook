@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.5 · repo atnewlook · 11/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.6 · repo atnewlook · 13/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -10,7 +10,8 @@ visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài vi�
 petit-groupe/circuit-vietnam-petit-groupe/index.html  Trang chuyển hướng URL cũ → voyage-au-vietnam/?type=groupe
 detail-du-circuit/vietnam-en-profondeur-du-grand-nord-au-mekong-2027/index.html   Trang circuit mẫu (fiche voyage, giữ URL cũ)
 voyage-au-vietnam/index.html                 Trang tổng hợp circuit (59 voyage, lọc; giữ URL cũ /voyage-au-vietnam)
-assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit…)
+nous-contacter/index.html                    Trang contact (URL mới — site cũ không có trang contact)
+assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit, team…)
 _partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
 favicon.ico                                  Favicon 16/32/48 (file gốc của designer) — giữ ở thư mục gốc
 assets/favicon/                              icon.svg · apple-touch-icon.png (180) · icon-192/512.png · site.webmanifest
@@ -102,6 +103,17 @@ RewriteRule ^petit-groupe/circuit-vietnam-petit-groupe/?$ /voyage-au-vietnam?typ
 
 Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouverte` · `?envie=authentique` · `?envie=ethnies` · `?envie=trek` · `?envie=balneaire` · kết hợp `?type=groupe&envie=ethnies`.
 
+**Trang contact (v1.6)** — `/nous-contacter/` (URL mới, 13/11/2026), theo maquette gửi Nhung 13/11; giờ, giấy phép, ảnh văn phòng do Nhung cung cấp.
+
+| Khối | Nội dung |
+|------|----------|
+| Hero | Ảnh người thật (người Dao hái chè — ảnh gốc IMG_8702, `banner` / `banner-mobile` / `og` `nguoi-dao-hai-che`) · breadcrumb · H1 « Parlons de *votre voyage* » · « Une équipe francophone, à Hanoï et à Saïgon. Réponse sous 24 h. » · giờ Hà Nội chạy thật (JS, Asia/Ho_Chi_Minh) + chênh lệch với Paris. Mobile: ẩn eyebrow, hero cao hơn để chữ không đè mặt người. |
+| Canaux | Devis gratuit (nút xanh → form devis trang chủ) · WhatsApp +84 912 121 091 (đường dây của M. Dinh, ảnh nhỏ) · Téléphone +84 24 39 27 00 99 (8 h – 18 h, giờ VN) · E-mail info@. Desktop 4 cột ngăn bằng đường kẻ; mobile: devis = khối tối, 3 kênh = hàng chạm được. |
+| Message + conseillers | Form ngắn trên nền sáng (`.form--light`): Nom*, E-mail*, Téléphone/WhatsApp, Sujet, Message*, consent RGPD, honeypot → khung cảm ơn. **Chưa nối xử lý**: coder điền `CONTACT_ENDPOINT` trong `main.js` + lưu database sau khi triển khai. Cột phải: 6 conseillers ảnh thật (vị trí `team`: Victor, Thao, Michel, Sophie, Thu Ha, Nhi) + « Toute l’équipe ». Mobile: vuốt ngang. |
+| Bureaux | Hanoï (siège, 62 Yên Phụ, Ba Đình) · Saïgon (antenne Sud, 57 Lê Thị Hồng Gấm, Bến Thành) · 8 h – 18 h · Itinéraire (Google Maps) · ảnh thật của Nhung (`galerie/hanoi-van-phong-authentik`, `galerie/saigon-an-pho-cung-khach`, khung 11:5) · dòng pháp lý: Licence n° 01-611/2014/TCDL-GPLHQT. |
+
+Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + BreadcrumbList. Footer (mọi trang) từ v1.6: link « Nous contacter » → trang này, thêm địa chỉ Saïgon, điền số giấy phép. Thông báo lỗi form (`.field__err`) nằm ngoài luồng → hiện/ẩn lỗi không làm form nhảy (sửa chung cả form devis).
+
 ## 3. Design system (chi tiết trong `styleguide.html`)
 
 - **Màu:** ưu tiên xanh logo `#0EA048` → nền xanh rừng tối `#0B1712 … #1D4430`; **nút chính xanh đậm `#0D6B3C`** (hover `#118A4C`, trên nền tối có viền xanh sáng). Không dùng nâu/đỏ cho nút (tránh giống đối thủ); nâu logo chỉ còn là lớp phủ ấm cho ảnh. Trung tính ấm ivory `#F7F3EC` / paper `#EFE8DC`. Chữ nhấn trên nền tối: sand `#D8B48E`.
@@ -115,7 +127,7 @@ Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouvert
 - Navbar + footer: `_partials/header.html` và `_partials/footer.html` → `include` PHP. Trong mẫu tĩnh, `{{root}}` = đường dẫn về gốc, `{{home}}` = link trang chủ; link nội bộ ghi rõ `index.html` để mở được cả khi xem file trên máy. URL thật: `/blog-de-voyage-au-vietnam`, `/<slug-bài>` (giữ như site cũ). Mục menu đang mở có `aria-current="page"` (theo `body data-page`).
 - Blog: chủ đề / vùng của mỗi bài là thuộc tính `data-theme` / `data-dest` trên thẻ → lấy từ admin. Thời gian đọc = số chữ ÷ 200. Thẻ bài cần thêm « ngày cập nhật » thật từ admin (BL01) — site cũ đang hiện ngày tự sinh nên mẫu chưa hiện.
 - Cắt ảnh: `.img-cover` nhận biến `--focus` (vd `style="--focus: 50% 22%"`) = điểm giữ khi ảnh bị cắt khung → admin nên có trường « điểm lấy nét ».
-- Form: điền `FORM_ENDPOINT` trong `main.js` hoặc đổi sang `action` PHP; thêm CSRF + captcha ẩn (Turnstile / reCAPTCHA v3); lưu kèm trang nguồn, ngôn ngữ, UTM.
+- Form: điền `FORM_ENDPOINT` (devis) và `CONTACT_ENDPOINT` (trang contact) trong `main.js` hoặc đổi sang `action` PHP; thêm CSRF + captcha ẩn (Turnstile / reCAPTCHA v3); lưu kèm trang nguồn, ngôn ngữ, UTM.
 - Thẻ tour: lấy từ admin (cờ `featured`), không có trường giá.
 - Avis: số liệu nên lấy tự động (widget/API) hoặc cập nhật định kỳ; trích dẫn từ trang `/avis-client`.
 - Ảnh: trang chủ / blog còn hotlink để demo; trang circuit đã dùng WebP local theo vị trí (`assets/img/<vị-trí>/`). Khi làm thật: WebP local + `loading="lazy"`; logo dùng bản trắng (logo_authentik_white).
@@ -131,7 +143,8 @@ Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouvert
 - [ ] Font: mẫu dùng **Montserrat duy nhất** → cập nhật D11 (sheet ghi 2 font)
 - [ ] Menu gọn (Accueil · Circuits · Blog) thay cho menu kiểu Atalante → cập nhật D03 ; mục Guide/À propos chuyển xuống footer
 - [ ] Tên mục « Petite communauté » (hay « Petits groupes ») cho dropdown Circuits
-- [ ] Số giấy phép lữ hành quốc tế, địa chỉ văn phòng Saïgon (footer)
+- [x] Số giấy phép (01-611/2014/TCDL-GPLHQT) + địa chỉ văn phòng Saïgon (footer) — Nhung xác nhận 13/11/2026
+- [ ] Trang contact: ngày làm việc trong tuần (hiện chỉ ghi 8 h – 18 h) ; ảnh Saïgon bản lớn hơn nếu có (ảnh hiện tại cắt từ collage 810 px)
 - [ ] Danh sách 5–6 tour nổi bật + ảnh dọc chất lượng cao
 - [ ] Tên tour trên site cũ « Grand boucle du Nord-Ouest » → nên sửa thành « Grande boucle… »
 - [ ] Blog: duyệt nội dung bài mẫu « Visiter le Vietnam en profondeur » (tiếng Pháp, các câu về dịch vụ) ; tên + ảnh tác giả thật (E-E-A-T) thay cho « l’équipe Authentik Vietnam »
