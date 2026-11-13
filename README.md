@@ -109,8 +109,8 @@ Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouvert
 |------|----------|
 | Hero | Ảnh người thật (người Dao hái chè — ảnh gốc IMG_8702, `banner` / `banner-mobile` / `og` `nguoi-dao-hai-che`) · breadcrumb · H1 « Parlons de *votre voyage* » · « Une équipe francophone, à Hanoï et à Saïgon. Réponse sous 24 h. » · giờ Hà Nội chạy thật (JS, Asia/Ho_Chi_Minh) + chênh lệch với Paris. Mobile: ẩn eyebrow, hero cao hơn để chữ không đè mặt người. |
 | Canaux | Devis gratuit (nút xanh → form devis trang chủ) · WhatsApp +84 912 121 091 (đường dây của M. Dinh, ảnh nhỏ) · Téléphone +84 24 39 27 00 99 (8 h – 18 h, giờ VN) · E-mail info@. Desktop 4 cột ngăn bằng đường kẻ; mobile: devis = khối tối, 3 kênh = hàng chạm được. |
-| Message + conseillers | Form ngắn trên nền sáng (`.form--light`): Nom*, E-mail*, Téléphone/WhatsApp, Sujet, Message*, consent RGPD, honeypot → khung cảm ơn. **Chưa nối xử lý**: coder điền `CONTACT_ENDPOINT` trong `main.js` + lưu database sau khi triển khai. Cột phải « Notre équipe, à Hanoï »: 6 người ảnh thật (vị trí `team`, thứ tự Nhung chọn — v1.6.1: M. Dinh fondateur, Michel, Victor, Khuong, Thao, Trang Nhung) + « Toute l’équipe ». Mobile: vuốt ngang. |
-| Bureaux | Hanoï (siège, 62 Yên Phụ, Ba Đình) · Saïgon (antenne Sud, 57 Lê Thị Hồng Gấm, Bến Thành) · 8 h – 18 h · Itinéraire (Google Maps) · ảnh thật của Nhung (`galerie/hanoi-van-phong-authentik`, `galerie/saigon-an-pho-cung-khach`, khung 11:5) · dòng pháp lý: Licence n° 01-611/2014/TCDL-GPLHQT. |
+| Message + conseillers | Form ngắn trên nền sáng (`.form--light`): Nom*, E-mail*, Téléphone/WhatsApp, Sujet, Message*, consent RGPD, honeypot → khung cảm ơn. **Chưa nối xử lý**: coder điền `CONTACT_ENDPOINT` trong `main.js` + lưu database sau khi triển khai. Cột phải « Notre équipe » (đội ngũ toàn công ty): 6 người ảnh thật (vị trí `team`, thứ tự Nhung chọn — v1.6.1/1.6.2: M. Dinh fondateur, Michel, Victor, Khuong, Thao, Trang Nhung) + « Toute l’équipe ». Mobile: vuốt ngang. |
+| Bureaux | Hanoï (siège, 62 Yên Phụ, Ba Đình) · Saïgon (antenne Sud, 57 Lê Thị Hồng Gấm, Bến Thành) · 8 h – 18 h · Itinéraire (Google Maps) · ảnh văn phòng thật của Nhung (`galerie/hanoi-van-phong-authentik` ← vp-hanoi.jpg, `galerie/saigon-van-phong-authentik` ← vp-saigon.jpg — v1.6.1; khung 11:5) · dòng pháp lý: Licence n° 01-611/2014/TCDL-GPLHQT. |
 
 Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + BreadcrumbList. Footer (mọi trang) từ v1.6: link « Nous contacter » → trang này, thêm địa chỉ Saïgon, điền số giấy phép. Thông báo lỗi form (`.field__err`) nằm ngoài luồng → hiện/ẩn lỗi không làm form nhảy (sửa chung cả form devis).
 
@@ -144,7 +144,7 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - [ ] Menu gọn (Accueil · Circuits · Blog) thay cho menu kiểu Atalante → cập nhật D03 ; mục Guide/À propos chuyển xuống footer
 - [ ] Tên mục « Petite communauté » (hay « Petits groupes ») cho dropdown Circuits
 - [x] Số giấy phép (01-611/2014/TCDL-GPLHQT) + địa chỉ văn phòng Saïgon (footer) — Nhung xác nhận 13/11/2026
-- [ ] Trang contact: ngày làm việc trong tuần (hiện chỉ ghi 8 h – 18 h) ; ảnh Saïgon bản lớn hơn nếu có (ảnh hiện tại cắt từ collage 810 px)
+- [ ] Trang contact: ngày làm việc trong tuần (hiện chỉ ghi 8 h – 18 h)
 - [ ] Danh sách 5–6 tour nổi bật + ảnh dọc chất lượng cao
 - [ ] Tên tour trên site cũ « Grand boucle du Nord-Ouest » → nên sửa thành « Grande boucle… »
 - [ ] Blog: duyệt nội dung bài mẫu « Visiter le Vietnam en profondeur » (tiếng Pháp, các câu về dịch vụ) ; tên + ảnh tác giả thật (E-E-A-T) thay cho « l’équipe Authentik Vietnam »
