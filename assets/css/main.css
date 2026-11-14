@@ -192,6 +192,18 @@ body.is-locked { overflow: hidden; }
   transition: opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), visibility 0s linear var(--t-fast);
 }
 .dd.is-open .dd__panel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+/* v1.7 — vùng đệm vô hình lấp khoảng hở 14px giữa chữ menu và menu con : chuột đi xuống không « rời » menu */
+.dd__panel::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 18px; }
+/* v1.7 — « Circuits » tách đôi : chữ = link (trang Circuits chung) · mũi tên = nút mở menu con */
+.dd--split { display: inline-flex; align-items: center; gap: 2px; }
+.dd__toggle {
+  display: inline-grid; place-items: center; width: 28px; height: 40px; margin-right: -8px;
+  color: inherit; opacity: .8; transition: opacity var(--t-fast);
+}
+.dd__toggle:hover, .dd__toggle[aria-expanded="true"] { opacity: 1; }
+.dd__toggle svg { width: 12px; height: 12px; transition: transform var(--t-fast); }
+.dd__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.dd.is-open > .nav__link::after { transform: scaleX(1); }
 .dd__panel--lang { left: auto; right: -12px; min-width: 170px; }
 .dd__panel--lang a {
   display: flex; justify-content: space-between; padding: 10px 14px; font-size: .8rem; font-weight: 500; letter-spacing: .06em;
@@ -238,6 +250,12 @@ body.is-locked { overflow: hidden; }
 .mnav__list summary svg { width: 18px; height: 18px; transition: transform var(--t-fast); }
 .mnav__list details[open] summary svg { transform: rotate(180deg); }
 .mnav__sub a { font-size: 1.05rem; font-weight: 400; padding: 12px 0 12px 16px; color: rgba(247,243,236,.8); }
+/* v1.7 — « Circuits » mobile : chữ = link · mũi tên = mở 2 mục con */
+.mnav__split { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.mnav__toggle { display: inline-grid; place-items: center; width: 48px; height: 48px; margin-right: -12px; color: inherit; }
+.mnav__toggle svg { width: 18px; height: 18px; transition: transform var(--t-fast); }
+.mnav__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mnav__split .mnav__sub { grid-column: 1 / -1; padding-bottom: 8px; }
 .mnav__sub a small { font-size: .75rem; color: var(--sage-300); }
 .mnav__foot { margin-top: auto; display: grid; gap: var(--s-2); }
 .mnav__langs { display: flex; gap: 8px; }
@@ -1356,4 +1374,66 @@ body.is-locked { overflow: hidden; }
   .rating__score b { font-size: 2.1rem; }
   .fab { width: 52px; height: 52px; }
   .fab--wa::after { display: none; }
+}
+
+/* ==========================================================================
+   TRANG CIRCUITS — v1.7
+   voyage-au-vietnam/ (trang chung, gọn) · circuits-au-vietnam/ (Inspirations) · petit-groupe/circuit-vietnam-petit-groupe/
+   ========================================================================== */
+
+/* ---------- Từ khóa dưới hero (thay cho đoạn văn) ---------- */
+.hero-kw {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; max-width: 760px;
+  margin: var(--s-4) 0 0; padding: var(--s-3) 0 0; list-style: none; border-top: 1px solid var(--line-dark);
+  font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,243,236,.82);
+}
+.hero-kw li + li::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 14px 2px; border-radius: 50%; background: var(--sand-300); vertical-align: middle; }
+
+/* ---------- Trang chung : 2 nhánh (Inspirations · Petite communauté) ---------- */
+.ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
+.way { position: relative; display: block; aspect-ratio: 6 / 7; overflow: hidden; color: var(--ivory); background: var(--forest-800); }
+.way img { position: absolute; inset: 0; transition: transform 1.6s var(--ease-out); }
+.way:hover img, .way:focus-visible img { transform: scale(1.04); }
+.way__body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: clamp(24px, 3.2vw, 48px); }
+.way__kicker { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--sand-300); }
+.way__title { display: block; margin-top: 12px; font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 200; line-height: 1.06; letter-spacing: -.01em; }
+.way__text { display: block; margin-top: 10px; max-width: 420px; font-size: .9375rem; line-height: 1.6; color: rgba(247,243,236,.82); }
+.way__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.way__tags span { padding: 6px 12px; border: 1px solid rgba(247,243,236,.38); border-radius: var(--radius-pill); font-size: .72rem; color: rgba(247,243,236,.9); }
+.way__more { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 14px; font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.way__more svg { width: 14px; height: 14px; transition: transform var(--t-fast); }
+.way:hover .way__more svg, .way:focus-visible .way__more svg { transform: translateX(4px); }
+
+/* ---------- Inspirations : 4 incontournables ---------- */
+.inc-places { max-width: 340px; font-size: .6875rem; font-weight: 600; letter-spacing: .16em; line-height: 1.9; text-transform: uppercase; color: var(--ink-soft); text-align: right; }
+@media (min-width: 761px) { .cards--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.2vw, 18px); } }   /* ≤ 760px : vuốt ngang (.swipe) */
+.cards--four .card__top { padding: 16px; }
+.cards--four .card__body { padding: 22px 18px 18px; }
+.cards--four .card__route { font-size: .625rem; letter-spacing: .14em; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cards--four .card__title { font-size: clamp(1.15rem, 1.5vw, 1.4rem); }
+.inc-note { margin-top: var(--s-3); font-size: .875rem; color: var(--ink-soft); }
+.steps-sec--solo { padding-bottom: clamp(3.5rem, 7vw, 5.5rem); }
+.steps--four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 3rem); }
+
+/* ---------- Inspirations : « Autres envies » (1 hàng từ khóa) ---------- */
+.kw-filter { padding-block: var(--s-2); border-block: 1px solid var(--line-light); }
+
+/* ---------- Petite communauté ---------- */
+.pg-band { margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .cards--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1024px) {
+  .inc-places { text-align: left; justify-self: start; }
+}
+@media (max-width: 760px) {
+  .ways { grid-template-columns: 1fr; gap: 12px; }
+  .way { aspect-ratio: 4 / 5; }
+  .way__text { font-size: .875rem; }
+  .hero-kw { font-size: .625rem; letter-spacing: .14em; }
+  .hero-kw li + li::before { margin: 0 10px 2px; }
+  .steps--four { grid-template-columns: 1fr; }
+  .kw-filter { padding-block: 12px; }
 }

@@ -47,20 +47,36 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- Dropdown (Circuits, langue) : hover desktop + click + Échap ---------- */
+  /* ---------- Dropdown (Circuits, langue) : hover desktop + click + Échap ----------
+     v1.7 : 2 bộ hẹn giờ riêng (mở / đóng). Chuột vào lại menu → HUỶ lệnh đóng (trước đây lệnh đóng
+     vẫn chạy nên menu con tự tắt khi chuột đi xuống). Mở sau 120 ms, giữ 400 ms sau khi rời chuột.
+     « Circuits » : chữ là link (trang Circuits chung), nút mũi tên mở / đóng menu con. */
+  const HOVER_OPEN = 120, HOVER_CLOSE = 400;
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   $$('[data-dd]').forEach(dd => {
     const btn = $('button', dd);
-    let t;
-    const open = () => { clearTimeout(t); $$('[data-dd].is-open').forEach(o => o !== dd && close(o)); dd.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
-    const close = (el = dd) => { el.classList.remove('is-open'); $('button', el).setAttribute('aria-expanded', 'false'); };
+    let tOpen, tClose;
+    const clear = () => { clearTimeout(tOpen); clearTimeout(tClose); };
+    const open = () => {
+      clear();
+      $$('[data-dd].is-open').forEach(o => { if (o !== dd && o.ddClose) o.ddClose(); });
+      dd.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => { clear(); dd.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+    dd.ddClose = close;
     btn.addEventListener('click', e => { e.stopPropagation(); dd.classList.contains('is-open') ? close() : open(); });
-    if (window.matchMedia('(hover: hover)').matches) {
-      dd.addEventListener('mouseenter', () => { t = setTimeout(open, 150); });
-      dd.addEventListener('mouseleave', () => { clearTimeout(t); t = setTimeout(() => close(), 200); });
+    if (canHover) {
+      dd.addEventListener('mouseenter', () => {
+        clearTimeout(tClose);
+        if (!dd.classList.contains('is-open')) { clearTimeout(tOpen); tOpen = setTimeout(open, HOVER_OPEN); }
+      });
+      dd.addEventListener('mouseleave', () => { clearTimeout(tOpen); clearTimeout(tClose); tClose = setTimeout(close, HOVER_CLOSE); });
     }
-    dd.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); btn.focus(); } });
+    dd.addEventListener('keydown', e => { if (e.key === 'Escape' && dd.classList.contains('is-open')) { close(); btn.focus(); } });
+    // bàn phím : Tab ra khỏi menu → đóng
+    dd.addEventListener('focusout', e => { if (e.relatedTarget && !dd.contains(e.relatedTarget)) close(); });
   });
-  document.addEventListener('click', e => { $$('[data-dd].is-open').forEach(dd => { if (!dd.contains(e.target)) { dd.classList.remove('is-open'); $('button', dd).setAttribute('aria-expanded', 'false'); } }); });
+  document.addEventListener('click', e => { $$('[data-dd].is-open').forEach(dd => { if (!dd.contains(e.target) && dd.ddClose) dd.ddClose(); }); });
 
   /* ---------- Menu mobile ---------- */
   const burger = $('#burger');
@@ -74,6 +90,13 @@
     nav.classList.remove('is-hidden');
   };
   burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+  // v1.7 — « Circuits » mobile : chữ là link, mũi tên mở / đóng 2 mục con
+  $$('.mnav__toggle', mnav).forEach(t => t.addEventListener('click', () => {
+    const sub = document.getElementById(t.getAttribute('aria-controls'));
+    const openIt = t.getAttribute('aria-expanded') !== 'true';
+    t.setAttribute('aria-expanded', String(openIt));
+    if (sub) sub.hidden = !openIt;
+  }));
   $$('[data-close]', mnav).forEach(a => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('is-open')) setMenu(false); });
 
@@ -390,9 +413,11 @@
     });
   }
 
-  /* ---------- Trang tổng hợp circuit : lọc + « Afficher plus » (LS01–LS05, LS07) ----------
+  /* ---------- Danh sách circuit có lọc + « Afficher plus » (LS01–LS05, LS07) ----------
+     v1.7 : dùng ở /circuits-au-vietnam/ (khối « Autres envies »). Trang chỉ cần có nút lọc nào thì khai báo nút đó.
      Thẻ: data-type (prive|groupe) · data-dest (vn|la|kh|combine) · data-envie (nhiều giá trị) · data-days
-     URL chia sẻ được: ?type=groupe&dest=vn&envie=ethnies&duree=long */
+     Lọc: type · dest · envie · duree · kw (từ khóa = 1 envie HOẶC 1 điểm đến, gộp trong 1 hàng chip)
+     URL chia sẻ được: ?kw=ethnies · ?type=groupe&dest=vn&envie=ethnies&duree=long */
   const tourList = $('#tourList');
   if (tourList) {
     const items = $$('.card[data-type]', tourList);
@@ -400,7 +425,8 @@
     const more = $('#listMore'), moreN = $('#listMoreN');
     const count = $('#listCount'), empty = $('#listEmpty'), fCount = $('#filterCount');
     const STEP = 12;
-    const st = { type: 'all', dest: 'all', envie: 'all', duree: 'all' };
+    const st = { type: 'all', dest: 'all', envie: 'all', duree: 'all', kw: 'all' };
+    const FILTERS = ['dest', 'envie', 'duree', 'kw'];
     let limit = STEP;
     const qp = new URLSearchParams(location.search);
     Object.keys(st).forEach(k => { const v = qp.get(k); if (v && $(`[data-list-filter="${k}"][data-value="${v}"]`)) st[k] = v; });
@@ -408,7 +434,8 @@
     const match = c => (st.type === 'all' || c.dataset.type === st.type)
       && (st.dest === 'all' || c.dataset.dest === st.dest)
       && (st.envie === 'all' || (c.dataset.envie || '').split(' ').includes(st.envie))
-      && (st.duree === 'all' || bucket(+c.dataset.days) === st.duree);
+      && (st.duree === 'all' || bucket(+c.dataset.days) === st.duree)
+      && (st.kw === 'all' || (c.dataset.envie || '').split(' ').includes(st.kw) || c.dataset.dest === st.kw);
     const render = (pushUrl = true) => {
       const ok = items.filter(match);
       items.forEach(c => { c.hidden = true; });
@@ -418,12 +445,12 @@
         const shown = ok.slice(0, limit);
         if (shown.length) shown[Math.min(7, shown.length - 1)].after(band);
       }
-      count.textContent = ok.length + (ok.length > 1 ? ' voyages' : ' voyage');
-      empty.hidden = ok.length > 0;
-      more.hidden = ok.length <= limit;
+      if (count) count.textContent = ok.length + (ok.length > 1 ? ' voyages' : ' voyage');
+      if (empty) empty.hidden = ok.length > 0;
+      if (more) more.hidden = ok.length <= limit;
       if (moreN) moreN.textContent = `(${ok.length - Math.min(limit, ok.length)})`;
       $$('[data-list-filter]').forEach(b => b.setAttribute('aria-pressed', String(st[b.dataset.listFilter] === b.dataset.value)));
-      const active = ['dest', 'envie', 'duree'].filter(k => st[k] !== 'all').length;
+      const active = FILTERS.filter(k => st[k] !== 'all').length;
       if (fCount) { fCount.textContent = active; fCount.hidden = !active; }
       $$('[data-list-reset]').forEach(b => { if (!b.closest('#listEmpty')) b.hidden = !(active || st.type !== 'all'); });
       if (pushUrl) {
@@ -434,17 +461,18 @@
     };
     $$('[data-list-filter]').forEach(b => b.addEventListener('click', () => { st[b.dataset.listFilter] = b.dataset.value; limit = STEP; render(); }));
     $$('[data-list-reset]').forEach(b => b.addEventListener('click', () => { Object.keys(st).forEach(k => { st[k] = 'all'; }); limit = STEP; render(); }));
-    $('button', more).addEventListener('click', () => { limit += STEP; render(false); });
+    if (more) $('button', more).addEventListener('click', () => { limit += STEP; render(false); });
     // mobile: bộ lọc thu gọn (mở sẵn nếu đang có lọc) · desktop: luôn mở
     const lf = $('#listFilters');
     if (lf) {
       const mq = window.matchMedia('(max-width: 760px)');
-      const setLf = () => { lf.open = !mq.matches || ['dest', 'envie', 'duree'].some(k => st[k] !== 'all'); };
+      const setLf = () => { lf.open = !mq.matches || FILTERS.some(k => st[k] !== 'all'); };
       setLf(); mq.addEventListener('change', setLf);
     }
     render(false);
-    // đến từ menu « Petite communauté » (?type=groupe) → cuộn tới danh sách
-    if (qp.toString() && !location.hash) window.addEventListener('load', () => $('#voyages').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
+    // link có sẵn bộ lọc (vd ?kw=ethnies) → cuộn tới khối danh sách
+    const listSec = tourList.closest('section');
+    if (qp.toString() && !location.hash && listSec) window.addEventListener('load', () => listSec.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }));
   }
 
   /* ---------- Trang contact : form « Écrivez-nous » ----------

@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.6 · repo atnewlook · 13/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.7 · repo atnewlook · 14/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -7,9 +7,10 @@ Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) đ�
 index.html                                   Trang chủ (8 module)
 blog-de-voyage-au-vietnam/index.html         Trang danh sách blog (giữ URL cũ)
 visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài viết)
-petit-groupe/circuit-vietnam-petit-groupe/index.html  Trang chuyển hướng URL cũ → voyage-au-vietnam/?type=groupe
+petit-groupe/circuit-vietnam-petit-groupe/index.html  Trang Petite communauté — 6 voyage petit groupe 2027 (giữ URL cũ, v1.7)
 detail-du-circuit/vietnam-en-profondeur-du-grand-nord-au-mekong-2027/index.html   Trang circuit mẫu (fiche voyage, giữ URL cũ)
-voyage-au-vietnam/index.html                 Trang tổng hợp circuit (59 voyage, lọc; giữ URL cũ /voyage-au-vietnam)
+voyage-au-vietnam/index.html                 Trang Circuits chung — 2 nhánh Inspirations / Petite communauté (giữ URL cũ, v1.7 bản gọn)
+circuits-au-vietnam/index.html               Trang Inspirations — 4 incontournables + 49 circuit privé lọc theo từ khóa (giữ URL cũ, v1.7)
 nous-contacter/index.html                    Trang contact (URL mới — site cũ không có trang contact)
 assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit, team…)
 _partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
@@ -18,7 +19,7 @@ assets/favicon/                              icon.svg · apple-touch-icon.png (1
 styleguide.html       Bảng màu, thang chữ Montserrat, nút, lớp phủ cinematic
 assets/css/tokens.css Biến thiết kế dùng chung cho FR / EN / ES
 assets/css/main.css   Giao diện các module
-assets/js/main.js     Tương tác (navbar, dropdown, menu mobile, video, lọc tour, slider avis, form + điền sẵn, nút nổi, trang circuit: tab dính, lịch trình, lightbox, thanh CTA mobile)
+assets/js/main.js     Tương tác (navbar, dropdown có độ trễ hover, menu mobile, video, lọc tour, slider avis, form + điền sẵn, nút nổi, trang circuit: tab dính, lịch trình, lightbox, thanh CTA mobile)
 assets/video/         Đặt hero.mp4 (+ hero.webm) — xem LISEZ-MOI.txt
 firebase.json         Cấu hình Firebase Hosting
 .gitignore            Bỏ qua desktop.ini (Google Drive) khi đẩy lên GitHub
@@ -83,25 +84,39 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 | Vous aimerez aussi (TD13) | 3 thẻ circuit chuẩn (dùng chung trang chủ), ảnh vị trí `circuit` |
 | Thanh CTA mobile (TD04) | ≤ 1024px: thanh cố định cuối màn hình (devis + WhatsApp), hiện sau hero, ẩn ở CTA cuối trang |
 
-**Trang tổng hợp circuit (v1.5)** — `/voyage-au-vietnam/`, nhịp tham khảo exoticvoyages.com/vietnam-tours (khác trang blog: không phải danh sách bài, mà là trang « điểm đến » có 1 tour nổi bật + lưới thẻ dày). 59 voyage thật lấy ngày 11/11/2026: 53 circuit privé (trang cũ /voyage-au-vietnam, 6 trang) + 6 petit groupe 2027. Không giá.
+**Menu « Circuits » (v1.7, 14/11/2026)** — navbar: chữ « Circuits » là **link** tới trang Circuits chung `/voyage-au-vietnam/`; nút mũi tên nhỏ bên cạnh mở / đóng menu con (bàn phím, máy tính bảng). Menu con = 2 thẻ ảnh: Inspirations (`circuit/nguoi-dao-hai-che.webp`) → `/circuits-au-vietnam/` · Petite communauté → `/petit-groupe/circuit-vietnam-petit-groupe/`. Hover máy tính: mở sau **120 ms**, giữ **400 ms** sau khi rời chuột; chuột quay lại thì huỷ lệnh đóng; vùng đệm vô hình 18px (`.dd__panel::before`) lấp khoảng hở giữa chữ và menu con → di chuột xuống không mất menu (lỗi v1.5–1.6.2: lệnh đóng cũ không bị huỷ nên menu con tự tắt). Menu mobile: « Circuits » = link, mũi tên (48×48) mở 2 mục con. Footer « Nos voyages »: Inspirations · Petits groupes trỏ thẳng 2 trang con.
+
+**Trang Circuits chung (v1.7, bản gọn)** — `/voyage-au-vietnam/` (giữ URL cũ).
 
 | Khối | Nội dung |
-|------|----------|
-| Hero | Ảnh người thật (chợ phiên, phụ nữ H’Mông) · breadcrumb · « Inspirations · 59 voyages » · H1 « Voyages au Vietnam, à votre rythme » · 1 dòng · nút devis + « Voir les voyages » · điểm Tripadvisor / Google / Trustpilot |
-| 3 étapes | Vos envies · Votre itinéraire · Votre voyage — 1 dòng mỗi bước |
-| Coup de cœur | Vietnam en profondeur : du Grand Nord au Mékong (petit groupe, 19 j — Nhung chọn 11/11; admin: cờ `featured`): ảnh trái, nhãn (Petit groupe · 19 jours · Départ garanti), tên, lộ trình, từ khóa, nút « Découvrir le voyage » + « Départs 2027 » (→ #departs của trang tour) |
-| Tous nos voyages (LS01–LS05, LS07) | Tab Tous / Circuits privés / Petits groupes · lọc Destination (Vietnam, Laos, Cambodge, Combinés) · Envie (Première découverte, Vietnam authentique, Peuples du Nord, Randonnée, Mer & plages — theo catégorie của site cũ) · Durée (≤ 7 j, 8–14 j, ≥ 15 j) · đếm « X voyages » · « Effacer les filtres » · URL `?type=&dest=&envie=&duree=` · thẻ circuit chuẩn 4:5, 4 cột (tablette 3, mobile 2 cột gọn) · 12 thẻ đầu + « Afficher plus » (+12) · dải CTA sur mesure luôn sau thẻ thứ 8 · trạng thái 0 kết quả. Mobile: bộ lọc gọn sau nút « Filtrer » (có số lọc đang bật). |
-| Avis | 3 trích dẫn khách thật (giống trang chủ) + điểm 3 nền tảng |
+|---|---|
+| Hero | Ảnh người thật (chợ phiên, phụ nữ H’Mông) · breadcrumb Accueil / Circuits · « Circuits · 59 voyages » · H1 « Voyages au Vietnam, à votre rythme » · 1 dòng · nút devis + « Voir les circuits » · điểm Tripadvisor / Google / Trustpilot |
+| Deux façons de voyager | 2 thẻ ảnh lớn (6:7, mobile 4:5): **Inspirations** — Circuits privés · 53 voyages · 1 dòng · từ khóa (Sur mesure, Privatif, Vietnam · Laos · Cambodge) → `/circuits-au-vietnam/` ; **Petite communauté** — Petits groupes · 6 voyages en 2027 · từ khóa (7 voyageurs max., Départs garantis, Guide francophone) → `/petit-groupe/circuit-vietnam-petit-groupe/` |
+| Coup de cœur | Vietnam en profondeur : du Grand Nord au Mékong (giữ như v1.5) |
+| Avis | 3 trích dẫn khách thật + điểm 3 nền tảng |
 
-Menu « Circuits » (navbar + menu mobile + footer) từ v1.5: Inspirations → `/voyage-au-vietnam/?type=prive` (ảnh thẻ menu = `circuit/nguoi-dao-hai-che.webp`, ảnh gốc IMG_8702 của Nhung), Petite communauté → `/voyage-au-vietnam/?type=groupe` (đến từ menu thì tự cuộn tới danh sách).
+Danh sách 59 tour + bộ lọc của v1.5 đã bỏ khỏi trang này (Nhung chọn bản gọn 14/11) — tour nằm ở 2 trang con. Link cũ `?type=prive` / `?type=groupe` tự chuyển sang trang con tương ứng (script nhỏ trong `<head>`).
 
-URL cũ `/petit-groupe/circuit-vietnam-petit-groupe` → **chuyển sang** `/voyage-au-vietnam/?type=groupe` (quyết định 11/11/2026): bản thử có trang chuyển hướng `petit-groupe/circuit-vietnam-petit-groupe/index.html` (meta refresh + JS, noindex, canonical) · Firebase Hosting: rule 301 trong `firebase.json` · **Production PHP: coder đặt 301 phía máy chủ**, vd Apache `.htaccess`:
-```apache
-RewriteEngine On
-RewriteRule ^petit-groupe/circuit-vietnam-petit-groupe/?$ /voyage-au-vietnam?type=groupe [R=301,L]
-```
+**Trang Inspirations (v1.7)** — `/circuits-au-vietnam/` (giữ URL cũ « Les incontournables du Vietnam »). Không giá.
 
-Link mẫu theo Envie (chia sẻ được): `/voyage-au-vietnam/?envie=decouverte` · `?envie=authentique` · `?envie=ethnies` · `?envie=trek` · `?envie=balneaire` · kết hợp `?type=groupe&envie=ethnies`.
+| Khối | Nội dung |
+|---|---|
+| Hero | Ảnh Bến Tre (người chèo đò, kênh dừa nước — `banner` / `banner-mobile` / `og` `ben-tre-thuyen-kenh-dua`, ảnh tạm 1600×900 từ galerie) · breadcrumb Accueil / Circuits / Inspirations · H1 « Les incontournables *du Vietnam* » · 1 dòng · nút devis + « Voir les circuits » · từ khóa (Sur mesure · À la carte · Circuit privé · Du Nord au Sud) |
+| Les incontournables | 4 tour của trang cũ (14/11/2026): Escapade au Vietnam 10 j · Splendeurs du Vietnam 12 j · Traversée du Vietnam 14 j · Le dragon et sa tendresse 15 j — thẻ 4:5 có lộ trình đầy đủ; máy tính 4 cột, tablette 2, điện thoại vuốt ngang · 1 dòng « À vélo, en voiture, en moto-taxi ou en cyclo-pousse » (ý của trang cũ) |
+| 3 étapes | Vos envies · Votre itinéraire · Votre voyage (chuyển từ trang chung sang) |
+| Selon vos envies | 49 circuit privé khác · **1 hàng từ khóa** = catégorie menu site cũ: Vietnam authentique · Peuples du Nord · Randonnée · Mer & plages · Combinés · Laos · Cambodge · đếm « X voyages » · « Effacer les filtres » · URL `?kw=…` · 12 thẻ + « Afficher plus » · dải CTA sur mesure sau thẻ thứ 8 |
+| Avis | như trang chung |
+
+Link chia sẻ theo từ khóa: `/circuits-au-vietnam/?kw=authentique` · `?kw=ethnies` · `?kw=trek` · `?kw=balneaire` · `?kw=combine` · `?kw=la` · `?kw=kh` (mở trang là tự cuộn tới danh sách).
+
+**Trang Petite communauté (v1.7)** — `/petit-groupe/circuit-vietnam-petit-groupe/` (giữ URL cũ; thay trang chuyển hướng của v1.5, đã bỏ rule 301 trong `firebase.json`). Nội dung lấy từ trang cũ (14/11/2026). Không giá.
+
+| Khối | Nội dung |
+|---|---|
+| Hero | Ảnh chợ Hà Giang (ảnh của Vietnam en profondeur) · breadcrumb Accueil / Circuits / Petite communauté · H1 « Le Vietnam *en petit groupe* » · « Six voyages en 2027, avec un guide local francophone. » · nút « Voir les 6 voyages » + devis · từ khóa (7 voyageurs max. · Départs garantis · Guide francophone) |
+| En bref | 4 ý, 1 dòng mỗi ý: 7 voyageurs au plus · Départs garantis (toute l’année) · Guide local francophone (anglophone sur la croisière Lan Ha) · Avant ou après (boucle du Nord, Phú Quốc, Angkor) |
+| Six voyages 2027 | Meilleur du Nord 6 j · Sentiers cachés du Nord-Est 7 j · Essence du Vietnam 12 j · Vietnam authentique 14 j · Grand Tour du Nord 14 j · Vietnam en profondeur 19 j (→ trang circuit mẫu; 5 tour khác → trang cũ `/detail-du-circuit/…`) · máy tính 3 cột, điện thoại vuốt ngang · « Organisés par Authentik Vietnam et Izitour » · dải CTA « Avant ou après le groupe » (devis + WhatsApp) |
+| Avis | như trang chung |
 
 **Trang contact (v1.6)** — `/nous-contacter/` (URL mới, 13/11/2026), theo maquette gửi Nhung 13/11; giờ, giấy phép, ảnh văn phòng do Nhung cung cấp.
 
@@ -131,7 +146,8 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - Thẻ tour: lấy từ admin (cờ `featured`), không có trường giá.
 - Avis: số liệu nên lấy tự động (widget/API) hoặc cập nhật định kỳ; trích dẫn từ trang `/avis-client`.
 - Ảnh: trang chủ / blog còn hotlink để demo; trang circuit đã dùng WebP local theo vị trí (`assets/img/<vị-trí>/`). Khi làm thật: WebP local + `loading="lazy"`; logo dùng bản trắng (logo_authentik_white).
-- Trang tổng hợp: thẻ mang `data-type` (prive|groupe) · `data-dest` (vn|la|kh|combine) · `data-envie` (nhiều giá trị, cách nhau dấu cách) · `data-days` → lấy từ admin (catégorie site cũ: Vietnam première découverte = decouverte, Vietnam authentique = authentique, Rencontre des ethnies du Nord = ethnies, Trekking et Randonnée = trek, Séjours balnéaires = balneaire, Combiné multi-pays = combine). URL cũ `/petit-groupe/circuit-vietnam-petit-groupe` → redirect 301 sang `/voyage-au-vietnam?type=groupe` (hoặc giữ trang cũ, chốt với SEO).
+- Thẻ circuit (trang Inspirations, petit groupe): mang `data-type` (prive|groupe) · `data-dest` (vn|la|kh|combine) · `data-envie` (nhiều giá trị, cách nhau dấu cách) · `data-days` → lấy từ admin (catégorie site cũ: Vietnam première découverte = decouverte → khối « Les incontournables », Vietnam authentique = authentique, Rencontre des ethnies du Nord = ethnies, Trekking et Randonnée = trek, Séjours balnéaires = balneaire, Combiné multi-pays = combine). Bộ lọc `main.js` nhận `type` · `dest` · `envie` · `duree` · `kw` (từ khóa = 1 envie hoặc 1 điểm đến). 3 URL cũ giữ nguyên: `/voyage-au-vietnam` (trang chung), `/circuits-au-vietnam` (Inspirations), `/petit-groupe/circuit-vietnam-petit-groupe` (Petite communauté) — **không cần redirect**.
+- Menu dropdown: `HOVER_OPEN` / `HOVER_CLOSE` (120 / 400 ms) đầu khối Dropdown trong `main.js`; hover chỉ bật khi thiết bị có chuột (`hover: hover` + `pointer: fine`), máy cảm ứng dùng nút mũi tên.
 - Trang circuit: mỗi ngày = 1 bản ghi admin (tiêu đề, tóm tắt 1 dòng, nội dung, repas, hébergement, ảnh, nhãn hoạt động); hébergements gộp tự động từ các ngày; départs = bảng ngày (không giá); link devis truyền `circuit`, `depart`, `type`, `duree`.
 - Hiệu năng: video ≤ 6 Mo, `preload="metadata"`; YouTube chỉ tải khi bấm.
 
@@ -143,6 +159,8 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - [ ] Font: mẫu dùng **Montserrat duy nhất** → cập nhật D11 (sheet ghi 2 font)
 - [ ] Menu gọn (Accueil · Circuits · Blog) thay cho menu kiểu Atalante → cập nhật D03 ; mục Guide/À propos chuyển xuống footer
 - [ ] Tên mục « Petite communauté » (hay « Petits groupes ») cho dropdown Circuits
+- [ ] Trang Inspirations: ảnh hero có người, gốc ≥ 1920px (hiện ảnh Bến Tre 1600×900 lấy tạm từ galerie — trên điện thoại hơi mờ) ; ảnh 4 incontournables là ảnh site cũ nhỏ (354–480px)
+- [ ] Menu Circuits: ảnh thẻ « Petite communauté » vẫn hotlink authentikvietnam.com (4 phụ nữ dân tộc, 950×600) → nên chuyển sang WebP local
 - [x] Số giấy phép (01-611/2014/TCDL-GPLHQT) + địa chỉ văn phòng Saïgon (footer) — Nhung xác nhận 13/11/2026
 - [ ] Trang contact: ngày làm việc trong tuần (hiện chỉ ghi 8 h – 18 h)
 - [ ] Danh sách 5–6 tour nổi bật + ảnh dọc chất lượng cao

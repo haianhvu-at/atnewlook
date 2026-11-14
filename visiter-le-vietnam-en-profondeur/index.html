@@ -18,8 +18,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/tokens.css?v=1.6">
-  <link rel="stylesheet" href="../assets/css/main.css?v=1.6">
+  <link rel="stylesheet" href="../assets/css/tokens.css?v=1.7">
+  <link rel="stylesheet" href="../assets/css/main.css?v=1.7">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../assets/favicon/icon.svg" type="image/svg+xml">
@@ -68,10 +68,13 @@
     <nav class="nav__group nav__group--left" aria-label="Navigation principale">
       <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
       <a class="nav__link" href="../index.html#top" data-nav="home">Accueil</a>
-      <div class="dd" data-dd>
-        <button class="nav__link" aria-expanded="false" aria-controls="dd-circuits" data-nav="circuits">Circuits <svg><use href="#i-chevron"/></svg></button>
+      <!-- « Circuits » : chữ = link tới trang Circuits chung · mũi tên = mở menu con (bàn phím, máy tính bảng)
+           · hover máy tính : mở sau 0,12 s, giữ 0,4 s khi rời chuột, vùng đệm lấp khoảng hở dưới chữ (main.js + .dd__panel::before) -->
+      <div class="dd dd--split" data-dd>
+        <a class="nav__link" href="../voyage-au-vietnam/index.html" data-nav="circuits">Circuits</a>
+        <button class="dd__toggle" type="button" aria-expanded="false" aria-controls="dd-circuits" aria-label="Ouvrir le menu Circuits"><svg><use href="#i-chevron"/></svg></button>
         <div class="dd__panel dd__panel--mega" id="dd-circuits">
-          <a class="mega-card cine" href="../voyage-au-vietnam/index.html?type=prive">
+          <a class="mega-card cine" href="../circuits-au-vietnam/index.html">
             <img class="img-cover" src="../assets/img/circuit/nguoi-dao-hai-che.webp" alt="" width="900" height="1125" loading="lazy" decoding="async" style="--focus: 50% 35%">
             <span class="mega-card__body">
               <span class="h4">Circuits privés</span>
@@ -79,7 +82,7 @@
               <span class="mega-card__text">Des itinéraires à composer ensemble, rien que pour vous.</span>
             </span>
           </a>
-          <a class="mega-card cine" href="../voyage-au-vietnam/index.html?type=groupe">
+          <a class="mega-card cine" href="../petit-groupe/circuit-vietnam-petit-groupe/index.html">
             <img class="img-cover" src="https://authentikvietnam.com/media/tour/a1e99cb1a6ad0b3e87e509f12053bbac.jpg" alt="" loading="lazy">
             <span class="mega-card__body">
               <span class="h4">Petits groupes</span>
@@ -118,14 +121,13 @@
 <div class="mnav" id="mnav" aria-hidden="true">
   <ul class="mnav__list">
     <li><a href="../index.html#top" data-close data-nav="home">Accueil <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
-    <li>
-      <details>
-        <summary>Circuits <svg><use href="#i-chevron"/></svg></summary>
-        <div class="mnav__sub">
-          <a href="../voyage-au-vietnam/index.html?type=prive" data-close>Inspirations <small>Circuits privés</small></a>
-          <a href="../voyage-au-vietnam/index.html?type=groupe" data-close>Petite communauté <small>Petits groupes</small></a>
-        </div>
-      </details>
+    <li class="mnav__split">
+      <a href="../voyage-au-vietnam/index.html" data-close data-nav="circuits">Circuits</a>
+      <button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-circuits" aria-label="Afficher Inspirations et Petite communauté"><svg><use href="#i-chevron"/></svg></button>
+      <div class="mnav__sub" id="mnav-circuits" hidden>
+        <a href="../circuits-au-vietnam/index.html" data-close>Inspirations <small>Circuits privés</small></a>
+        <a href="../petit-groupe/circuit-vietnam-petit-groupe/index.html" data-close>Petite communauté <small>Petits groupes</small></a>
+      </div>
     </li>
     <li><a href="../blog-de-voyage-au-vietnam/index.html" data-close data-nav="blog" aria-current="page">Blog <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
   </ul>
@@ -351,8 +353,8 @@
       <div>
         <h3 class="h4">Nos voyages</h3>
         <ul>
-          <li><a href="../voyage-au-vietnam/index.html?type=prive">Inspirations</a></li>
-          <li><a href="../voyage-au-vietnam/index.html?type=groupe">Petits groupes</a></li>
+          <li><a href="../circuits-au-vietnam/index.html">Inspirations</a></li>
+          <li><a href="../petit-groupe/circuit-vietnam-petit-groupe/index.html">Petits groupes</a></li>
           <li><a href="https://authentikvietnam.com/voyages-au-laos">Voyages au Laos</a></li>
           <li><a href="https://authentikvietnam.com/voyages-au-cambodge">Voyages au Cambodge</a></li>
         </ul>
@@ -410,6 +412,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="../assets/js/main.js?v=1.6" defer></script>
+<script src="../assets/js/main.js?v=1.7" defer></script>
 </body>
 </html>
