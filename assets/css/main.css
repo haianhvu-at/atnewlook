@@ -1437,3 +1437,113 @@ body.is-locked { overflow: hidden; }
   .steps--four { grid-template-columns: 1fr; }
   .kw-filter { padding-block: 12px; }
 }
+
+/* ==========================================================================
+   TRANG CHỦ — v1.8 : công ty (about) · media « Instants » sáng · Films
+   ========================================================================== */
+
+/* ---------- Công ty : tên + từ khóa · ảnh tập thể · con số · 5 lý do ---------- */
+.about__head { align-items: end; }
+.about__lead .lead { color: var(--ink); }
+.about__lead .muted { margin-top: var(--s-2); }
+.about__team { position: relative; margin: 0; aspect-ratio: 16 / 7; overflow: hidden; background: var(--forest-800); }
+.about__team figcaption {
+  position: absolute; left: clamp(16px, 2.4vw, 32px); bottom: clamp(14px, 2vw, 26px); z-index: 2;
+  font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ivory);
+  text-shadow: 0 1px 12px rgba(0,0,0,.45);
+}
+.about__team.cine--soft::after { background: linear-gradient(180deg, transparent 60%, rgba(11,23,18,.55)), radial-gradient(120% 95% at 50% 45%, transparent 60%, rgba(0,0,0,.25) 100%); }
+.about__facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none;
+  border-bottom: 1px solid var(--line-light);
+}
+.about__facts li { padding: clamp(1.25rem, 2.6vw, 2rem) clamp(.75rem, 2vw, 1.5rem) clamp(1.25rem, 2.6vw, 2rem) 0; }
+.about__facts li + li { padding-left: clamp(.75rem, 2vw, 1.5rem); border-left: 1px solid var(--line-light); }
+.about__facts b { display: block; font-size: clamp(1.35rem, 2.2vw, 1.9rem); font-weight: 200; line-height: 1.2; color: var(--ink); }
+.about__facts span { display: block; margin-top: 6px; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; color: var(--ink-soft); }
+.why { margin-top: clamp(3.5rem, 7vw, 6rem); }
+.why__title { font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 300; line-height: 1.2; }
+.why__title em { font-style: italic; color: var(--emerald-700); }
+.pillars--five { margin: var(--s-4) 0 0; padding: 0; list-style: none; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(1rem, 2.4vw, 2.25rem); }
+.pillars--five .h3 { font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.35; }
+.why .intro__sign { margin-top: var(--s-5); }
+
+/* ---------- Media « Instants » : 9 ô · mặc định sáng · hover / chạm = lớp tối + tên ---------- */
+.media-grid--nine .tile--g { grid-column: span 5; }
+.media-grid--nine .tile--h { grid-column: 6 / span 7; grid-row: span 2; }
+.media-grid--nine .tile--i { grid-column: span 5; }
+.tile--lux { margin: 0; cursor: default; outline: none; }
+.tile--lux img { filter: saturate(.94) contrast(1.03) brightness(1.04); }   /* tông sáng, ấm nhẹ, thống nhất */
+.tile--lux::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0;
+  background: linear-gradient(180deg, rgba(11,23,18,.12) 0%, rgba(11,23,18,.42) 48%, rgba(11,23,18,.9) 100%);
+  transition: opacity .5s var(--ease);
+}
+.tile--lux .tile__cap { opacity: 0; transform: translateY(14px); transition: opacity .45s var(--ease), transform .6s var(--ease-out); }
+.tile--lux.is-on::after, .tile--lux:focus-visible::after { opacity: 1; }
+.tile--lux.is-on .tile__cap, .tile--lux:focus-visible .tile__cap { opacity: 1; transform: none; }
+.tile--lux.is-on img { filter: saturate(.9) brightness(.92); }
+.tile--lux:focus-visible { box-shadow: inset 0 0 0 2px var(--sand-300); }
+@media (hover: hover) and (pointer: fine) {
+  .tile--lux:hover::after { opacity: 1; }
+  .tile--lux:hover .tile__cap { opacity: 1; transform: none; }
+  .tile--lux:hover img { transform: scale(1.04); filter: saturate(.9) brightness(.92); }
+}
+
+/* ---------- Films : 1 vidéo à la une + 4 vidéos ---------- */
+.films__stage { margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.yt { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt__poster { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; cursor: pointer; }
+.yt__poster img { position: absolute; inset: 0; filter: brightness(.9); transition: transform 1.6s var(--ease-out), filter var(--t) var(--ease); }
+.yt__btn {
+  position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%);
+  width: clamp(64px, 8vw, 96px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(13,107,60,.94); color: var(--ivory); box-shadow: 0 18px 44px -14px rgba(0,0,0,.65);
+  transition: transform var(--t) var(--ease), background var(--t-fast);
+}
+.yt__btn svg { width: clamp(18px, 2vw, 24px); height: clamp(18px, 2vw, 24px); margin-left: 4px; }
+.yt__poster:hover img { transform: scale(1.03); filter: brightness(.82); }
+.yt__poster:hover .yt__btn, .yt__poster:focus-visible .yt__btn { transform: translate(-50%, -50%) scale(1.06); background: var(--emerald-600); }
+.films__meta { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 32px; margin-top: var(--s-3); }
+.films__kicker, .film__kicker { font-size: .6875rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--emerald-700); }
+.films__title { margin-top: 8px; font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 300; line-height: 1.2; }
+.films__sub { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; font-size: .875rem; color: var(--ink-soft); }
+.films__dur { padding: 4px 10px; border: 1px solid var(--line-light); border-radius: var(--radius-pill); font-size: .75rem; font-weight: 500; }
+.films__list { display: grid; gap: clamp(14px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 761px) { .films__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }   /* ≤ 760px : vuốt ngang (.swipe) */
+.film { display: block; width: 100%; padding: 0; text-align: left; color: var(--ink); cursor: pointer; }
+.film__img { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--forest-900); }
+.film__img img { position: absolute; inset: 0; transition: transform 1.2s var(--ease-out), filter var(--t); }
+.film__play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid rgba(247,243,236,.8); color: var(--ivory); background: rgba(11,23,18,.35);
+  transition: background var(--t-fast), transform var(--t) var(--ease);
+}
+.film__play svg { width: 13px; height: 13px; margin-left: 2px; }
+.film__dur { position: absolute; right: 8px; bottom: 8px; padding: 3px 7px; background: rgba(11,23,18,.82); color: var(--ivory); font-size: .6875rem; font-weight: 500; letter-spacing: .04em; }
+.film__kicker { display: block; margin-top: 14px; }
+.film__title { display: block; margin-top: 6px; font-size: 1rem; font-weight: 400; line-height: 1.4; transition: color var(--t-fast); }
+.film:hover .film__img img, .film:focus-visible .film__img img { transform: scale(1.05); filter: brightness(.88); }
+.film:hover .film__play, .film:focus-visible .film__play { background: var(--emerald-700); border-color: var(--emerald-700); transform: translate(-50%, -50%) scale(1.06); }
+.film:hover .film__title { color: var(--emerald-700); }
+.films__foot { display: flex; justify-content: center; margin-top: clamp(2rem, 4vw, 3rem); }
+.films__foot .btn svg { width: 18px; height: 18px; }
+
+@media (max-width: 1024px) {
+  .about__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about__facts li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .about__facts li:nth-child(n+3) { border-top: 1px solid var(--line-light); }
+  .pillars--five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 761px) and (max-width: 1024px) {
+  .films__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .about__team { aspect-ratio: 3 / 2; }
+  .about__team figcaption { font-size: .5625rem; letter-spacing: .14em; }
+  .pillars--five { grid-template-columns: 1fr; gap: var(--s-3); }
+  .films__meta { margin-top: var(--s-2); }
+  .films__list.swipe { grid-auto-columns: 72%; }
+  .films__foot .btn { width: 100%; }
+}

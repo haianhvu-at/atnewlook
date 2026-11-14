@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=1.7">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.7">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.8">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.8">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon/icon.svg" type="image/svg+xml">
@@ -168,52 +168,55 @@
 </section>
 
 <!-- =====================================================================
-     3. GIỚI THIỆU CÔNG TY — ít chữ, 3 trụ cột
+     3. CÔNG TY (v1.8) — tên doanh nghiệp + từ khóa (agence de voyage au Vietnam · agence francophone ·
+        agence locale basée à Hanoï et à Saïgon) · ảnh tập thể thật · 4 con số thật · 5 lý do
+        Nguồn: authentikvietnam.com (khối homeabout + boxwhyus trang chủ, trang « Qui sommes-nous », 14/11/2026)
      ===================================================================== -->
-<section class="section section--paper" id="intro">
+<section class="section section--paper about" id="intro">
   <div class="container">
-    <div class="intro__grid">
-      <div class="intro__text">
-        <p class="eyebrow reveal">Agence locale francophone · Hanoï</p>
-        <h2 class="h2 reveal" data-delay="1">Ici, le luxe, c’est <em>le temps</em> et <em>les rencontres</em>.</h2>
-        <p class="lead muted reveal" data-delay="2">Nous dessinons avec vous des voyages privés, pensés dans les moindres détails&nbsp;: des maisons de caractère, un guide francophone pour vous seul, et des portes qui s’ouvrent, chez l’habitant comme chez l’artisan.</p>
-        <div class="intro__sign reveal" data-delay="3">
-          <a class="link-arrow" href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Notre histoire <svg><use href="#i-arrow"/></svg></a>
-          <a class="link-arrow" href="https://authentikvietnam.com/notre-equipe">L’équipe <svg><use href="#i-arrow"/></svg></a>
-        </div>
+    <div class="section-head section-head--split about__head">
+      <div>
+        <p class="eyebrow reveal">Agence de voyage au Vietnam</p>
+        <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Authentik Vietnam, <em>agence locale francophone</em></h2>
       </div>
-      <div class="intro__visual reveal" data-delay="1">
-        <figure class="intro__img-main cine ph">
-          <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-1.webp" alt="Rencontre sur le seuil d’une maison traditionnelle, Nord du Vietnam" loading="lazy">
-        </figure>
-        <figure class="intro__img-small cine ph">
-          <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-3.webp" alt="Deux femmes partagent un moment de travail" loading="lazy">
-        </figure>
+      <div class="about__lead reveal" data-delay="2">
+        <p class="lead">Une agence locale basée à Hanoï et à Saïgon, fondée en 2012 par deux guides francophones&nbsp;: Ngoc Tu Dinh et Van Truong Tran.</p>
+        <p class="muted">Avec notre équipe, vous créez un voyage privé et sur mesure au Vietnam, au Laos ou au Cambodge, loin du tourisme de masse.</p>
       </div>
     </div>
 
-    <div class="pillars">
-      <div class="pillar reveal">
-        <span class="pillar__num">01</span>
-        <h3 class="h3">Privé</h3>
-        <p>Votre guide, votre chauffeur, votre rythme. Rien n’est imposé.</p>
-      </div>
-      <div class="pillar reveal" data-delay="1">
-        <span class="pillar__num">02</span>
-        <h3 class="h3">Dans le confort</h3>
-        <p>Des adresses choisies une à une, pour leur âme autant que pour leur confort.</p>
-      </div>
-      <div class="pillar reveal" data-delay="2">
-        <span class="pillar__num">03</span>
-        <h3 class="h3">Porteur de sens</h3>
-        <p>Des rencontres sincères et un tourisme responsable, qui profite à ceux qui vous accueillent.</p>
+    <figure class="about__team cine cine--soft reveal">
+      <img class="img-cover" src="assets/img/galerie/doi-ngu-authentik-tat-nien-2025.webp" alt="L’équipe d’Authentik Vietnam réunie sur scène pour la fête de fin d’année, en janvier 2026" width="1600" height="1067" loading="lazy" decoding="async" style="--focus: 50% 66%">
+      <figcaption>Notre équipe · fête de fin d’année, janvier 2026</figcaption>
+    </figure>
+
+    <ul class="about__facts">
+      <li class="reveal"><b>2012</b><span>Fondée à Hanoï</span></li>
+      <li class="reveal" data-delay="1"><b>Hanoï · Saïgon</b><span>Deux bureaux au Vietnam</span></li>
+      <li class="reveal" data-delay="2"><b>Agréée</b><span>Licence de tour-opérateur international</span></li>
+      <li class="reveal" data-delay="3"><b>3 pays</b><span>Vietnam · Laos · Cambodge</span></li>
+    </ul>
+
+    <div class="why">
+      <h3 class="why__title reveal">Pourquoi partir <em>avec nous&nbsp;?</em></h3>
+      <ol class="pillars pillars--five">
+        <li class="pillar reveal"><span class="pillar__num">01</span><h4 class="h3">Des experts locaux passionnés</h4><p>Conseillers et guides francophones, qui connaissent le terrain.</p></li>
+        <li class="pillar reveal" data-delay="1"><span class="pillar__num">02</span><h4 class="h3">Des voyages 100&nbsp;% personnalisés</h4><p>Votre itinéraire, à votre rythme, selon vos envies.</p></li>
+        <li class="pillar reveal" data-delay="2"><span class="pillar__num">03</span><h4 class="h3">Un tour-opérateur local fiable</h4><p>Agence agréée par l’Administration vietnamienne du tourisme.</p></li>
+        <li class="pillar reveal" data-delay="3"><span class="pillar__num">04</span><h4 class="h3">Des tarifs justes et transparents</h4><p>Sans intermédiaire, directement avec l’agence locale.</p></li>
+        <li class="pillar reveal"><span class="pillar__num">05</span><h4 class="h3">L’authenticité à chaque étape</h4><p>Loin du tourisme de masse, au plus près des habitants.</p></li>
+      </ol>
+      <div class="intro__sign reveal">
+        <a class="link-arrow" href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Notre histoire <svg><use href="#i-arrow"/></svg></a>
+        <a class="link-arrow" href="https://authentikvietnam.com/notre-equipe">L’équipe <svg><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- =====================================================================
-     4. MEDIA — mosaïque d'images, overlay cinématique sombre
+     4. MEDIA « INSTANTS » (v1.8) — mosaïque 9 ảnh thật (anh-goc/media-gallery + 1 ảnh cũ khối giới thiệu),
+        mặc định sáng, không lớp phủ, không chữ ; hover (chuột) / chạm (điện thoại) → lớp tối + nơi + tên ảnh
      ===================================================================== -->
 <section class="section section--dark" id="instants">
   <div class="container">
@@ -225,46 +228,125 @@
       <p class="muted reveal" data-delay="2">Une lumière, un geste, un regard. Le Vietnam que nous aimons partager.</p>
     </div>
 
-    <div class="media-grid swipe">
-      <a class="tile tile--a cine reveal" href="blog-de-voyage-au-vietnam/index.html">
-        <img class="img-cover" src="https://authentikvietnam.com/themes/web/img/silde/slide-5.webp" alt="Bâtonnets d’encens séchant au soleil" loading="lazy">
-        <span class="tile__cap"><span><span class="h4">Artisanat</span><strong>Les gestes d’un village de métier</strong></span></span>
-      </a>
-      <a class="tile tile--b cine reveal" data-delay="1" href="https://authentikvietnam.com/quatre-cols-nord-vietnam">
-        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/col-o-quy-ho.jpeg" alt="Col d’Ô Quy Hồ dans la lumière du matin" loading="lazy">
-        <span class="tile__cap"><span><span class="h4">Lào Cai</span><strong>Col d’Ô Quy Hồ</strong></span></span>
-      </a>
-      <a class="tile tile--c cine reveal" data-delay="2" href="blog-de-voyage-au-vietnam/index.html">
-        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/halong-meilleure-periode-vietnam.jpg" alt="Baie d’Hạ Long au coucher du soleil" loading="lazy">
-        <span class="tile__cap"><span><span class="h4">Baie d’Hạ Long</span><strong>L’heure dorée, loin de la foule</strong></span></span>
-      </a>
-      <a class="tile tile--d cine reveal" href="https://authentikvietnam.com/bao-lac-cao-bang">
-        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/lolo-noirs-cao-bang.jpg" alt="Femme Lô Lô noire en tenue traditionnelle" loading="lazy">
-        <span class="tile__cap"><span><span class="h4">Cao Bằng</span><strong>Chez les Lô Lô noirs</strong></span></span>
-      </a>
-      <a class="tile tile--e cine reveal" data-delay="1" href="https://authentikvietnam.com/saison-des-fleurs-de-sarrasin-ha-giang">
-        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/floraison-du-sarrasin-4.jpg" alt="Champs de sarrasin en fleurs à Hà Giang" loading="lazy">
-        <span class="tile__cap"><span><span class="h4">Hà Giang</span><strong>La saison du sarrasin en fleurs</strong></span></span>
-      </a>
-      <a class="tile tile--f tile--film cine reveal" data-delay="2" href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener">
-        <img class="img-cover" src="https://authentikvietnam.com/media/ckeditor/col-pha-din.jpg" alt="" loading="lazy">
-        <span class="tile__play"><svg><use href="#i-play"/></svg></span>
-        <span class="tile__cap"><span><span class="h4">Nos films</span><strong>Le Vietnam en mouvement</strong></span></span>
-      </a>
+    <div class="media-grid media-grid--nine swipe">
+      <figure class="tile tile--a tile--lux reveal" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/cho-can-cau-ban-ot.webp" alt="Trois femmes hmong autour d’un chapelet de piments, au marché de Cán Cấu" width="1400" height="933" loading="lazy" decoding="async" style="--focus: 50% 40%">
+        <figcaption class="tile__cap"><span><span class="h4">Lào Cai</span><strong>Au marché de Cán Cấu</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--b tile--lux reveal" data-delay="1" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/ha-long-thuyen-nan.webp" alt="Voyageurs en barque au pied des pitons calcaires, dans la baie" width="1400" height="1048" loading="lazy" decoding="async" style="--focus: 50% 72%">
+        <figcaption class="tile__cap"><span><span class="h4">Baie d’Hạ Long</span><strong>En barque, entre les pitons</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--c tile--lux reveal" data-delay="2" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/hoi-an-hoa-giay.webp" alt="Une maison jaune couverte de bougainvilliers, à Hội An" width="1400" height="1050" loading="lazy" decoding="async" style="--focus: 50% 62%">
+        <figcaption class="tile__cap"><span><span class="h4">Hội An</span><strong>Sous les bougainvilliers</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--d tile--lux reveal" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/phu-nu-truoc-cua-nha.webp" alt="Une femme debout sur le seuil de sa maison en terre" width="1400" height="560" loading="lazy" decoding="async" style="--focus: 49% 45%">
+        <figcaption class="tile__cap"><span><span class="h4">Nord du Vietnam</span><strong>Sur le seuil de la maison</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--e tile--lux reveal" data-delay="1" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/hoi-an-den-hoa-dang.webp" alt="Une vendeuse de lanternes flottantes, le soir à Hội An" width="1400" height="1050" loading="lazy" decoding="async" style="--focus: 35% 60%">
+        <figcaption class="tile__cap"><span><span class="h4">Hội An</span><strong>Lanternes du soir</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--f tile--lux reveal" data-delay="2" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/hoang-hon-ben-ho.webp" alt="Une femme en tenue traditionnelle au bord d’un lac, au coucher du soleil" width="1400" height="933" loading="lazy" decoding="async" style="--focus: 32% 45%">
+        <figcaption class="tile__cap"><span><span class="h4">Nord du Vietnam</span><strong>Fin de journée au bord du lac</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--g tile--lux reveal" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/van-long-hoang-hon.webp" alt="Buffles et cycliste au coucher du soleil, à Vân Long" width="1400" height="936" loading="lazy" decoding="async" style="--focus: 50% 62%">
+        <figcaption class="tile__cap"><span><span class="h4">Ninh Bình</span><strong>Vân Long, le soir</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--h tile--lux reveal" data-delay="1" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/ba-chau-vac-cui.webp" alt="Une grand-mère porte un enfant et du bois, dans le Nord du Vietnam" width="1400" height="933" loading="lazy" decoding="async" style="--focus: 45% 38%">
+        <figcaption class="tile__cap"><span><span class="h4">Nord du Vietnam</span><strong>Le bois pour la maison</strong></span></figcaption>
+      </figure>
+      <figure class="tile tile--i tile--lux reveal" data-delay="2" tabindex="0" data-reveal>
+        <img class="img-cover" src="assets/img/mosaic/hue-hoang-thanh.webp" alt="Le pont vers le palais, dans la Cité impériale de Huế" width="1400" height="1050" loading="lazy" decoding="async" style="--focus: 50% 55%">
+        <figcaption class="tile__cap"><span><span class="h4">Huế</span><strong>La Cité impériale</strong></span></figcaption>
+      </figure>
     </div>
 
     <div class="media__foot">
       <p class="muted" style="font-size:.85rem">Suivez-nous au fil des saisons</p>
       <div class="social">
         <a href="https://www.facebook.com/authentikvietnamtravel" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
-        <a href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+        <a href="https://www.youtube.com/@authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- =====================================================================
-     5. CIRCUITS — sans prix ; filtre Inspirations / Petite communauté
+     5. FILMS (v1.8) — 1 vidéo à la une, lecture sur place (YouTube nocookie, chargée au clic seulement)
+        + 4 vidéos : un clic les lit dans le grand cadre (échange de place) + lien vers la chaîne YouTube
+        Vidéos réelles de youtube.com/@authentikvietnam (relevé 14/11/2026). Miniatures = i.ytimg.com (WebP).
+     ===================================================================== -->
+<section class="section section--paper films" id="films" aria-labelledby="films-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow reveal">Films</p>
+        <h2 class="h2 reveal" data-delay="1" id="films-title" style="margin-top:1.5rem">Le Vietnam, <em>en mouvement</em>.</h2>
+      </div>
+      <p class="muted reveal" data-delay="2">Nos guides, nos voyageurs, nos rencontres&nbsp;: à regarder ici ou sur notre chaîne YouTube.</p>
+    </div>
+
+    <div class="films__stage reveal">
+      <div class="yt" id="filmStage" data-yt="73cu9-FvW1Q">
+        <button class="yt__poster" type="button" data-yt-play aria-label="Lire la vidéo : Nord-Est du Vietnam en 5 jours">
+          <img class="img-cover" src="https://i.ytimg.com/vi_webp/73cu9-FvW1Q/maxresdefault.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="yt__btn"><svg><use href="#i-play"/></svg></span>
+        </button>
+      </div>
+      <div class="films__meta">
+        <div>
+          <p class="films__kicker" id="filmKicker">Itinéraire</p>
+          <h3 class="films__title" id="filmTitle">Nord-Est du Vietnam en 5 jours</h3>
+        </div>
+        <p class="films__sub"><span id="filmSub">Hà Giang · Đồng Văn · Bảo Lạc · Ba Bể</span><span class="films__dur" id="filmDur">12:08</span></p>
+      </div>
+    </div>
+
+    <ul class="films__list swipe" aria-label="Autres vidéos">
+      <li class="reveal">
+        <button class="film" type="button" data-yt="4-lZk1f1wVw" data-kicker="Nos guides" data-title="Rencontrez M. Tuân, guide francophone" data-sub="Guides d’Authentik Vietnam" data-dur="1:54">
+          <span class="film__img"><img class="img-cover" src="https://i.ytimg.com/vi_webp/4-lZk1f1wVw/sddefault.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="film__play"><svg><use href="#i-play"/></svg></span><span class="film__dur">1:54</span></span>
+          <span class="film__kicker">Nos guides</span>
+          <span class="film__title">Rencontrez M. Tuân, guide francophone</span>
+        </button>
+      </li>
+      <li class="reveal" data-delay="1">
+        <button class="film" type="button" data-yt="Md_E__JuZ8c" data-kicker="En petit groupe" data-title="Au marché de Đồng Văn" data-sub="Avec M. Son et le groupe de M. Thierry Pouvreau" data-dur="5:49">
+          <span class="film__img"><img class="img-cover" src="https://i.ytimg.com/vi_webp/Md_E__JuZ8c/sddefault.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="film__play"><svg><use href="#i-play"/></svg></span><span class="film__dur">5:49</span></span>
+          <span class="film__kicker">En petit groupe</span>
+          <span class="film__title">Au marché de Đồng Văn</span>
+        </button>
+      </li>
+      <li class="reveal" data-delay="2">
+        <button class="film" type="button" data-yt="Bbc2mVccVjY" data-kicker="Cao Bằng" data-title="Au village d’encens de Phia Thắp" data-sub="Avec M. Son Tran, guide francophone" data-dur="4:20">
+          <span class="film__img"><img class="img-cover" src="https://i.ytimg.com/vi_webp/Bbc2mVccVjY/sddefault.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="film__play"><svg><use href="#i-play"/></svg></span><span class="film__dur">4:20</span></span>
+          <span class="film__kicker">Cao Bằng</span>
+          <span class="film__title">Au village d’encens de Phia Thắp</span>
+        </button>
+      </li>
+      <li class="reveal" data-delay="3">
+        <button class="film" type="button" data-yt="6E1468qy0mE" data-kicker="Témoignage" data-title="19 jours au Vietnam avec M. et Mme Siffer" data-sub="Leur voyage avec Authentik Vietnam" data-dur="15:01">
+          <span class="film__img"><img class="img-cover" src="https://i.ytimg.com/vi_webp/6E1468qy0mE/sddefault.webp" alt="" width="640" height="480" loading="lazy" decoding="async"><span class="film__play"><svg><use href="#i-play"/></svg></span><span class="film__dur">15:01</span></span>
+          <span class="film__kicker">Témoignage</span>
+          <span class="film__title">19 jours au Vietnam avec M. et Mme Siffer</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="films__foot reveal">
+      <a class="btn btn--dark" href="https://www.youtube.com/@authentikvietnam/videos" target="_blank" rel="noopener"><svg><use href="#i-yt"/></svg> Toutes nos vidéos sur YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     6. CIRCUITS — sans prix ; filtre Inspirations / Petite communauté
      ===================================================================== -->
 <section class="section section--circuits" id="circuits">
   <div class="container">
@@ -343,7 +425,7 @@
 </section>
 
 <!-- =====================================================================
-     6. AVIS — Tripadvisor · Google · Trustpilot + citations
+     7. AVIS — Tripadvisor · Google · Trustpilot + citations
      ===================================================================== -->
 <section class="section section--earth reviews" id="avis">
   <div class="container reviews__grid">
@@ -402,7 +484,7 @@
 </section>
 
 <!-- =====================================================================
-     7. FORM — demande de devis courte, sans budget
+     8. FORM — demande de devis courte, sans budget
      ===================================================================== -->
 <section class="devis" id="devis">
   <div class="devis__grid">
@@ -581,6 +663,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="assets/js/main.js?v=1.7" defer></script>
+<script src="assets/js/main.js?v=1.8" defer></script>
 </body>
 </html>

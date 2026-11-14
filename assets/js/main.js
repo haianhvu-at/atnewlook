@@ -126,6 +126,44 @@
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
 
+  /* ---------- Media « Instants » (v1.8) : máy có chuột = hover (CSS) ; điện thoại = chạm để hiện lớp tối + tên ảnh ---------- */
+  const luxTiles = $$('[data-reveal]');
+  if (luxTiles.length && !canHover) {
+    luxTiles.forEach(t => t.addEventListener('click', () => {
+      const on = !t.classList.contains('is-on');
+      luxTiles.forEach(x => x.classList.remove('is-on'));
+      t.classList.toggle('is-on', on);
+    }));
+  }
+
+  /* ---------- Films (v1.8) : 1 vidéo à la une, lecture sur place ; clic sur une petite vidéo = elle passe dans le grand cadre
+     (échange de place). YouTube nocookie, iframe chargée seulement au clic. ---------- */
+  const stage = $('#filmStage');
+  if (stage) {
+    const meta = { kicker: $('#filmKicker'), title: $('#filmTitle'), sub: $('#filmSub'), dur: $('#filmDur') };
+    let cur = { yt: stage.dataset.yt, kicker: meta.kicker.textContent, title: meta.title.textContent, sub: meta.sub.textContent, dur: meta.dur.textContent };
+    const play = () => {
+      stage.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${cur.yt}?autoplay=1&rel=0&playsinline=1" title="${cur.title.replace(/"/g, '&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    };
+    const posterBtn = $('[data-yt-play]', stage);
+    if (posterBtn) posterBtn.addEventListener('click', play);
+    $$('.film[data-yt]').forEach(card => card.addEventListener('click', () => {
+      const next = { ...card.dataset };
+      // thẻ nhỏ nhận video đang ở khung lớn
+      card.dataset.yt = cur.yt; card.dataset.kicker = cur.kicker; card.dataset.title = cur.title; card.dataset.sub = cur.sub; card.dataset.dur = cur.dur;
+      $('img', card).src = `https://i.ytimg.com/vi_webp/${cur.yt}/sddefault.webp`;
+      $('.film__kicker', card).textContent = cur.kicker;
+      $('.film__title', card).textContent = cur.title;
+      $('.film__dur', card).textContent = cur.dur;
+      // khung lớn phát video vừa chọn
+      cur = { yt: next.yt, kicker: next.kicker, title: next.title, sub: next.sub, dur: next.dur };
+      meta.kicker.textContent = cur.kicker; meta.title.textContent = cur.title; meta.sub.textContent = cur.sub; meta.dur.textContent = cur.dur;
+      play();
+      const r = stage.getBoundingClientRect();
+      if (r.top < 70 || r.bottom > window.innerHeight) stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    }));
+  }
+
   /* ---------- Reveal khi cuộn ---------- */
   const reveals = $$('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
