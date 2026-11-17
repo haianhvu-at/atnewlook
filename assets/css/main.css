@@ -1786,14 +1786,16 @@ body.is-locked { overflow: hidden; }
   .pcard__logo { height: 16px; }
 }
 
-/* Nền nan tre — khối xanh thẫm chưa có hình nét (Par envie, Pas à pas, footer, trang Qui sommes-nous).
-   Ảnh: design-assets/authentik-bamboo-background-20261117/bamboo-lattice-fade (mờ dần từ trên xuống có sẵn trong ảnh),
-   nén lại 94 Ko → assets/img/texture/nan-tre.webp. Phủ toàn chiều ngang, nằm dưới chữ, không bắt chuột. */
+/* Nền nan tre — khối xanh thẫm chưa có hình nét (Par envie, Pas à pas, footer, khối « Pourquoi » trang Qui sommes-nous).
+   v1.10.1 : hình nét vẽ lại (SVG lặp liền mạch, 102 px = ô 36 px, nan 9 px, có đốt tre, đan trên/dưới xen kẽ),
+   độ đậm 5 %, mờ dần từ trên xuống trong ~820px đầu khối. Nằm dưới chữ, không bắt chuột. Nguồn sinh hình: tools/gen_bamboo.py */
 .bamboo { position: relative; isolation: isolate; }
 .bamboo::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: url("../img/texture/nan-tre.webp") center top / max(100%, 1100px) auto no-repeat;
-  opacity: var(--bamboo-opacity, .6);
+  background: url("../img/texture/nan-tre.svg") 50% 0 / 102px 102px repeat;
+  opacity: var(--bamboo-opacity, .05);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, rgba(0,0,0,.6) 360px, transparent 820px);
+          mask-image: linear-gradient(to bottom, #000 0, rgba(0,0,0,.6) 360px, transparent 820px);
 }
 
 /* Chuyển tiếp mờ giữa ảnh / video đầu trang và khối bên dưới (giống phần video → chữ trên điện thoại).

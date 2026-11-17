@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.10 · repo atnewlook · 17/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.10.1 · repo atnewlook · 17/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -23,7 +23,7 @@ assets/css/main.css   Giao diện các module
 assets/js/main.js     Tương tác (navbar, dropdown có độ trễ hover, menu mobile, video, lọc tour, slider avis, form + điền sẵn, nút nổi, trang circuit: tab dính, lịch trình, lightbox, thanh CTA mobile)
 assets/video/         hero.mp4 (máy tính) + hero-mobile.mp4 (điện thoại) — clip nền hero, xem LISEZ-MOI.txt
 assets/img/logo/      Logo Authentik màu (authentik-vietnam.webp, dùng ở trang Qui sommes-nous) + logo chính thức Tripadvisor / Google / Trustpilot (SVG, khối avis)
-assets/img/texture/   nan-tre.webp — nền nan tre cho khối xanh thẫm (bộ design-assets/authentik-bamboo-background-20261117, nén lại 94 Ko)
+assets/img/texture/   nan-tre.svg — nền nan tre cho khối xanh thẫm (v1.10.1: hình nét vẽ lại, tile 102 px = ô 36 px, nan 9 px, 21 Ko; sinh bằng D:\web\tools\gen_bamboo.py)
 assets/img/linework/  Hình nét trang trí (bộ design-assets/authentik-linework-20261117): dark/ = nét đậm cho nền sáng · light/ = nét nhạt cho nền tối
 firebase.json         Cấu hình Firebase Hosting
 .gitignore            Bỏ qua desktop.ini (Google Drive) khi đẩy lên GitHub
@@ -156,7 +156,7 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - Menu dropdown: `HOVER_OPEN` / `HOVER_CLOSE` (120 / 400 ms) đầu khối Dropdown trong `main.js`; hover chỉ bật khi thiết bị có chuột (`hover: hover` + `pointer: fine`), máy cảm ứng dùng nút mũi tên.
 - Trang circuit: mỗi ngày = 1 bản ghi admin (tiêu đề, tóm tắt 1 dòng, nội dung, repas, hébergement, ảnh, nhãn hoạt động); hébergements gộp tự động từ các ngày; départs = bảng ngày (không giá); link devis truyền `circuit`, `depart`, `type`, `duree`.
 - Hiệu năng: video hero ≤ 6 Mo (hero.mp4 4,1 Mo · hero-mobile.mp4 1,7 Mo), chỉ tải khi không bật « giảm chuyển động »; YouTube chỉ tải khi bấm.
-- v1.10: (1) class `.bamboo` = nền nan tre mờ dần từ trên xuống, gắn vào khối xanh thẫm chưa có hình nét (Par envie, Pas à pas, footer, khối « Pourquoi » trang Qui sommes-nous); độ đậm chỉnh bằng `--bamboo-opacity` (mặc định .6). (2) Chuyển tiếp mờ ảnh/video đầu trang → khối dưới: `.hero--video::after` (máy tính) và `.page-hero::after` (mọi trang có page-hero, trừ trang circuit vì bên dưới là thanh tab tối); màu đích = `--blend-to` (mặc định ivory). Chỉ là gradient CSS trang trí, không ảnh hưởng SEO. (3) Khoảng cách ô ảnh Deux façons · Par envie · Itinéraires = `--gap-img` (clamp 7–12px, ≥ 761px). (4) Avis: logo nền tảng là `<img alt="Tripadvisor|Google|Trustpilot">` — giữ đúng file chính thức, không đổi màu / tỉ lệ.
+- v1.10: (1) class `.bamboo` = nền nan tre (SVG lặp) mờ dần từ trên xuống bằng mask-image, gắn vào khối xanh thẫm chưa có hình nét (Par envie, Pas à pas, footer, khối « Pourquoi » trang Qui sommes-nous); độ đậm `--bamboo-opacity` (v1.10.1: .05 theo MKT). (2) Chuyển tiếp mờ ảnh/video đầu trang → khối dưới: `.hero--video::after` (máy tính) và `.page-hero::after` (mọi trang có page-hero, trừ trang circuit vì bên dưới là thanh tab tối); màu đích = `--blend-to` (mặc định ivory). Chỉ là gradient CSS trang trí, không ảnh hưởng SEO. (3) Khoảng cách ô ảnh Deux façons · Par envie · Itinéraires = `--gap-img` (clamp 7–12px, ≥ 761px). (4) Avis: logo nền tảng là `<img alt="Tripadvisor|Google|Trustpilot">` — giữ đúng file chính thức, không đổi màu / tỉ lệ.
 - v1.9.1: mọi nền tối (`.section--dark`, `.section--earth`, form devis, footer, article-head, phần chữ dưới video hero trên mobile) dùng chung xanh thẫm `--forest-900` #0f2019 như module « Réserver avec Authentik » — không dùng `--forest-950` cho nền khối nữa (chỉ còn cho lớp phủ, menu mobile).
 - Trang chủ v1.9: nền xen kẽ sáng / tối (agence sáng · média tối · deux façons sáng · par envie tối · paroles sáng · pas à pas tối · form sáng|tối). Linework là ảnh trang trí (`alt=""`, `aria-hidden`), không đè lên chữ; `.lw-sec { overflow-x: clip }`.
 - Avis tự động (đề xuất): cron PHP 1 lần/ngày → file JSON cache → render khối Paroles. Google Business Profile API (toàn bộ avis, xếp theo ngày, cần chủ trang cấp quyền OAuth) · Tripadvisor Content API (điểm + 5 avis mới nhất, ghi rõ nguồn) · Trustpilot API (gói trả phí). Lọc: 5★, mới nhất, tiếng Pháp, đủ dài.
