@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=1.9">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.9">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.9.1">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.9.1">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon/icon.svg" type="image/svg+xml">
@@ -286,30 +286,38 @@
       </div>
       <p class="muted reveal" data-delay="2">Six façons de découvrir le pays. Choisissez celle qui vous ressemble.</p>
     </div>
+    <!-- v1.9.1 : thứ tự trong code = thứ tự trên máy tính (≥ 1025px) — hàng 1 : 60 % · 20 % · 20 %, hàng 2 : 20 % · 20 % · 60 %.
+         ≤ 1024px giữ thứ tự cũ bằng CSS « order ». 2 ô rộng dùng <picture> : ảnh ngang trên máy tính, ảnh dọc cũ trên điện thoại. -->
     <div class="themes swipe">
-      <a class="theme cine reveal" href="circuits-au-vietnam/index.html">
+      <a class="theme theme--wide cine reveal" href="circuits-au-vietnam/index.html?kw=authentique#envies">
+        <picture>
+          <source media="(min-width: 1025px)" srcset="assets/img/mosaic/phu-nu-truoc-cua-nha.webp" width="1400" height="560">
+          <img class="img-cover" src="assets/img/circuit/cao-bang-phia-thap-lang-huong.webp" alt="" width="864" height="1080" loading="lazy" decoding="async" style="--focus: 50% 35%; --focus-wide: 50% 30%">
+        </picture>
+        <span class="theme__body"><span class="theme__kw">Vietnam authentique</span><span class="theme__title">La vie <em>des villages</em></span></span>
+      </a>
+      <a class="theme cine reveal" data-delay="1" href="circuits-au-vietnam/index.html">
         <img class="img-cover" src="assets/img/circuit/ninh-binh-tam-coc-thuyen.webp" alt="" width="720" height="900" loading="lazy" decoding="async" style="--focus: 50% 60%">
         <span class="theme__body"><span class="theme__kw">Incontournables</span><span class="theme__title">Les grands sites, <em>autrement</em></span></span>
-      </a>
-      <a class="theme cine reveal" data-delay="1" href="circuits-au-vietnam/index.html?kw=authentique#envies">
-        <img class="img-cover" src="assets/img/circuit/cao-bang-phia-thap-lang-huong.webp" alt="" width="864" height="1080" loading="lazy" decoding="async" style="--focus: 50% 35%">
-        <span class="theme__body"><span class="theme__kw">Vietnam authentique</span><span class="theme__title">La vie <em>des villages</em></span></span>
       </a>
       <a class="theme cine reveal" data-delay="2" href="circuits-au-vietnam/index.html?kw=ethnies#envies">
         <img class="img-cover" src="assets/img/circuit/sur-les-sentiers-des-daos-rouges-et-des-hmong-noirs.webp" alt="" width="354" height="442" loading="lazy" decoding="async" style="--focus: 50% 30%">
         <span class="theme__body"><span class="theme__kw">Richesses ethniques</span><span class="theme__title">Les peuples <em>des montagnes</em></span></span>
       </a>
-      <a class="theme cine reveal" href="circuits-au-vietnam/index.html?kw=trek#envies">
-        <img class="img-cover" src="assets/img/circuit/rencontres-des-thais-et-muong-a-puluong.webp" alt="" width="354" height="442" loading="lazy" decoding="async" style="--focus: 50% 55%">
-        <span class="theme__body"><span class="theme__kw">Randonnée</span><span class="theme__title">Au fil <em>des sentiers</em></span></span>
-      </a>
-      <a class="theme cine reveal" data-delay="1" href="circuits-au-vietnam/index.html?kw=balneaire#envies">
+      <a class="theme cine reveal" href="circuits-au-vietnam/index.html?kw=balneaire#envies">
         <img class="img-cover" src="assets/img/circuit/le-sud-vietnam-et-plage-phu-quoc.webp" alt="" width="354" height="442" loading="lazy" decoding="async" style="--focus: 50% 55%">
         <span class="theme__body"><span class="theme__kw">Côté plage</span><span class="theme__title">Entre mer <em>et repos</em></span></span>
       </a>
-      <a class="theme cine reveal" data-delay="2" href="circuits-au-vietnam/index.html?kw=combine#envies">
+      <a class="theme cine reveal" data-delay="1" href="circuits-au-vietnam/index.html?kw=combine#envies">
         <img class="img-cover" src="assets/img/circuit/visite-luang-prabang-laos.webp" alt="" width="239" height="299" loading="lazy" decoding="async" style="--focus: 50% 40%">
-        <span class="theme__body"><span class="theme__kw">Vietnam · Laos · Cambodge</span><span class="theme__title">D’un pays <em>à l’autre</em></span></span>
+        <span class="theme__body"><span class="theme__kw">Vietnam&nbsp;· Laos&nbsp;·&nbsp;Cambodge</span><span class="theme__title">D’un pays <em>à l’autre</em></span></span>
+      </a>
+      <a class="theme theme--wide cine reveal" data-delay="2" href="circuits-au-vietnam/index.html?kw=trek#envies">
+        <picture>
+          <source media="(min-width: 1025px)" srcset="assets/img/mosaic/van-long-hoang-hon.webp" width="1400" height="936">
+          <img class="img-cover" src="assets/img/circuit/rencontres-des-thais-et-muong-a-puluong.webp" alt="" width="354" height="442" loading="lazy" decoding="async" style="--focus: 50% 55%; --focus-wide: 50% 72%">
+        </picture>
+        <span class="theme__body"><span class="theme__kw">Randonnée</span><span class="theme__title">Au fil <em>des sentiers</em></span></span>
       </a>
     </div>
 
@@ -632,6 +640,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="assets/js/main.js?v=1.9" defer></script>
+<script src="assets/js/main.js?v=1.9.1" defer></script>
 </body>
 </html>

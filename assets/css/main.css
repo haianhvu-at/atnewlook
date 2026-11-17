@@ -1719,3 +1719,43 @@ body.is-locked { overflow: hidden; }
   .devis__visual--lw { min-height: 0; }
   .devis__visual--lw .lw--salon { padding: 2rem 1.25rem 0; }
 }
+
+/* ==========================================================================
+   v1.9.1 — PAR ENVIE : lưới ảnh liền nhau trên máy tính (≥ 1025px)
+   Lưới 5 cột : ô thường = 1 cột (20 %), ô rộng .theme--wide = 3 cột (60 %).
+   Hàng 1 : La vie des villages (60) · Les grands sites (20) · Les peuples (20)
+   Hàng 2 : Entre mer (20) · D’un pays à l’autre (20) · Au fil des sentiers (60)
+   761–1024px : 3 cột như cũ · ≤ 760px : vuốt ngang như cũ (thứ tự cũ nhờ « order »).
+   ========================================================================== */
+@media (min-width: 1025px) {
+  .themes { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: clamp(300px, 25vw, 380px); gap: 0; }
+  .theme { aspect-ratio: auto; }
+  .theme--wide { grid-column: span 3; }
+  .theme--wide img { object-position: var(--focus-wide, var(--focus, 50% 50%)); }
+  .theme:not(.theme--wide) .theme__body { padding: clamp(16px, 1.5vw, 22px); }
+  .theme:not(.theme--wide) .theme__title { font-size: clamp(1.15rem, 1.35vw, 1.35rem); }
+  .theme:not(.theme--wide) .theme__kw { letter-spacing: .14em; }
+  .theme--wide .theme__body { padding: clamp(22px, 2.4vw, 36px); }
+  .theme--wide .theme__title { font-size: clamp(1.6rem, 2.3vw, 2.25rem); }
+}
+@media (max-width: 1024px) {   /* giữ thứ tự cũ : grands sites · villages · peuples · sentiers · mer · combinés */
+  .themes > .theme:nth-child(1) { order: 2; }
+  .themes > .theme:nth-child(2) { order: 1; }
+  .themes > .theme:nth-child(3) { order: 3; }
+  .themes > .theme:nth-child(4) { order: 5; }
+  .themes > .theme:nth-child(5) { order: 6; }
+  .themes > .theme:nth-child(6) { order: 4; }
+}
+
+/* ==========================================================================
+   v1.9.1 — MÀU NỀN TỐI THỐNG NHẤT (yêu cầu MKT 17/11)
+   Mọi « không gian tối » dùng xanh thẫm forest-900 (#0f2019) giống module « Réserver avec Authentik »
+   (#pas-a-pas) thay cho forest-950 (#0b1712, gần như đen). Áp dụng toàn site để không lệch màu giữa
+   khối tối cuối trang và footer. Giữ nguyên : lớp phủ trên ảnh/video, menu mobile, thanh nav.
+   ========================================================================== */
+.section--dark, .devis, .footer, .article-head { background: var(--forest-900); }
+.article-cover { background: linear-gradient(180deg, var(--forest-900) 0 50%, var(--ivory) 50% 100%); }
+.hero--video { background: var(--forest-900); }
+@media (hover: none), (pointer: coarse) {
+  .hero--video .hero__media::before { background: linear-gradient(180deg, rgba(15,32,25,0), var(--forest-900)); }
+}
