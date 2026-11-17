@@ -161,8 +161,10 @@
      (échange de place). YouTube nocookie, iframe chargée seulement au clic. ---------- */
   const stage = $('#filmStage');
   if (stage) {
+    // v1.10 : dòng chú thích dưới video (Itinéraire · titre · lieux · durée) có thể không có → đọc an toàn, tiêu đề lấy từ data-title
     const meta = { kicker: $('#filmKicker'), title: $('#filmTitle'), sub: $('#filmSub'), dur: $('#filmDur') };
-    let cur = { yt: stage.dataset.yt, kicker: meta.kicker.textContent, title: meta.title.textContent, sub: meta.sub.textContent, dur: meta.dur.textContent };
+    const txt = el => (el ? el.textContent : '');
+    let cur = { yt: stage.dataset.yt, kicker: txt(meta.kicker), title: txt(meta.title) || stage.dataset.title || 'Vidéo Authentik Vietnam', sub: txt(meta.sub), dur: txt(meta.dur) };
     const play = () => {
       stage.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${cur.yt}?autoplay=1&rel=0&playsinline=1" title="${cur.title.replace(/"/g, '&quot;')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     };
@@ -178,7 +180,7 @@
       $('.film__dur', card).textContent = cur.dur;
       // khung lớn phát video vừa chọn
       cur = { yt: next.yt, kicker: next.kicker, title: next.title, sub: next.sub, dur: next.dur };
-      meta.kicker.textContent = cur.kicker; meta.title.textContent = cur.title; meta.sub.textContent = cur.sub; meta.dur.textContent = cur.dur;
+      Object.keys(meta).forEach(k => { if (meta[k]) meta[k].textContent = cur[k]; });
       play();
       const r = stage.getBoundingClientRect();
       if (r.top < 70 || r.bottom > window.innerHeight) stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });

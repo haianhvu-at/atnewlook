@@ -1759,3 +1759,87 @@ body.is-locked { overflow: hidden; }
 @media (hover: none), (pointer: coarse) {
   .hero--video .hero__media::before { background: linear-gradient(180deg, rgba(15,32,25,0), var(--forest-900)); }
 }
+
+/* ==========================================================================
+   v1.10 — TRANG CHỦ CHỈNH · LOGO NỀN TẢNG · NAN TRE · CHUYỂN TIẾP MỜ · QUI SOMMES-NOUS
+   ========================================================================== */
+/* Khoảng cách giữa các ô ảnh — Deux façons · Par envie · Itinéraires — bằng 1/2 trước (24px → 12px ở 1440px).
+   Máy tính + máy tính bảng ; điện thoại giữ dãy vuốt 12px như mọi trang. */
+:root { --gap-img: clamp(7px, .8vw, 12px); }
+@media (min-width: 761px) {
+  .rythme .ways, .envies .themes, .envies .cards { gap: var(--gap-img); }
+}
+
+/* Par envie (≥ 1025px) : giữ lưới 60/20/20 – 20/20/60 nhưng tách ô (không còn liền) */
+@media (min-width: 1025px) {
+  .envies .themes { gap: var(--gap-img); }
+}
+
+/* Deux façons : bỏ đoạn mô tả → nhãn ô điểm nổi bật sát tiêu đề hơn một chút */
+.rythme .way__tags { margin-top: 14px; }
+
+/* Avis : logo Tripadvisor / Google / Trustpilot (file chính thức của từng nền tảng) thay chữ */
+.rating__logo { display: block; width: auto; height: 24px; max-width: 100%; margin-bottom: 4px; }
+.pcard__logo { display: block; width: auto; height: 18px; }
+@media (max-width: 760px) {
+  .rating__logo { height: 17px; }
+  .pcard__logo { height: 16px; }
+}
+
+/* Nền nan tre — khối xanh thẫm chưa có hình nét (Par envie, Pas à pas, footer, trang Qui sommes-nous).
+   Ảnh: design-assets/authentik-bamboo-background-20261117/bamboo-lattice-fade (mờ dần từ trên xuống có sẵn trong ảnh),
+   nén lại 94 Ko → assets/img/texture/nan-tre.webp. Phủ toàn chiều ngang, nằm dưới chữ, không bắt chuột. */
+.bamboo { position: relative; isolation: isolate; }
+.bamboo::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("../img/texture/nan-tre.webp") center top / max(100%, 1100px) auto no-repeat;
+  opacity: var(--bamboo-opacity, .6);
+}
+
+/* Chuyển tiếp mờ giữa ảnh / video đầu trang và khối bên dưới (giống phần video → chữ trên điện thoại).
+   Chỉ là lớp gradient CSS trang trí : không đổi nội dung, không ảnh hưởng SEO. Chữ luôn nằm trên lớp này. */
+@media (hover: hover) and (pointer: fine) {
+  .hero--video::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; pointer-events: none;
+    height: clamp(40px, 7vh, 88px);
+    background: linear-gradient(180deg, rgba(247,243,236,0) 0%, rgba(247,243,236,.1) 30%, rgba(247,243,236,.42) 60%, rgba(247,243,236,.82) 84%, var(--ivory) 100%);
+  }
+}
+.page-hero::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; pointer-events: none;
+  height: clamp(32px, 4.5vw, 64px);
+  --bt: var(--blend-to, var(--ivory));
+  background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--bt) 10%, transparent) 30%, color-mix(in srgb, var(--bt) 42%, transparent) 60%, color-mix(in srgb, var(--bt) 82%, transparent) 84%, var(--bt) 100%);
+}
+.page-hero--tour::after { content: none; }   /* trang circuit : bên dưới là thanh tab tối → không cần */
+
+/* ---------- Trang Qui sommes-nous (v1.10) — /agence-voyage-locale-authentik-vietnam/ ---------- */
+.page-hero--about { min-height: clamp(460px, 66vh, 660px); min-height: clamp(460px, 66svh, 660px); }
+.qsn-story__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.qsn-logo { display: block; width: clamp(190px, 19vw, 280px); height: auto; margin-bottom: clamp(1.25rem, 2.4vw, 2rem); }
+.qsn-story__text .lead { margin-top: var(--s-3); }
+.qsn-story__text .muted { margin-top: var(--s-2); max-width: 620px; }
+.qsn-facts { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.qsn-legal { margin-top: var(--s-3); font-size: .75rem; line-height: 1.7; color: var(--ink-soft); }
+/* Pourquoi : 5 lý do trên nền tối */
+.qsn-why .pillars--five { margin-top: clamp(2rem, 4vw, 3rem); }
+.section--earth .pillar { border-top-color: var(--line-dark); }
+.section--earth .pillar__num { color: var(--emerald-300); }
+.section--earth .pillar p { color: rgba(247,243,236,.72); }
+/* Tourisme responsable */
+.qsn-resp { background: var(--paper); color: var(--ink); }
+.qsn-resp__grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.qsn-photo { position: relative; margin: 0; aspect-ratio: 4 / 3; overflow: hidden; background: var(--forest-800); }
+.qsn-resp__text .lead { margin-top: var(--s-3); }
+.qsn-resp__text .muted { margin-top: var(--s-2); }
+/* Équipe */
+.qsn-team .c-team__grid { margin: clamp(2rem, 4vw, 3rem) 0 var(--s-4); }
+@media (min-width: 1025px) { .qsn-team .c-team__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px 18px; } }
+@media (max-width: 900px) {
+  .qsn-story__grid, .qsn-resp__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .qsn-team .c-team__grid.swipe { grid-auto-columns: 42%; }
+  .qsn-legal { font-size: .6875rem; }
+}
+@media (max-width: 760px) { .qsn-team .c-team__grid.swipe { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); } }

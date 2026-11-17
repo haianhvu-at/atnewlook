@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=1.9.1">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.9.1">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.10">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.10">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon/icon.svg" type="image/svg+xml">
@@ -148,7 +148,6 @@
 
   <div class="container hero__content">
     <div class="hero__text">
-      <p class="eyebrow on-dark">Voyages privés · Vietnam, Laos &amp; Cambodge</p>
       <h1 class="h-display hero__title">Le Vietnam,<br><em>en profondeur.</em></h1>
       <p class="lead hero__lead">Des voyages sur mesure, dans le confort et au rythme des rencontres.</p>
       <div class="hero__ctas">
@@ -168,8 +167,7 @@
   <div class="container">
     <div class="about__head--lw">
       <div>
-        <p class="eyebrow reveal">Agence de voyage au Vietnam</p>
-        <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Authentik Vietnam, <em>agence locale francophone</em></h2>
+        <h2 class="h2 reveal">Authentik Vietnam, <em>agence locale francophone</em></h2>
         <p class="lead reveal" data-delay="2">Une agence locale basée à Hanoï et à Saïgon, fondée en 2012 par deux guides francophones&nbsp;: Ngoc Tu Dinh et Van Truong Tran.</p>
         <p class="muted reveal" data-delay="2">Avec notre équipe, vous créez un voyage privé et sur mesure au Vietnam, au Laos ou au Cambodge, loin du tourisme de masse.</p>
       </div>
@@ -188,8 +186,8 @@
       <li class="reveal" data-delay="3"><b>3 pays</b><span>Vietnam · Laos · Cambodge</span></li>
     </ul>
     <div class="intro__sign about__links reveal">
-      <a class="link-arrow" href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Notre histoire <svg><use href="#i-arrow"/></svg></a>
-      <a class="link-arrow" href="https://authentikvietnam.com/notre-equipe">L’équipe <svg><use href="#i-arrow"/></svg></a>
+      <a class="link-arrow" href="agence-voyage-locale-authentik-vietnam/index.html">Notre histoire <svg><use href="#i-arrow"/></svg></a>
+      <a class="link-arrow" href="agence-voyage-locale-authentik-vietnam/index.html#equipe">L’équipe <svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -212,18 +210,11 @@
     </div>
 
     <div class="films__stage reveal">
-      <div class="yt" id="filmStage" data-yt="73cu9-FvW1Q">
+      <div class="yt" id="filmStage" data-yt="73cu9-FvW1Q" data-title="Nord-Est du Vietnam en 5 jours">
         <button class="yt__poster" type="button" data-yt-play aria-label="Lire la vidéo : Nord-Est du Vietnam en 5 jours">
           <img class="img-cover" src="https://i.ytimg.com/vi_webp/73cu9-FvW1Q/maxresdefault.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
           <span class="yt__btn"><svg><use href="#i-play"/></svg></span>
         </button>
-      </div>
-      <div class="films__meta">
-        <div>
-          <p class="films__kicker" id="filmKicker">Itinéraire</p>
-          <h3 class="films__title" id="filmTitle">Nord-Est du Vietnam en 5 jours</h3>
-        </div>
-        <p class="films__sub"><span id="filmSub">Hà Giang · Đồng Văn · Bảo Lạc · Ba Bể</span><span class="films__dur" id="filmDur">12:08</span></p>
       </div>
     </div>
 
@@ -254,7 +245,6 @@
         <span class="way__body">
           <span class="way__kicker">Circuits privés · 53 voyages</span>
           <span class="way__title">À votre rythme</span>
-          <span class="way__text">Votre itinéraire, vos dates, votre guide. Nous composons le voyage avec vous.</span>
           <span class="way__tags"><span>Sur mesure</span><span>Privatif</span><span>Vietnam · Laos · Cambodge</span></span>
           <span class="way__more">Nos inspirations <svg><use href="#i-arrow"/></svg></span>
         </span>
@@ -264,7 +254,6 @@
         <span class="way__body">
           <span class="way__kicker">Petits groupes · 6 voyages en 2027</span>
           <span class="way__title">En petit comité</span>
-          <span class="way__text">Voyager en petit groupe, avec un guide local francophone.</span>
           <span class="way__tags"><span>7 voyageurs max.</span><span>Départs garantis</span><span>Guide francophone</span></span>
           <span class="way__more">Petite communauté <svg><use href="#i-arrow"/></svg></span>
         </span>
@@ -277,7 +266,7 @@
      5. PAR ENVIE + ITINÉRAIRES (v1.9) — nền tối · 6 thèmes du menu actuel (noms plus parlants, liens ?kw=)
         + 6 voyages choisis par Nhung (17/11/2026), liens du site actuel
      ===================================================================== -->
-<section class="section section--earth envies" id="envies">
+<section class="section section--earth envies bamboo" id="envies">
   <div class="container">
     <div class="section-head section-head--split">
       <div>
@@ -400,32 +389,32 @@
         <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Paroles <em>de voyageurs</em></h2>
       </div>
       <div class="ratings ratings--row reveal" data-delay="2">
-        <a class="rating" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener"><span class="rating__name">Tripadvisor</span><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">2 065 avis</span></a>
-        <a class="rating" href="https://www.google.com/maps/search/?api=1&amp;query=Authentik%20Vietnam%2062%20Y%C3%AAn%20Ph%E1%BB%A5%20H%C3%A0%20N%E1%BB%99i" target="_blank" rel="noopener"><span class="rating__name">Google</span><b class="rating__num">4,9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">956 avis</span></a>
-        <a class="rating" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener"><span class="rating__name">Trustpilot</span><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">411 avis</span></a>
+        <a class="rating" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">2 065 avis</span></a>
+        <a class="rating" href="https://www.google.com/maps/search/?api=1&amp;query=Authentik%20Vietnam%2062%20Y%C3%AAn%20Ph%E1%BB%A5%20H%C3%A0%20N%E1%BB%99i" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><b class="rating__num">4,9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">956 avis</span></a>
+        <a class="rating" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">411 avis</span></a>
       </div>
     </div>
     <ul class="pcards swipe">
       <li class="pcard reveal">
-        <div class="pcard__top"><span class="pcard__src">Tripadvisor</span><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
         <blockquote>« Nous avons été séduits par la beauté du pays, la gentillesse de ses habitants et toutes les belles rencontres faites en chemin. »</blockquote>
         <p class="pcard__who"><b>Margali N.</b><span>Novembre 2026</span></p>
         <a class="pcard__link" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="1">
-        <div class="pcard__top"><span class="pcard__src">Tripadvisor</span><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
         <blockquote>« […] des guides francophones cultivés qui ont su nous transmettre l’histoire du pays. »</blockquote>
         <p class="pcard__who"><b>Marc R.</b><span>Novembre 2026</span></p>
         <a class="pcard__link" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="2">
-        <div class="pcard__top"><span class="pcard__src">Trustpilot</span><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
         <blockquote>« […] mon circuit dans le Nord Ouest du Vietnam était bien équilibré entre randonnée dans les montagnes et découverte des ethnies minoritaires. »</blockquote>
         <p class="pcard__who"><b>Renversez</b><span>Novembre 2026</span></p>
         <a class="pcard__link" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="3">
-        <div class="pcard__top"><span class="pcard__src">Google</span><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
         <blockquote>« Je remercie infiniment l’équipe d’Authentik Vietnam pour son professionnalisme ainsi que la gentillesse témoignée tout au long de notre séjour au Vietnam. »</blockquote>
         <p class="pcard__who"><b>Nathalie B.</b><span>Septembre 2026</span></p>
         <a class="pcard__link" href="https://www.google.com/maps/search/?api=1&amp;query=Authentik%20Vietnam%2062%20Y%C3%AAn%20Ph%E1%BB%A5%20H%C3%A0%20N%E1%BB%99i" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
@@ -441,7 +430,7 @@
 <!-- =====================================================================
      7. VOTRE PROJET, PAS À PAS (v1.9) — nền tối · 4 étapes + icônes (design-assets/authentik-linework-20261117/icons)
      ===================================================================== -->
-<section class="section section--earth pas" id="pas-a-pas" aria-labelledby="pas-title">
+<section class="section section--earth pas bamboo" id="pas-a-pas" aria-labelledby="pas-title">
   <div class="container">
     <div class="section-head section-head--split">
       <div>
@@ -549,7 +538,7 @@
 </main>
 
 <!-- @partial footer : tự động chép từ _partials/footer.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
-<footer class="footer">
+<footer class="footer bamboo">
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
@@ -590,8 +579,8 @@
       <div>
         <h3 class="h4">Authentik</h3>
         <ul>
-          <li><a href="https://authentikvietnam.com/agence-voyage-locale-authentik-vietnam">Qui sommes-nous&nbsp;?</a></li>
-          <li><a href="https://authentikvietnam.com/notre-equipe">Notre équipe</a></li>
+          <li><a href="agence-voyage-locale-authentik-vietnam/index.html" data-nav="about">Qui sommes-nous&nbsp;?</a></li>
+          <li><a href="agence-voyage-locale-authentik-vietnam/index.html#equipe">Notre équipe</a></li>
           <li><a href="https://authentikvietnam.com/avis-client">Avis clients</a></li>
           <li><a href="https://authentikvietnam.com/authentik-vietnam-en-press">Presse</a></li>
           <li><a href="https://authentikvietnam.com/recrutement">Recrutement</a></li>
@@ -640,6 +629,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="assets/js/main.js?v=1.9.1" defer></script>
+<script src="assets/js/main.js?v=1.10" defer></script>
 </body>
 </html>
