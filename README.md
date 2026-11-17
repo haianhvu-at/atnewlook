@@ -1,10 +1,10 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.8 · repo atnewlook · 14/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.9 · repo atnewlook · 17/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
 
 ```
-index.html                                   Trang chủ (8 module)
+index.html                                   Trang chủ (9 module, v1.9)
 blog-de-voyage-au-vietnam/index.html         Trang danh sách blog (giữ URL cũ)
 visiter-le-vietnam-en-profondeur/index.html  Bài blog mẫu (template bài viết)
 petit-groupe/circuit-vietnam-petit-groupe/index.html  Trang Petite communauté — 6 voyage petit groupe 2027 (giữ URL cũ, v1.7)
@@ -20,7 +20,8 @@ styleguide.html       Bảng màu, thang chữ Montserrat, nút, lớp phủ cin
 assets/css/tokens.css Biến thiết kế dùng chung cho FR / EN / ES
 assets/css/main.css   Giao diện các module
 assets/js/main.js     Tương tác (navbar, dropdown có độ trễ hover, menu mobile, video, lọc tour, slider avis, form + điền sẵn, nút nổi, trang circuit: tab dính, lịch trình, lightbox, thanh CTA mobile)
-assets/video/         Đặt hero.mp4 (+ hero.webm) — xem LISEZ-MOI.txt
+assets/video/         hero.mp4 (máy tính) + hero-mobile.mp4 (điện thoại) — clip nền hero, xem LISEZ-MOI.txt
+assets/img/linework/  Hình nét trang trí (bộ design-assets/authentik-linework-20261117): dark/ = nét đậm cho nền sáng · light/ = nét nhạt cho nền tối
 firebase.json         Cấu hình Firebase Hosting
 .gitignore            Bỏ qua desktop.ini (Google Drive) khi đẩy lên GitHub
 .nojekyll             Cho GitHub Pages
@@ -51,15 +52,16 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 
 | # | Module | Ghi chú |
 |---|--------|---------|
-| 1 | Navbar | Trái: Accueil · Circuits (Inspirations / Petite communauté) · Blog — Giữa: logo trắng — Phải: FR/EN/ES · téléphone · nút devis. Trong suốt trên video, cuộn → nền tối mờ + thu gọn, cuộn xuống ẩn / cuộn lên hiện. Mobile: burger → menu toàn màn hình. |
-| 2 | Hero | Clip toàn màn hình (`assets/video/hero.mp4`). Chưa có clip → ảnh poster + zoom chậm. Nút « Regarder le film » mở YouTube (nocookie) trong popup. Dải điểm Tripadvisor/Google/Trustpilot. |
-| 3 | Công ty (v1.8) | Eyebrow « Agence de voyage au Vietnam » · H2 « Authentik Vietnam, *agence locale francophone* » · 2 câu: agence locale basée à Hanoï et à Saïgon, fondée en 2012 par deux guides francophones (Ngoc Tu Dinh, Van Truong Tran) · voyages privés Vietnam / Laos / Cambodge (nguồn: trang « Qui sommes-nous » site cũ) · ảnh tập thể thật hết bề ngang (`galerie/doi-ngu-authentik-tat-nien-2025` ← at-yep-2025-all.jpg; khung 16:7, mobile 3:2) · 4 con số (2012 · Hanoï · Saïgon · Agréée · 3 pays) · « Pourquoi partir avec nous ? » 5 lý do (theo khối boxwhyus trang chủ cũ) · link Notre histoire / L’équipe. Từ khóa SEO: agence de voyage au Vietnam, agence (locale) francophone, basée à Hanoï et à Saïgon. |
-| 4 | Media « Instants » (v1.8) | Mosaic 9 ảnh thật 3 tầng (vị trí `mosaic`: anh-goc/media-gallery + ảnh cũ « người phụ nữ ở cửa » đã cắt bỏ dải logo). **Mặc định sáng, không lớp phủ, không chữ** (tông ấm nhẹ bằng CSS filter). Máy có chuột: hover → lớp tối + nơi + tên ảnh; điện thoại: chạm để hiện / chạm lại để ẩn (main.js, `data-reveal`); bàn phím: Tab. Mobile: vuốt ngang. |
-| 5 | Films (v1.8) | 1 video lớn phát ngay trên trang (« Nord-Est du Vietnam en 5 jours », 73cu9-FvW1Q) + 4 video kênh @authentikvietnam (M. Tuân · Marché de Đồng Văn · Phia Thắp · Témoignage Siffer); bấm video nhỏ → phát ở khung lớn (đổi chỗ) · nút « Toutes nos vidéos sur YouTube ». YouTube nocookie, chỉ tải iframe khi bấm; ảnh nhỏ = i.ytimg.com (WebP). Mobile: vuốt ngang. |
-| 6 | Circuits | Thẻ dọc 4:5, không giá: loại (Circuit privé / Petit groupe), số ngày, vùng, tên. Lọc Tous / Circuits privés / Petits groupes. Thẻ cuối = CTA sur mesure. |
-| 7 | Avis | Nền xanh rừng tối, quầng sáng xanh. 3 điểm số (relevé 14/10/2026) + slider trích dẫn khách thật lấy từ authentikvietnam.com. |
-| 8 | Form devis | Ngắn, không hỏi ngân sách: tên, email, tel/WhatsApp, kiểu khách, tháng, thời lượng, façon de voyager, message, consent RGPD, honeypot. Gửi xong → khung cảm ơn. |
-| 9 | Footer | Logo + tagline, newsletter, 4 cột (Aide / Nos voyages / Authentik / Coordonnées), legal, social, năm tự động. |
+| 1 | Navbar (v1.9, toàn site) | Trái: logo trắng — Giữa: Accueil · Circuits (Inspirations / Petite communauté) · Blog — Phải: FR/EN/ES · téléphone · nút devis. Trong suốt trên video, cuộn → nền tối mờ + thu gọn, cuộn xuống ẩn / cuộn lên hiện. Mobile / máy tính bảng: logo trái · téléphone + burger phải → menu toàn màn hình. |
+| 2 | Hero (v1.9) | Video nền **sáng, không chữ** (`assets/video/hero.mp4` 1920×848 · `hero-mobile.mp4` 720×900, main.js chọn theo màn hình; clip 17,6 s cắt từ `anh-goc/lao-lu-final-2.mp4`: người Lự ở Lai Châu, không tiếng, đã bỏ dải phụ đề). Máy tính có chuột: rê chuột (hoặc Tab bàn phím) → lớp tối + eyebrow, H1, lead, 2 nút. Cảm ứng: video trên, chữ dưới nền tối. Nút pause/lecture; tự dừng khi cuộn khỏi hero; `prefers-reduced-motion` → chỉ ảnh poster (`banner/` + `banner-mobile/lai-chau-nguoi-lu`). Bỏ thanh dưới (Regarder le film, điểm, Découvrir). |
+| 3 | Agence (v1.9, nền sáng) | Eyebrow « Agence de voyage au Vietnam » · H2 « Authentik Vietnam, *agence locale francophone* » · 2 câu (nguồn « Qui sommes-nous ») · linework cửa đôi đang mở · ảnh `galerie/lam-thuong-dan-ro-tre` (đan rổ tre ở Lâm Thượng, Lào Cai — AIZ05952) · 4 con số · link Notre histoire / L’équipe. « Pourquoi partir avec nous ? » chuyển sang trang Qui sommes-nous (không còn trên trang chủ). |
+| 4 | Média (v1.9, nền tối) | « Instants — Ce qui reste, *après le voyage* » + linework sào ngô-nếp · 1 video lớn phát tại chỗ (73cu9-FvW1Q, YouTube nocookie, tải khi bấm) · nút « Toutes nos vidéos sur YouTube ». Mosaic 9 ảnh + 4 video nhỏ của v1.8 đã bỏ (ảnh `mosaic/` vẫn giữ trong repo; code ở atnewlook-backup v1.8). |
+| 5 | Deux façons de voyager (v1.9, nền sáng) | « À votre rythme, ou *en petit comité* ? » + linework bàn trà · 2 thẻ lớn: À votre rythme (Circuits privés · 53 voyages → /circuits-au-vietnam/) · En petit comité (Petits groupes · 6 voyages en 2027 → /petit-groupe/circuit-vietnam-petit-groupe/). |
+| 6 | Par envie + Itinéraires (v1.9, nền tối) | « Quel Vietnam *aimeriez-vous rencontrer* ? » — 6 loại hình của menu site cũ, tên mới (Les grands sites, autrement · La vie des villages · Les peuples des montagnes · Au fil des sentiers · Entre mer et repos · D’un pays à l’autre → /circuits-au-vietnam/?kw=…). « Quelques itinéraires *pour vous inspirer* » — 6 tour Nhung chọn (17/11): Des rizières en terrasse jusqu’au Mékong 15 j · Des sommets du Nord jusqu’au Mékong 19 j · Aventure du Vietnam 21 j · Escapade au Vietnam 10 j · Splendeurs du Vietnam 12 j · Traversée du Vietnam 14 j (link site cũ). Mobile: vuốt ngang. |
+| 7 | Paroles de voyageurs (v1.9, nền sáng) | 3 điểm (Tripadvisor 5,0 · 2 065 / Google 4,9 · 956 / Trustpilot 5,0 · 411 — relevé 17/11/2026) + 4 avis 5★ mới nhất, nguyên văn, kèm nền tảng, tên, tháng, link « Lire l’avis ». Dòng ghi chú cách chọn avis (bắt buộc nếu sau này lấy từ API Google). |
+| 8 | Votre projet, pas à pas (v1.9, nền tối) | 4 bước + icon nét: Demande · Échange · Confirmation · En voyage · nút « Commencer ma demande ». |
+| 9 | Form devis | Ngắn, không hỏi ngân sách: tên, email, tel/WhatsApp, kiểu khách, tháng, thời lượng, façon de voyager, message, consent RGPD, honeypot. Gửi xong → khung cảm ơn. v1.9: panel trái nền sáng + linework bộ salon. |
+| 10 | Footer | Logo + tagline, newsletter, 4 cột (Aide / Nos voyages / Authentik / Coordonnées), legal, social, năm tự động. |
 | + | Nút nổi | WhatsApp (luôn hiện) + back-to-top (hiện sau 1 màn hình, có vòng tiến độ đọc). |
 
 **Blog (v1.3)**
@@ -150,12 +152,14 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - Thẻ circuit (trang Inspirations, petit groupe): mang `data-type` (prive|groupe) · `data-dest` (vn|la|kh|combine) · `data-envie` (nhiều giá trị, cách nhau dấu cách) · `data-days` → lấy từ admin (catégorie site cũ: Vietnam première découverte = decouverte → khối « Les incontournables », Vietnam authentique = authentique, Rencontre des ethnies du Nord = ethnies, Trekking et Randonnée = trek, Séjours balnéaires = balneaire, Combiné multi-pays = combine). Bộ lọc `main.js` nhận `type` · `dest` · `envie` · `duree` · `kw` (từ khóa = 1 envie hoặc 1 điểm đến). 3 URL cũ giữ nguyên: `/voyage-au-vietnam` (trang chung), `/circuits-au-vietnam` (Inspirations), `/petit-groupe/circuit-vietnam-petit-groupe` (Petite communauté) — **không cần redirect**.
 - Menu dropdown: `HOVER_OPEN` / `HOVER_CLOSE` (120 / 400 ms) đầu khối Dropdown trong `main.js`; hover chỉ bật khi thiết bị có chuột (`hover: hover` + `pointer: fine`), máy cảm ứng dùng nút mũi tên.
 - Trang circuit: mỗi ngày = 1 bản ghi admin (tiêu đề, tóm tắt 1 dòng, nội dung, repas, hébergement, ảnh, nhãn hoạt động); hébergements gộp tự động từ các ngày; départs = bảng ngày (không giá); link devis truyền `circuit`, `depart`, `type`, `duree`.
-- Hiệu năng: video ≤ 6 Mo, `preload="metadata"`; YouTube chỉ tải khi bấm.
+- Hiệu năng: video hero ≤ 6 Mo (hero.mp4 4,1 Mo · hero-mobile.mp4 1,7 Mo), chỉ tải khi không bật « giảm chuyển động »; YouTube chỉ tải khi bấm.
+- Trang chủ v1.9: nền xen kẽ sáng / tối (agence sáng · média tối · deux façons sáng · par envie tối · paroles sáng · pas à pas tối · form sáng|tối). Linework là ảnh trang trí (`alt=""`, `aria-hidden`), không đè lên chữ; `.lw-sec { overflow-x: clip }`.
+- Avis tự động (đề xuất): cron PHP 1 lần/ngày → file JSON cache → render khối Paroles. Google Business Profile API (toàn bộ avis, xếp theo ngày, cần chủ trang cấp quyền OAuth) · Tripadvisor Content API (điểm + 5 avis mới nhất, ghi rõ nguồn) · Trustpilot API (gói trả phí). Lọc: 5★, mới nhất, tiếng Pháp, đủ dài.
 
 ## 5. Điểm cần MKT chốt
 
 - [ ] H1 hero (đề xuất: « Le Vietnam, *en profondeur.* ») — D10
-- [ ] Clip hero 15–25 s
+- [x] Clip hero — 17,6 s cắt từ lao-lu-final-2.mp4 (v1.9). Bản gốc có phụ đề in cứng → đã cắt dải phụ đề; nếu có bản xuất không phụ đề thì nên thay.
 - [ ] Hiển thị giá: mẫu này **không** có giá theo định hướng mới → cập nhật D02 trong sheet
 - [ ] Font: mẫu dùng **Montserrat duy nhất** → cập nhật D11 (sheet ghi 2 font)
 - [ ] Menu gọn (Accueil · Circuits · Blog) thay cho menu kiểu Atalante → cập nhật D03 ; mục Guide/À propos chuyển xuống footer
@@ -165,7 +169,9 @@ Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + Bre
 - [ ] Menu Circuits: ảnh thẻ « Petite communauté » vẫn hotlink authentikvietnam.com (4 phụ nữ dân tộc, 950×600) → nên chuyển sang WebP local
 - [x] Số giấy phép (01-611/2014/TCDL-GPLHQT) + địa chỉ văn phòng Saïgon (footer) — Nhung xác nhận 13/11/2026
 - [ ] Trang contact: ngày làm việc trong tuần (hiện chỉ ghi 8 h – 18 h)
-- [ ] Danh sách 5–6 tour nổi bật + ảnh dọc chất lượng cao
+- [x] Danh sách tour nổi bật trang chủ (6 tour, Nhung chọn 17/11) — [ ] ảnh dọc chất lượng cao, có người (ảnh hiện tại 354–480px)
+- [ ] Paroles de voyageurs: link trang Google (place) chính xác ; ai quản lý tài khoản Google Business Profile / Tripadvisor / Trustpilot để nối API
+- [ ] Trang Qui sommes-nous: nhận khối « Pourquoi partir avec nous ? » (5 lý do) bỏ khỏi trang chủ v1.9
 - [ ] Tên tour trên site cũ « Grand boucle du Nord-Ouest » → nên sửa thành « Grande boucle… »
 - [ ] Blog: duyệt nội dung bài mẫu « Visiter le Vietnam en profondeur » (tiếng Pháp, các câu về dịch vụ) ; tên + ảnh tác giả thật (E-E-A-T) thay cho « l’équipe Authentik Vietnam »
 - [ ] Blog: danh sách chủ đề (Inspiration · Rencontres & culture · Nature & paysages · Cuisine · Conseils pratiques) và gán chủ đề / vùng cho từng bài cũ

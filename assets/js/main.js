@@ -100,17 +100,38 @@
   $$('[data-close]', mnav).forEach(a => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && mnav.classList.contains('is-open')) setMenu(false); });
 
-  /* ---------- Hero vidéo : phát nếu có file, sinon poster + Ken Burns ---------- */
+  /* ---------- Hero vidéo (v1.9) : clip muet en boucle — hero-mobile.mp4 (≤ 760px) ou hero.mp4, choisi ici ;
+     bouton pause / lecture ; pause automatique hors écran ; mouvement réduit → poster seul ---------- */
   const hero = $('.hero');
   const video = $('#heroVideo');
-  if (video && !reduceMotion) {
-    video.addEventListener('canplay', () => { hero.classList.add('has-video'); video.play().catch(() => {}); }, { once: true });
+  const pauseBtn = $('#heroPause');
+  if (video && hero && !reduceMotion) {
+    let userPaused = false;
+    const small = window.matchMedia('(max-width: 760px)').matches;
+    const src = (small && video.dataset.srcMobile) || video.dataset.src;
+    if (src) { video.src = src; video.preload = 'auto'; }
     const sources = $$('source', video);
     let failed = 0;
     sources.forEach(s => s.addEventListener('error', () => { if (++failed === sources.length) hero.classList.add('no-video'); }));
+    video.addEventListener('canplay', () => {
+      hero.classList.add('has-video');
+      video.play().then(() => { if (pauseBtn) pauseBtn.hidden = false; }).catch(() => {});
+    }, { once: true });
     video.addEventListener('error', () => hero.classList.add('no-video'));
     video.load();
-    setTimeout(() => { if (!hero.classList.contains('has-video')) hero.classList.add('no-video'); }, 2500);
+    setTimeout(() => { if (!hero.classList.contains('has-video')) hero.classList.add('no-video'); }, 4000);
+    if (pauseBtn) pauseBtn.addEventListener('click', () => {
+      userPaused = !video.paused;
+      if (userPaused) video.pause(); else video.play().catch(() => {});
+      pauseBtn.classList.toggle('is-paused', userPaused);
+      pauseBtn.setAttribute('aria-label', userPaused ? 'Lire la vidéo' : 'Mettre la vidéo en pause');
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        if (!hero.classList.contains('has-video') || userPaused) return;
+        if (e.isIntersecting) video.play().catch(() => {}); else video.pause();
+      }, { threshold: .05 }).observe(hero);
+    }
   }
 
   /* ---------- Modal film (YouTube nocookie, chỉ tải khi bấm) ---------- */

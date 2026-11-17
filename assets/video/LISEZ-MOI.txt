@@ -1,8 +1,9 @@
-Đặt clip hero tại đây:
-  hero.mp4  (bắt buộc)  — 1920×1080, H.264, KHÔNG tiếng, 15–25 giây, vòng lặp mượt, ≤ 6 Mo
-  hero.webm (tuỳ chọn)  — cùng nội dung, VP9, nhẹ hơn
-Gợi ý cảnh: chậm, ánh sáng sớm/chiều, ít chuyển cảnh (3–5 shot dài), tông tối.
-Nếu chưa có file: trang tự dùng ảnh poster + hiệu ứng zoom chậm (Ken Burns).
-Xuất nhanh bằng ffmpeg:
-  ffmpeg -i source.mov -t 20 -an -vf "scale=1920:-2,fps=25" -c:v libx264 -crf 26 -preset slow -movflags +faststart hero.mp4
-  ffmpeg -i hero.mp4 -c:v libvpx-vp9 -crf 36 -b:v 0 -an hero.webm
+Clip nền hero trang chủ (v1.9, 17/11/2026)
+  hero.mp4         1920×848, H.264, không tiếng, 17,6 s, 4,1 Mo — máy tính
+  hero-mobile.mp4   720×900, H.264, không tiếng, 17,6 s, 1,7 Mo — điện thoại (≤ 760px, main.js tự chọn)
+Nguồn: D:\web\anh-goc\lao-lu-final-2.mp4 (người Lự, Lai Châu). Bản gốc có phụ đề tiếng Pháp in cứng
+→ chỉ giữ phần trên của khung hình (bỏ dải phụ đề), ghép 6 cảnh có người:
+  27,0–30,4 · 15,8–19,2 · 43,0–45,3 · 56,9–59,3 · 61,6–64,3 · 84,2–87,5 (giây)
+Bản điện thoại: khung 4:5 cắt riêng từng cảnh để giữ người ở giữa.
+Ảnh poster (= khung hình đầu clip): assets/img/banner/lai-chau-nguoi-lu.webp · banner-mobile/lai-chau-nguoi-lu.webp
+Nếu có bản xuất KHÔNG phụ đề: Claude cắt lại cùng các cảnh, không cần bỏ dải dưới.
