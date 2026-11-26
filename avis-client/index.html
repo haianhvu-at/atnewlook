@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Avis clients | Authentik Vietnam sur Tripadvisor, Google et Trustpilot</title>
+  <meta name="description" content="Les avis de nos voyageurs sur Tripadvisor, Google et Trustpilot : notes, avis récents et liens directs pour lire ou laisser un avis.">
+  <link rel="canonical" href="https://authentikvietnam.com/avis-client">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ce que disent nos voyageurs">
+  <meta property="og:description" content="Leurs avis, publiés sur Tripadvisor, Google et Trustpilot.">
+  <!-- og:image = ảnh vị trí « og » 1200×630 (URL tuyệt đối). Khi lên domain thật: đổi sang https://authentikvietnam.com/… -->
+  <meta property="og:image" content="https://haianhvu-at.github.io/atnewlook/assets/img/og/nguoi-dao-hai-che.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="theme-color" content="#0b1712">
+  <!-- Bản thử trên GitHub Pages: không cho Google index. XOÁ dòng dưới khi đưa lên domain thật. -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- TRANG AVIS CLIENTS (v1.11, 26/11/2026) — giữ URL cũ /avis-client. Chỉ lấy avis từ 3 kênh Tripadvisor · Google · Trustpilot (Nhung chốt 26/11: KHÔNG dùng avis CMS site cũ).
+       Bản thật: cron PHP 1×/ngày → JSON cache → điểm, số avis + 12 avis 5★ mới nhất (README mục 4 « Avis tự động »).
+       Bản mẫu này: điểm + 4 avis thật relevé 17/11/2026 (giống trang chủ).
+       KHÔNG thêm schema AggregateRating/Review cho avis lấy từ nền tảng khác (Google không cho phép tự đánh giá kiểu này). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="../assets/img/banner-mobile/cho-phien-phu-nu-hmong.webp" media="(max-width: 760px)">
+  <link rel="preload" as="image" href="../assets/img/banner/cho-phien-phu-nu-hmong.webp" media="(min-width: 761px)">
+  <link rel="stylesheet" href="../assets/css/tokens.css?v=1.11">
+  <link rel="stylesheet" href="../assets/css/main.css?v=1.11">
+  <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../assets/favicon/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/favicon/site.webmanifest">
+  <!-- @/partial favicon -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@graph": [
+    {"@type": "WebPage", "name": "Avis clients", "url": "https://authentikvietnam.com/avis-client", "inLanguage": "fr-FR",
+     "about": {"@type": "TravelAgency", "name": "Authentik Vietnam", "url": "https://authentikvietnam.com/",
+       "sameAs": ["https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html", "https://fr.trustpilot.com/review/authentikvietnam.com"]}},
+    {"@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://authentikvietnam.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Avis clients", "item": "https://authentikvietnam.com/avis-client"}]}
+  ]}
+  </script>
+</head>
+<body data-page="avis">
+
+<!-- @partial header : tự động chép từ _partials/header.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H5m6 6-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="currentColor"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" fill="currentColor"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.9L2.8 21.2l4.6-1.2A9.2 9.2 0 1 0 12 2.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.9 7.6c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.2 0 .4-.1.6l-.6.7c-.1.1-.1.3 0 .5a7.4 7.4 0 0 0 3.1 2.9c.2.1.3.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.8.8c.3.1.4.3.4.5v.5c0 .3-.2.7-.6.9-.6.4-1.6.6-2.7.2a10 10 0 0 1-5.6-5.4c-.4-1.1-.2-2.1.2-2.6z" fill="currentColor"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5.5h18v13H3zM3 6l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.3h-3c-3.3 0-4 2.4-4 4v2.2H8V12h2v9.7h4V12h2.7l.4-3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12c0 1.3.1 2.6.4 3.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15.1V8.9l5.2 3.1z" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- NAVBAR — trái: Accueil · Circuits · Blog — giữa: logo — phải: langue · téléphone · Demander un devis -->
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <!-- v1.9 : logo à gauche · menu au centre · langue, téléphone, devis à droite -->
+    <a class="brand" href="../index.html#top" aria-label="Authentik Vietnam — accueil" id="brand">
+      <!-- Production: thay bằng logo_authentik_white.png / .svg (bản trắng). Bản màu được đổi sang trắng bằng CSS filter. -->
+      <img class="brand__logo" src="https://authentikvietnam.com/themes/web/img/authentiktravel.png" alt="Authentik Vietnam" width="436" height="140">
+      <span class="brand__fallback">AUTHENTIK<small>VIETNAM</small></span>
+    </a>
+
+    <nav class="nav__group nav__group--left nav__group--menu" aria-label="Navigation principale">
+      <a class="nav__link" href="../index.html#top" data-nav="home">Accueil</a>
+      <!-- « Circuits » : chữ = link tới trang Circuits chung · mũi tên = mở menu con (bàn phím, máy tính bảng)
+           · hover máy tính : mở sau 0,12 s, giữ 0,4 s khi rời chuột, vùng đệm lấp khoảng hở dưới chữ (main.js + .dd__panel::before) -->
+      <div class="dd dd--split" data-dd>
+        <a class="nav__link" href="../voyage-au-vietnam/index.html" data-nav="circuits">Circuits</a>
+        <button class="dd__toggle" type="button" aria-expanded="false" aria-controls="dd-circuits" aria-label="Ouvrir le menu Circuits"><svg><use href="#i-chevron"/></svg></button>
+        <div class="dd__panel dd__panel--mega" id="dd-circuits">
+          <a class="mega-card cine" href="../circuits-au-vietnam/index.html">
+            <img class="img-cover" src="../assets/img/circuit/nguoi-dao-hai-che.webp" alt="" width="900" height="1125" loading="lazy" decoding="async" style="--focus: 50% 35%">
+            <span class="mega-card__body">
+              <span class="h4">Circuits privés</span>
+              <span class="mega-card__title">Inspirations</span>
+              <span class="mega-card__text">Des itinéraires à composer ensemble, rien que pour vous.</span>
+            </span>
+          </a>
+          <a class="mega-card cine" href="../petit-groupe/circuit-vietnam-petit-groupe/index.html">
+            <img class="img-cover" src="https://authentikvietnam.com/media/tour/a1e99cb1a6ad0b3e87e509f12053bbac.jpg" alt="" loading="lazy">
+            <span class="mega-card__body">
+              <span class="h4">Petits groupes</span>
+              <span class="mega-card__title">Petite communauté</span>
+              <span class="mega-card__text">Partir en petit groupe de voyageurs, avec la même attention.</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <a class="nav__link" href="../blog-de-voyage-au-vietnam/index.html" data-nav="blog">Blog</a>
+    </nav>
+
+    <div class="nav__group nav__group--right">
+      <div class="dd" data-dd>
+        <button class="nav__link" aria-expanded="false" aria-controls="dd-lang" aria-label="Choisir la langue">FR <svg><use href="#i-chevron"/></svg></button>
+        <div class="dd__panel dd__panel--lang" id="dd-lang">
+          <a href="https://authentikvietnam.com/" aria-current="true">Français <small>FR</small></a>
+          <a href="https://authentiktravel.com/" hreflang="en">English <small>EN</small></a>
+          <a href="https://authentiktravel.es/" hreflang="es">Español <small>ES</small></a>
+        </div>
+      </div>
+      <a class="nav__phone" href="tel:+84912121091"><svg><use href="#i-phone"/></svg><span>+84 912 121 091</span></a>
+      <a class="btn btn--primary btn--sm" href="../index.html#devis">Demander un devis</a>
+      <a class="nav__icon-btn" href="tel:+84912121091" aria-label="Appeler"><svg><use href="#i-phone"/></svg></a>
+      <button class="nav__burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Menu mobile -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <ul class="mnav__list">
+    <li><a href="../index.html#top" data-close data-nav="home">Accueil <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
+    <li class="mnav__split">
+      <a href="../voyage-au-vietnam/index.html" data-close data-nav="circuits">Circuits</a>
+      <button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-circuits" aria-label="Afficher Inspirations et Petite communauté"><svg><use href="#i-chevron"/></svg></button>
+      <div class="mnav__sub" id="mnav-circuits" hidden>
+        <a href="../circuits-au-vietnam/index.html" data-close>Inspirations <small>Circuits privés</small></a>
+        <a href="../petit-groupe/circuit-vietnam-petit-groupe/index.html" data-close>Petite communauté <small>Petits groupes</small></a>
+      </div>
+    </li>
+    <li><a href="../blog-de-voyage-au-vietnam/index.html" data-close data-nav="blog">Blog <svg width="18" height="18"><use href="#i-arrow"/></svg></a></li>
+  </ul>
+  <div class="mnav__foot">
+    <a class="btn btn--primary" href="../index.html#devis" data-close>Demander un devis</a>
+    <a class="btn btn--ghost" href="tel:+84912121091"><svg><use href="#i-phone"/></svg> +84 912 121 091</a>
+    <div class="mnav__langs">
+      <a href="https://authentikvietnam.com/" aria-current="true">FR</a>
+      <a href="https://authentiktravel.com/" hreflang="en">EN</a>
+      <a href="https://authentiktravel.es/" hreflang="es">ES</a>
+    </div>
+  </div>
+</div>
+<!-- @/partial header -->
+
+<main id="main">
+
+<!-- =====================================================================
+     1. HERO — ảnh người thật (phụ nữ Hmong ở chợ phiên) · H1 · 1 dòng
+     ===================================================================== -->
+<section class="page-hero" id="top">
+  <div class="page-hero__media cine">
+    <picture>
+      <source media="(max-width: 760px)" srcset="../assets/img/banner-mobile/cho-phien-phu-nu-hmong.webp" width="900" height="1600">
+      <img class="img-cover" src="../assets/img/banner/cho-phien-phu-nu-hmong.webp" alt="Femmes hmong au marché, dans le Nord du Vietnam" width="1920" height="1080" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="container page-hero__content">
+    <nav aria-label="Fil d’Ariane">
+      <ol class="crumbs">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><span aria-current="page">Avis clients</span></li>
+      </ol>
+    </nav>
+    <p class="tour-hero__eyebrow">Avis clients</p>
+    <h1 class="page-hero__title">Ce que disent <em>nos voyageurs</em></h1>
+    <p class="page-hero__lead">Leurs avis, publiés sur Tripadvisor, Google et Trustpilot.</p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     2. BA KÊNH — logo · điểm · số avis · « Lire les avis » (trang avis của kênh) · « Laisser un avis » (form viết avis)
+        Bản thật: điểm + số avis lấy tự động mỗi ngày (API). Ngày relevé hiện ở dòng dưới.
+        Google : Place ID ChIJlUtEa7qrNTERPInAr-i7nRI · CID 1341434872081713468 (62 Yên Phụ, tra 26/11/2026)
+          « Lire les avis » → https://www.google.com/maps?cid=… · « Laisser un avis » → https://search.google.com/local/writereview?placeid=…
+        Link viết avis Tripadvisor cần kiểm tra lại trước khi lên domain thật.
+     ===================================================================== -->
+<section class="c-sec c-sec--paper" id="notes" aria-labelledby="notes-title">
+  <div class="container">
+    <div class="section-head c-head">
+      <p class="eyebrow">Trois plateformes</p>
+      <h2 class="h2" id="notes-title">Des avis <em>vérifiables</em></h2>
+    </div>
+    <ul class="av-sources">
+      <li class="av-src">
+        <img class="av-src__logo" src="../assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async">
+        <p class="av-src__score"><b>5,0</b><small>/ 5</small></p>
+        <span class="stars" aria-label="5 étoiles sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+        <p class="av-src__count">2 079 avis</p>
+        <div class="av-src__actions">
+          <a class="btn btn--outline-dark btn--sm" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire les avis</a>
+          <a class="link-arrow" href="https://www.tripadvisor.fr/UserReviewEdit-g293924-d11641267-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Laisser un avis <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+      <li class="av-src">
+        <img class="av-src__logo" src="../assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async">
+        <p class="av-src__score"><b>4,9</b><small>/ 5</small></p>
+        <span class="stars" aria-label="5 étoiles sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+        <p class="av-src__count">962 avis</p>
+        <div class="av-src__actions">
+          <a class="btn btn--outline-dark btn--sm" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire les avis</a>
+          <a class="link-arrow" href="https://search.google.com/local/writereview?placeid=ChIJlUtEa7qrNTERPInAr-i7nRI" target="_blank" rel="noopener">Laisser un avis <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+      <li class="av-src">
+        <img class="av-src__logo" src="../assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async">
+        <p class="av-src__score"><b>5,0</b><small>/ 5</small></p>
+        <span class="stars" aria-label="5 étoiles sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+        <p class="av-src__count">415 avis</p>
+        <div class="av-src__actions">
+          <a class="btn btn--outline-dark btn--sm" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener">Lire les avis</a>
+          <a class="link-arrow" href="https://fr.trustpilot.com/evaluate/authentikvietnam.com" target="_blank" rel="noopener">Laisser un avis <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </li>
+    </ul>
+    <p class="av-note">Notes et avis relevés le 26 novembre 2026.</p>
+  </div>
+</section>
+
+<!-- =====================================================================
+     3. DANH SÁCH AVIS — bộ lọc theo kênh (main.js « Trang Avis ») · thẻ: logo, sao, trích (4 dòng + « Lire la suite »), tên, tháng, link về avis
+        Bản thật: 12 avis 5★ mới nhất (tiếng Pháp, đủ dài) của 3 kênh từ API, xếp theo ngày ; « Voir plus d’avis » tải thêm 12.
+        Mỗi thẻ: data-src = tripadvisor | google | trustpilot ; số trên chip lọc = số thẻ (main.js tự đếm).
+        Relevé tay 26/11/2026 (Chrome của Nhung) : 4 avis 5★ mới nhất mỗi kênh, xếp theo ngày, không trùng người giữa các kênh (nhiều khách đăng cùng avis lên 2 kênh) ; nguyên văn, chỉ bỏ emoji. Google không có link riêng từng avis → link trang Google của Authentik.
+     ===================================================================== -->
+<section class="c-sec c-sec--ivory" id="avis" aria-labelledby="avis-title">
+  <div class="container">
+    <div class="section-head c-head">
+      <p class="eyebrow">Les plus récents</p>
+      <h2 class="h2" id="avis-title">Paroles <em>de voyageurs</em></h2>
+    </div>
+
+    <div class="av-bar">
+      <div class="chips" role="group" aria-label="Filtrer par plateforme">
+        <button class="chip-btn" type="button" data-av-filter="all" aria-pressed="true">Tous<small></small></button>
+        <button class="chip-btn" type="button" data-av-filter="tripadvisor" aria-pressed="false">Tripadvisor<small></small></button>
+        <button class="chip-btn" type="button" data-av-filter="google" aria-pressed="false">Google<small></small></button>
+        <button class="chip-btn" type="button" data-av-filter="trustpilot" aria-pressed="false">Trustpilot<small></small></button>
+      </div>
+      <p class="av-sort">Avis 5 étoiles · du plus récent</p>
+    </div>
+
+    <ul class="av-list" id="avList" aria-live="polite">
+      <li class="pcard" data-src="tripadvisor">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Un grand merci à l’agence Authentik Vietnam/ Izitour et tout particulièrement à Minh Hieu Hugo pour son accompagnement, sa disponibilité et ses réponses à toutes mes demandes et sollicitations.<br>Grâce à eux, j’ai pu découvrir le nord du Vietnam et vivre une belle expérience de voyage. »</blockquote>
+        <p class="pcard__who"><b>s0nia57</b><span><time datetime="2026-11-24">24 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086623338-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire sur Tripadvisor <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="tripadvisor">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Un grand merci à kiki de l'agence Authentik Vietnam, une personne adorable, très attentionnée et à l'écoute<br>Il a parfaitement pris soin de nous tout au long de la préparation de notre voyage<br>Nous avons vécu un séjour de 3 semaines extraordinaires, je dirai même au delà de nos attentes...<br>Un immense merci pour son professionnalisme et son accompagnement<br>Nous recommandons vivement cette agence les yeux fermés !!!<br>Et qui dit partir avec KIKI c'est voyager sans soucis<br>Cathie &amp; Claude »</blockquote>
+        <p class="pcard__who"><b>Catherine N.</b><span><time datetime="2026-11-24">24 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086614908-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire sur Tripadvisor <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="google">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Merci à Hugo pour le bon service: explications claires, réponses rapides et super serviable. J'ai vraiment apprécié mon séjour! »</blockquote>
+        <p class="pcard__who"><b>Isabelle</b><span><time datetime="2026-11-24">24 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire sur Google <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="tripadvisor">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Nous avons fait le nord du Vietnam en 21 jours avec AUTHENTIK. Nous avons grandement apprécié l’expérience, le professionnalisme, la rapidité avec laquelle nous pouvions communiquer avec notre agent, sa disponibilité ainsi que les services de notre guide et chauffeur. Je recommande fortement. Un grand merci à Kien Nguyen notre agent. »</blockquote>
+        <p class="pcard__who"><b>Marie-josée L.</b><span><time datetime="2026-11-23">23 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086478692-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire sur Tripadvisor <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="google">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Voyage exceptionnel. L'organisation, les hôtels et la gentillesse de Van ... que du bonheur. On a découvert un pays fascinant en famille. On était 5 et on a tous adoré. On espère retourner dans ce merveilleux pays.<br>Merci Van pour ta réactivité et ton efficacité. C'était GÉNIAL »</blockquote>
+        <p class="pcard__who"><b>JA R.</b><span><time datetime="2026-11-23">23 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire sur Google <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="google">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Nous rentrons d’un séjour très agréable au Vietnam organisé par cette agence. Séjour à la carte que nous a proposé Nadia, une parfaite conseillère, toujours très disponible pour répondre à nos questions.<br>Un grand merci à toute l’équipe ! »</blockquote>
+        <p class="pcard__who"><b>Damien B.</b><span><time datetime="2026-11-23">23 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire sur Google <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="trustpilot">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Voyage super bien organisé pour nous par Phuong Linh. Authentik Vietnam.<br>Merci, vraiment inoubliable, avec des rencontres en étant herbergé chez l'habitant. Visite du Vietnam du Nord au Sud.<br>Je recommanderai l'agence Authentik Vietnam a mes amis. »</blockquote>
+        <p class="pcard__who"><b>Brig Jol</b><span><time datetime="2026-11-22">22 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://fr.trustpilot.com/reviews/6b034b4fd416bc4a5ea6446c" target="_blank" rel="noopener">Lire sur Trustpilot <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="trustpilot">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Un grand merci à Phuong Linh (Lyn Tran)<br>Un voyage exceptionnel, une organisation irréprochable !<br>Nous revenons de notre voyage au Vietnam et au Cambodge, et nous sommes absolument ravis de l'expérience vécue !<br>Tout était parfait du début à la fin : les guides, les visites, les chauffeurs, la coordination entre les différentes étapes du séjour et toutes les petites attentions qui font la différence. L'agence nous avait préparé un véritable road book clé en main, très complet, qui nous a permis de profiter pleinement de notre voyage sans avoir à nous soucier de l'organisation.<br>Un grand bravo également à toute l'équipe sur place, toujours disponible, professionnelle, attentionnée et aux petits soins pour nous.<br>Nous avons malheureusement rencontré un imprévu avec la perte d'une valise, mais même dans cette situation, l'agence a été formidable : aide dans les démarches, suivi et organisation pour faire acheminer notre valise jusqu'à l'hôtel où nous séjournions. Un vrai soulagement et une preuve supplémentaire de leur sérieux et de leur implication.<br>Au-delà de la qualité des prestations, c'est surtout leur accompagnement et leur sens du service que nous souhaitons souligner. On se sent véritablement pris en charge, du début à la fin.<br>Un immense merci à toute l'équipe pour ce magnifique voyage et tous ces beaux souvenirs.<br>Nous recommandons cette agence les yeux fermés ! Si c'était à refaire, nous repartirions avec eux sans la moindre hésitation ! »</blockquote>
+        <p class="pcard__who"><b>Roulpy</b><span><time datetime="2026-11-22">22 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://fr.trustpilot.com/reviews/6b02fc1f26c206e3f0a3daed" target="_blank" rel="noopener">Lire sur Trustpilot <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="tripadvisor">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Un voyage absolument inoubliable au Vietnam !<br>Un immense merci à Lyn Tran pour son accompagnement, son écoute et l’organisation de ce magnifique voyage, parfaitement adapté à nos envies.<br>Nous avons été séduits par la beauté du pays, la gentillesse de ses habitants et toutes les belles rencontres faites en chemin.<br>Nous repartons avec des souvenirs merveilleux et beaucoup d’émotion. Une expérience que nous recommandons sans hésitation !<br>Merci à Lyn et à toute l’équipe d’Authentik Vietnam ! »</blockquote>
+        <p class="pcard__who"><b>Annie</b><span><time datetime="2026-11-22">22 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086347009-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire sur Tripadvisor <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="trustpilot">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Nous quittons le Vietnam aujourd'hui, la tête remplie de souvenirs et le cœur rempli d'amour pour les vietnamien, qui sont d'une gentillesse incroyable.<br>Merci à Van, l'organisatrice de ce merveilleux voyage. Van a su parfaitement organiser ce circuit qu'elle a préparé 1 an à l'avance. Merci à elle pour sa patience, sa disponibilité et sa gentillesse, nos conversations whatsapp vont me manquer.<br>Nous avions un peu d'inquiétude car nous avons trouvé Authentik vietnam sur instagram, et il n'est pas simple de faire confiance à 10000 km. Mais Van a su nous mettre en confiance dès notre premier appel en visio.<br>Toute l'organisation a été géniale de l'accueil à l'aéroport d'Hanoï, à notre départ en taxi. Les chauffeurs et guides ont toujours été très ponctuels, gentils et attentionnés. Les guides ont une très grande connaissance de l'histoire de leur pays, nous repartons riches de leur culture.<br>Durant nos 3 semaines, nous avons aimé nos diverses visites, nos hôtels ainsi que la générosité des plats.<br>Vous pouvez faire entièrement confiance à Authentik vietnam pour vous organiser le voyage de vos rêves à deux ou à plusieurs.<br>Valérie et Francis »</blockquote>
+        <p class="pcard__who"><b>Valérie M.</b><span><time datetime="2026-11-21">21 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://fr.trustpilot.com/reviews/6b015b2a2d5c7866e6fbdd8d" target="_blank" rel="noopener">Lire sur Trustpilot <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="google">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Nous revenons de voyage avec eux entre amis.<br>Organisation et communication ainsi que la disponibilité par Whatsapp de notre contact Ly à été lors du séjour réactif et force de proposition.<br>Rien à redire ! »</blockquote>
+        <p class="pcard__who"><b>Nath S.</b><span><time datetime="2026-11-21">21 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire sur Google <svg><use href="#i-arrow"/></svg></a>
+      </li>
+      <li class="pcard" data-src="trustpilot">
+        <div class="pcard__top"><img class="pcard__logo" src="../assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-label="5 étoiles"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote class="pcard__text">« Expérience inoubliable<br>Nous recommandons milles fois cette agence. Nhi, notre conseillère, a organisé notre voyage à merveille ! Expérience authentique avec des guides locaux qui nous ont fait vivre des moments inoubliables... Nous reviendrons et referons appel à authentik vietnam<br>Je remercie encore Nhi pour son travail, sa réactivité et sa rapidité. N'hésitez pas si vous voulez découvrir le Vietnam avec une expérience sur mesure adaptée à vos besoins. »</blockquote>
+        <p class="pcard__who"><b>Cliente</b><span><time datetime="2026-11-17">17 novembre 2026</time></span></p>
+        <a class="pcard__link" href="https://fr.trustpilot.com/reviews/6afc955007e3c101a617e582" target="_blank" rel="noopener">Lire sur Trustpilot <svg><use href="#i-arrow"/></svg></a>
+      </li>
+    </ul>
+
+    <!-- Bản thật: nút tải thêm 12 avis (ẩn khi hết). Bản mẫu chỉ có 4 avis → nút trỏ sang Tripadvisor (kênh nhiều avis nhất). -->
+    <div class="av-more">
+      <a class="btn btn--outline-dark" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Voir plus d’avis <svg><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- @partial footer : tự động chép từ _partials/footer.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
+<footer class="footer bamboo">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="../index.html#top" aria-label="Authentik Vietnam">
+          <img class="brand__logo" src="https://authentikvietnam.com/themes/web/img/authentiktravel.png" alt="Authentik Vietnam" width="436" height="140" loading="lazy">
+          <span class="brand__fallback">AUTHENTIK<small>VIETNAM</small></span>
+        </a>
+        <p class="footer__tag">Le Vietnam <em>en profondeur</em>,<br>depuis Hanoï.</p>
+      </div>
+      <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='Merci !'">
+        <label for="nl">Carnet de voyage, une fois par mois</label>
+        <div class="newsletter__row">
+          <input id="nl" type="email" placeholder="Votre e-mail" required>
+          <button type="submit">S’inscrire <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer__cols">
+      <div>
+        <h3 class="h4">Aide</h3>
+        <ul>
+          <li><a href="../index.html#devis">Demander un devis</a></li>
+          <li><a href="../nous-contacter/index.html" data-nav="contact">Nous contacter</a></li>
+          <li><a href="#">Questions fréquentes</a></li>
+          <li><a href="https://authentikvietnam.com/avant-de-partir-au-vietnam">Préparer son voyage</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Nos voyages</h3>
+        <ul>
+          <li><a href="../circuits-au-vietnam/index.html">Inspirations</a></li>
+          <li><a href="../petit-groupe/circuit-vietnam-petit-groupe/index.html">Petits groupes</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-laos">Voyages au Laos</a></li>
+          <li><a href="https://authentikvietnam.com/voyages-au-cambodge">Voyages au Cambodge</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Authentik</h3>
+        <ul>
+          <li><a href="../agence-voyage-locale-authentik-vietnam/index.html" data-nav="about">Qui sommes-nous&nbsp;?</a></li>
+          <li><a href="../agence-voyage-locale-authentik-vietnam/index.html#equipe">Notre équipe</a></li>
+          <li><a href="../avis-client/index.html" data-nav="avis" aria-current="page">Avis clients</a></li>
+          <li><a href="https://authentikvietnam.com/authentik-vietnam-en-press">Presse</a></li>
+          <li><a href="https://authentikvietnam.com/recrutement">Recrutement</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h4">Coordonnées</h3>
+        <ul class="footer__contact">
+          <li><svg><use href="#i-pin"/></svg><span>62 Yên Phụ, Ba Đình<br>Hà Nội</span></li>
+          <li><svg><use href="#i-pin"/></svg><span>57 Lê Thị Hồng Gấm, Bến Thành<br>Saïgon</span></li>
+          <li><svg><use href="#i-phone"/></svg><a href="tel:+84912121091">+84 912 121 091</a></li>
+          <li><svg><use href="#i-wa"/></svg><a href="https://wa.me/84912121091" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><svg><use href="#i-mail"/></svg><a href="mailto:info@authentikvietnam.com">info@authentikvietnam.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Authentik Vietnam · Licence de tour-opérateur international n° 01-611/2014/TCDL-GPLHQT</span>
+      <nav class="footer__legal" aria-label="Informations légales">
+        <a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/authentikvietnamtravel" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/user/authentikvietnam" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Nút nổi: WhatsApp + back-to-top (mỗi trang cần 1 phần tử id="top" ở đầu trang) -->
+<div class="fab-stack">
+  <a class="fab fab--top" href="#top" id="toTop" aria-label="Revenir en haut">
+    <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="23"/><circle class="fg" cx="24" cy="24" r="23"/></svg>
+    <svg class="arrow"><use href="#i-up"/></svg>
+  </a>
+  <a class="fab fab--wa" href="https://wa.me/84912121091?text=Bonjour%20Authentik%20Vietnam%2C%20je%20souhaite%20pr%C3%A9parer%20un%20voyage." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp" data-label="Une question ? WhatsApp">
+    <svg><use href="#i-wa"/></svg>
+  </a>
+</div>
+
+<!-- Popup film (YouTube chỉ tải khi bấm nút có data-film) -->
+<div class="modal" id="filmModal" role="dialog" aria-modal="true" aria-label="Film Authentik Vietnam">
+  <button class="round-btn modal__close" type="button" data-close-modal aria-label="Fermer"><svg><use href="#i-close"/></svg></button>
+  <div class="modal__box" id="filmBox"></div>
+</div>
+<!-- @/partial footer -->
+
+<script src="../assets/js/main.js?v=1.11" defer></script>
+</body>
+</html>

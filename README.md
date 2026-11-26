@@ -1,4 +1,4 @@
-# Authentik Vietnam — Mẫu giao diện web mới (v1.10.1 · repo atnewlook · 17/11/2026)
+# Authentik Vietnam — Mẫu giao diện web mới (v1.11 · repo atnewlook · 26/11/2026)
 
 Mẫu tĩnh HTML / CSS / JS thuần (không framework, không bước build) để MKT xem ý tưởng và coder PHP cắt thành template.
 Định hướng: **luxury boutique nhưng có chiều sâu** — riêng tư, thoải mái, rencontres có ý nghĩa; ít chữ; không nói về giá.
@@ -12,6 +12,7 @@ detail-du-circuit/vietnam-en-profondeur-du-grand-nord-au-mekong-2027/index.html 
 voyage-au-vietnam/index.html                 Trang Circuits chung — 2 nhánh Inspirations / Petite communauté (giữ URL cũ, v1.7 bản gọn)
 circuits-au-vietnam/index.html               Trang Inspirations — 4 incontournables + 49 circuit privé lọc theo từ khóa (giữ URL cũ, v1.7)
 nous-contacter/index.html                    Trang contact (URL mới — site cũ không có trang contact)
+avis-client/index.html                       Trang Avis clients — 3 kênh Tripadvisor / Google / Trustpilot + avis có bộ lọc (giữ URL cũ, v1.11)
 agence-voyage-locale-authentik-vietnam/index.html  Trang Qui sommes-nous (giữ URL cũ, v1.10) — logo màu, histoire, 5 raisons, engagement, équipe
 assets/img/<vị-trí>/<tên-ảnh>.webp            Ảnh WebP local theo vị trí (banner, banner-mobile, og, galerie, circuit, team…)
 _partials/favicon.html · header.html · footer.html   Favicon + navbar + footer DÙNG CHUNG — chỉ sửa ở đây
@@ -61,11 +62,11 @@ Lệnh `hosting:channel:deploy` tạo một **link xem trước riêng** (`authe
 | 4 | Média (v1.9, nền tối) | « Instants — Ce qui reste, *après le voyage* » + linework sào ngô-nếp · 1 video lớn phát tại chỗ (73cu9-FvW1Q, YouTube nocookie, tải khi bấm) · nút « Toutes nos vidéos sur YouTube ». Mosaic 9 ảnh + 4 video nhỏ của v1.8 đã bỏ (ảnh `mosaic/` vẫn giữ trong repo; code ở atnewlook-backup v1.8). v1.10: bỏ dòng chú thích dưới video (Itinéraire · titre · lieux · durée). |
 | 5 | Deux façons de voyager (v1.9, nền sáng) | « À votre rythme, ou *en petit comité* ? » + linework bàn trà · 2 thẻ lớn: À votre rythme (Circuits privés · 53 voyages → /circuits-au-vietnam/) · En petit comité (Petits groupes · 6 voyages en 2027 → /petit-groupe/circuit-vietnam-petit-groupe/). v1.10: bỏ đoạn mô tả trong 2 thẻ, khoảng cách 2 thẻ = 1/2. |
 | 6 | Par envie + Itinéraires (v1.9, nền tối) | « Quel Vietnam *aimeriez-vous rencontrer* ? » — 6 loại hình của menu site cũ, tên mới (Les grands sites, autrement · La vie des villages · Les peuples des montagnes · Au fil des sentiers · Entre mer et repos · D’un pays à l’autre → /circuits-au-vietnam/?kw=…). v1.9.1 — máy tính (≥ 1025px): ảnh sát nhau không khoảng cách, lưới 5 cột: hàng 1 = La vie des villages 60 % · Les grands sites 20 % · Les peuples 20 % ; hàng 2 = Entre mer 20 % · D’un pays à l’autre 20 % · Au fil des sentiers 60 %. 2 ô rộng dùng `<picture>`: ảnh ngang `mosaic/phu-nu-truoc-cua-nha` và `mosaic/van-long-hoang-hon` trên máy tính, ảnh dọc cũ trên mobile. ≤ 1024px giữ lưới + thứ tự cũ (CSS `order`). « Quelques itinéraires *pour vous inspirer* » — 6 tour Nhung chọn (17/11): Des rizières en terrasse jusqu’au Mékong 15 j · Des sommets du Nord jusqu’au Mékong 19 j · Aventure du Vietnam 21 j · Escapade au Vietnam 10 j · Splendeurs du Vietnam 12 j · Traversée du Vietnam 14 j (link site cũ). Mobile: vuốt ngang. v1.10: ô ảnh tách ra (giữ tỉ lệ 60/20/20 – 20/20/60), khoảng cách ô = 1/2 (cả Itinéraires) · nền nan tre. |
-| 7 | Paroles de voyageurs (v1.9, nền sáng) | 3 điểm (Tripadvisor 5,0 · 2 065 / Google 4,9 · 956 / Trustpilot 5,0 · 411 — relevé 17/11/2026) + 4 avis 5★ mới nhất, nguyên văn, kèm nền tảng, tên, tháng, link « Lire l’avis ». Dòng ghi chú cách chọn avis (bắt buộc nếu sau này lấy từ API Google). v1.10: logo Tripadvisor / Google / Trustpilot thay tên chữ. |
+| 7 | Paroles de voyageurs (v1.9, nền sáng) | 3 điểm (Tripadvisor 5,0 · 2 079 / Google 4,9 · 962 / Trustpilot 5,0 · 415 — relevé 26/11/2026, v1.11) + 4 avis 5★ mới nhất (Catherine N., Isabelle, Marie-josée L., Brig Jol — lấy từ 12 avis của trang Avis clients, cập nhật tay cùng lúc), nguyên văn, kèm nền tảng, tên, tháng, link « Lire l’avis ». Dòng ghi chú cách chọn avis (bắt buộc nếu sau này lấy từ API Google). v1.10: logo Tripadvisor / Google / Trustpilot thay tên chữ. |
 | 8 | Votre projet, pas à pas (v1.9, nền tối) | 4 bước + icon nét: Demande · Échange · Confirmation · En voyage · nút « Commencer ma demande ». v1.10: nền nan tre. |
 | 9 | Form devis | Ngắn, không hỏi ngân sách: tên, email, tel/WhatsApp, kiểu khách, tháng, thời lượng, façon de voyager, message, consent RGPD, honeypot. Gửi xong → khung cảm ơn. v1.9: panel trái nền sáng + linework bộ salon. |
 | 10 | Footer | Logo + tagline, newsletter, 4 cột (Aide / Nos voyages / Authentik / Coordonnées), legal, social, năm tự động. |
-| + | Nút nổi | WhatsApp (luôn hiện) + back-to-top (hiện sau 1 màn hình, có vòng tiến độ đọc). |
+| + | Nút nổi | WhatsApp (luôn hiện) + back-to-top (hiện sau 1 màn hình, có vòng tiến độ đọc). v1.10.2: khi footer hiện, bộ nút tự nâng lên để không bao giờ che link / nút / ô nhập của footer (main.js « Nút nổi không bao giờ che footer »). |
 
 **Blog (v1.3)**
 
@@ -134,6 +135,16 @@ Link chia sẻ theo từ khóa: `/circuits-au-vietnam/?kw=authentique` · `?kw=e
 | Bureaux | Hanoï (siège, 62 Yên Phụ, Ba Đình) · Saïgon (antenne Sud, 57 Lê Thị Hồng Gấm, Bến Thành) · 8 h – 18 h · Itinéraire (Google Maps) · ảnh văn phòng thật của Nhung (`galerie/hanoi-van-phong-authentik` ← vp-hanoi.jpg, `galerie/saigon-van-phong-authentik` ← vp-saigon.jpg — v1.6.1; khung 11:5) · dòng pháp lý: Licence n° 01-611/2014/TCDL-GPLHQT. |
 
 Schema: ContactPage + TravelAgency (2 địa chỉ, téléphone, WhatsApp) + BreadcrumbList. Footer (mọi trang) từ v1.6: link « Nous contacter » → trang này, thêm địa chỉ Saïgon, điền số giấy phép. Thông báo lỗi form (`.field__err`) nằm ngoài luồng → hiện/ẩn lỗi không làm form nhảy (sửa chung cả form devis).
+
+**Trang Avis clients (v1.11)** — `/avis-client/` (giữ URL cũ, 26/11/2026), theo bản xem trước Nhung duyệt 26/11 (bỏ khối « Racontez votre voyage » vì trùng nút với khối 3 kênh). **Chỉ lấy avis từ 3 kênh Tripadvisor · Google · Trustpilot — không dùng avis CMS của site cũ.**
+
+| Khối | Nội dung |
+|------|----------|
+| Hero | Ảnh phụ nữ Hmong ở chợ (`banner` / `banner-mobile` `cho-phien-phu-nu-hmong`) · breadcrumb · H1 « Ce que disent *nos voyageurs* » · « Leurs avis, publiés sur Tripadvisor, Google et Trustpilot. » |
+| 3 kênh | Mỗi kênh: logo, điểm /5, sao, số avis, nút « Lire les avis » (trang avis của kênh) + « Laisser un avis » (form viết avis của kênh). Dòng « Notes relevées le … ». Máy tính 3 cột, điện thoại xếp dọc. |
+| Paroles de voyageurs | Chip lọc Tous / Tripadvisor / Google / Trustpilot (main.js tự đếm số thẻ, ẩn chip 0) · thẻ `.pcard` (dùng lại của trang chủ) có `data-src`, trích 4 dòng + « Lire la suite » · « Voir plus d’avis ». Máy tính 3 cột, máy tính bảng 2, điện thoại 1. |
+
+Dữ liệu relevé tay 26/11/2026 (Chrome của Nhung, không API): Tripadvisor 5,0 · 2 079 · Google 4,9 · 962 (giao diện tiếng Pháp) · Trustpilot 5,0 · 415 + 12 avis 5★ mới nhất (4 mỗi kênh, 17–24/11), xếp theo ngày, không trùng người giữa các kênh, nguyên văn (chỉ bỏ emoji); tên Google rút gọn « Prénom N. ». Cập nhật định kỳ bằng tay (Claude đọc 3 kênh trong Chrome của Nhung: Trustpilot `?stars=5&sort=recency`, Tripadvisor mặc định mới nhất, Google Maps « Avis les plus récents » khi đã đăng nhập). Nếu sau này dùng API: xem « Avis tự động » ở mục 4. Google (tra 26/11/2026): Place ID `ChIJlUtEa7qrNTERPInAr-i7nRI` · CID `1341434872081713468` → « Lire les avis » = `https://www.google.com/maps?cid=1341434872081713468` (cả trang chủ), « Laisser un avis » = `https://search.google.com/local/writereview?placeid=ChIJlUtEa7qrNTERPInAr-i7nRI`. Còn chờ: kiểm tra link viết avis Tripadvisor trước khi lên domain thật. Nhung chốt 26/11: **tạm chưa dùng API** (tốn phí) → avis 5★ mới nhất cập nhật tay định kỳ. Không thêm schema AggregateRating / Review cho avis của kênh khác (Google không cho phép). Mọi link « Avis clients » (footer) và « Tous les avis » (trang chủ, Circuits, Inspirations, Petite communauté, trang circuit) trỏ về trang này; footer partial có `data-nav="avis"`.
 
 ## 3. Design system (chi tiết trong `styleguide.html`)
 

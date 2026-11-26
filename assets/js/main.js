@@ -47,6 +47,49 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ---------- Nút nổi không bao giờ che footer (v1.10.2) ----------
+     Khi footer hiện trên màn hình : tìm mọi link / nút / ô nhập của footer nằm cùng cột với bộ nút nổi,
+     nếu chạm nhau thì nâng bộ nút lên ngay trên phần tử đó (cách 12 px). Rời footer → về chỗ cũ. */
+  const fabStack = $('.fab-stack');
+  const footer = $('.footer');
+  if (fabStack && footer) {
+    const GAP = 12;
+    const targets = $$('a, button, input, select, textarea', footer);
+    let lift = 0, raf = 0;
+    const placeFab = () => {
+      raf = 0;
+      let need = 0;
+      if (footer.getBoundingClientRect().top < window.innerHeight) {
+        const s = fabStack.getBoundingClientRect();
+        const left = s.left - GAP, right = s.right + GAP;
+        // vị trí gốc theo CSS (không đọc từ s.top vì lúc đang trượt transform chưa tới đích)
+        const base = window.innerHeight - parseFloat(getComputedStyle(fabStack).bottom);
+        let bottom = base, top = base - fabStack.offsetHeight;
+        const rects = targets.map(t => t.getBoundingClientRect())
+          .filter(r => r.width && r.height && r.right > left && r.left < right);
+        for (let moved = true, n = 0; moved && n < 50; n++) {      // nâng dần tới khi không chạm phần tử nào
+          moved = false;
+          rects.forEach(r => {
+            if (r.top - GAP < bottom && r.bottom + GAP > top) {
+              const d = bottom - (r.top - GAP);
+              top -= d; bottom -= d; moved = true;
+            }
+          });
+        }
+        need = Math.round(base - bottom);
+      }
+      if (need !== lift) {
+        lift = need;
+        fabStack.style.transform = lift ? `translateY(${-lift}px)` : '';
+      }
+    };
+    const queueFab = () => { if (!raf) raf = requestAnimationFrame(placeFab); };
+    window.addEventListener('scroll', queueFab, { passive: true });
+    window.addEventListener('resize', queueFab);
+    window.addEventListener('load', queueFab);
+    queueFab();
+  }
+
   /* ---------- Dropdown (Circuits, langue) : hover desktop + click + Échap ----------
      v1.7 : 2 bộ hẹn giờ riêng (mở / đóng). Chuột vào lại menu → HUỶ lệnh đóng (trước đây lệnh đóng
      vẫn chạy nên menu con tự tắt khi chuột đi xuống). Mở sau 120 ms, giữ 400 ms sau khi rời chuột.
@@ -579,6 +622,37 @@
       tick(); setInterval(tick, 30000);
       clock.closest('[hidden]')?.removeAttribute('hidden');
     } catch (e) { /* trình duyệt cũ : giữ ẩn dòng giờ */ }
+  }
+
+  /* ---------- Trang Avis clients (v1.11) : lọc theo kênh + « Lire la suite » ----------
+     Thẻ .pcard mang data-src (tripadvisor | google | trustpilot) ; chip [data-av-filter] tự đếm số thẻ. */
+  const avList = $('#avList');
+  if (avList) {
+    const cards = $$('.pcard', avList);
+    const chips = $$('[data-av-filter]');
+    chips.forEach(ch => {
+      const k = ch.dataset.avFilter;
+      const n = k === 'all' ? cards.length : cards.filter(c => c.dataset.src === k).length;
+      const small = $('small', ch); if (small) small.textContent = n;
+      if (!n) ch.hidden = true;
+      ch.addEventListener('click', () => {
+        chips.forEach(x => x.setAttribute('aria-pressed', String(x === ch)));
+        cards.forEach(c => { c.hidden = k !== 'all' && c.dataset.src !== k; });
+      });
+    });
+    cards.forEach(c => {
+      const t = $('.pcard__text', c);
+      if (!t || t.scrollHeight <= t.clientHeight + 2) return;   // trích ngắn → không cần nút
+      const more = document.createElement('button');
+      more.type = 'button'; more.className = 'pcard__more'; more.textContent = 'Lire la suite';
+      more.setAttribute('aria-expanded', 'false');
+      more.addEventListener('click', () => {
+        const open = c.classList.toggle('is-open');
+        more.textContent = open ? 'Réduire' : 'Lire la suite';
+        more.setAttribute('aria-expanded', String(open));
+      });
+      t.after(more);
+    });
   }
 
   /* ---------- Năm copyright tự động ---------- */

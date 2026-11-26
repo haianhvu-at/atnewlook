@@ -2,7 +2,7 @@
    AUTHENTIK — TRANG CHỦ (mẫu giao diện)
    Thứ tự: base · type · buttons · navbar · hero · intro · media · circuits
            · reviews · form · footer · floating · trang con (blog, bài viết) · trang circuit · trang tổng hợp circuit · trang contact
-           · reveal · responsive
+           · reveal · responsive · (cuối file) trang Qui sommes-nous · trang Avis clients
    ========================================================================== */
 
 /* ---------- Base ---------- */
@@ -542,7 +542,8 @@ body.is-locked { overflow: hidden; }
 .social svg { width: 16px; height: 16px; }
 
 /* ---------- Floating buttons ---------- */
-.fab-stack { position: fixed; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); z-index: 80; display: grid; gap: 12px; justify-items: center; }
+.fab-stack { position: fixed; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); z-index: 80; display: grid; gap: 12px; justify-items: center; transition: transform .2s var(--ease); } /* v1.10.2: main.js nâng bộ nút khi footer hiện, để không che link / nút footer */
+@media (prefers-reduced-motion: reduce) { .fab-stack { transition: none; } }
 .fab {
   position: relative; width: 56px; height: 56px; border-radius: 50%;
   display: grid; place-items: center; box-shadow: 0 12px 30px -10px rgba(0,0,0,.55);
@@ -1845,3 +1846,36 @@ body.is-locked { overflow: hidden; }
   .qsn-legal { font-size: .6875rem; }
 }
 @media (max-width: 760px) { .qsn-team .c-team__grid.swipe { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); } }
+
+/* ==========================================================================
+   TRANG AVIS CLIENTS (v1.11) — /avis-client : 3 kênh (Tripadvisor · Google · Trustpilot) + danh sách avis có bộ lọc
+   Thẻ avis dùng lại .pcard của khối Paroles trang chủ.
+   ========================================================================== */
+/* 3 kênh */
+.av-sources { display: grid; gap: clamp(12px, 1.4vw, 20px); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 761px) { .av-sources { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.av-src { display: flex; flex-direction: column; gap: 10px; padding: clamp(24px, 2.6vw, 34px); background: rgba(255,255,255,.6); border: 1px solid var(--line-light); }
+.av-src__logo { display: block; align-self: flex-start; width: auto; height: 26px; }
+.av-src__score { margin-top: 14px; display: flex; align-items: baseline; gap: 14px; }
+.av-src__score b { font-size: clamp(2.6rem, 4vw, 3.4rem); font-weight: 200; line-height: 1; }
+.av-src__score small { font-size: .9rem; color: var(--ink-soft); }
+.av-src .stars { align-self: flex-start; color: var(--emerald-700); }
+.av-src .stars svg { width: 14px; height: 14px; }
+.av-src__count { font-size: .82rem; color: var(--ink-soft); }
+.av-src__actions { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; }
+.av-src__actions .link-arrow { min-height: 44px; }
+.av-note { margin-top: var(--s-3); font-size: .75rem; color: var(--ink-soft); }
+/* Bộ lọc + danh sách */
+.av-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-block: var(--s-3); border-block: 1px solid var(--line-light); margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.av-bar .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.av-bar .chips::-webkit-scrollbar { display: none; }
+.av-bar .chip-btn small { margin-left: 6px; opacity: .6; font-weight: 400; }
+.av-sort { font-size: .6875rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+.av-list { display: grid; gap: clamp(12px, 1.4vw, 20px); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 761px) { .av-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .av-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.av-list .pcard[hidden] { display: none; }
+.av-list .pcard__text { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.av-list .pcard.is-open .pcard__text { display: block; -webkit-line-clamp: unset; }
+.pcard__more { margin-top: 8px; align-self: flex-start; min-height: 44px; font-size: .75rem; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; color: var(--ink-soft); }
+.av-more { margin-top: clamp(2rem, 4vw, 3rem); display: flex; justify-content: center; }

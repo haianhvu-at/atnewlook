@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/tokens.css?v=1.10.1">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.10.1">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=1.11">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.11">
   <!-- @partial favicon : tự động chép từ _partials/favicon.html — KHÔNG sửa ở đây, sửa file đó rồi chạy sync_partials.py -->
   <link rel="icon" href="favicon.ico" sizes="32x32">
   <link rel="icon" href="assets/favicon/icon.svg" type="image/svg+xml">
@@ -378,8 +378,9 @@
 
 <!-- =====================================================================
      6. PAROLES DE VOYAGEURS (v1.9) — nền sáng ivory · notes + 4 avis 5 étoiles les plus récents
-        Relevé 17/11/2026 : Tripadvisor 5,0 (2 065) · Google 4,9 (956) · Trustpilot 5,0 (411).
-        À automatiser plus tard (cron PHP 1×/jour → JSON : Google Business Profile API, Tripadvisor Content API, Trustpilot API).
+        Relevé tay 26/11/2026 (giống trang Avis clients) : Tripadvisor 5,0 (2 079) · Google 4,9 (962) · Trustpilot 5,0 (415).
+        4 avis lấy từ 12 avis của trang /avis-client (mới nhất, mỗi kênh ít nhất 1) ; trích ngắn nguyên văn, « […] » = đoạn lược bớt.
+        Tạm chưa dùng API (Nhung chốt 26/11) → cập nhật tay cùng lúc với trang Avis clients.
      ===================================================================== -->
 <section class="section section--paper paroles" id="avis">
   <div class="container">
@@ -389,40 +390,40 @@
         <h2 class="h2 reveal" data-delay="1" style="margin-top:1.5rem">Paroles <em>de voyageurs</em></h2>
       </div>
       <div class="ratings ratings--row reveal" data-delay="2">
-        <a class="rating" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">2 065 avis</span></a>
-        <a class="rating" href="https://www.google.com/maps/search/?api=1&amp;query=Authentik%20Vietnam%2062%20Y%C3%AAn%20Ph%E1%BB%A5%20H%C3%A0%20N%E1%BB%99i" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><b class="rating__num">4,9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">956 avis</span></a>
-        <a class="rating" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">411 avis</span></a>
+        <a class="rating" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">2 079 avis</span></a>
+        <a class="rating" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><b class="rating__num">4,9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">962 avis</span></a>
+        <a class="rating" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener"><img class="rating__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><b class="rating__num">5,0</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><span class="rating__count">415 avis</span></a>
       </div>
     </div>
     <ul class="pcards swipe">
       <li class="pcard reveal">
         <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-        <blockquote>« Nous avons été séduits par la beauté du pays, la gentillesse de ses habitants et toutes les belles rencontres faites en chemin. »</blockquote>
-        <p class="pcard__who"><b>Margali N.</b><span>Novembre 2026</span></p>
-        <a class="pcard__link" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
+        <blockquote>« Nous avons vécu un séjour de 3 semaines extraordinaires, je dirai même au delà de nos attentes... »</blockquote>
+        <p class="pcard__who"><b>Catherine N.</b><span>Novembre 2026</span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086614908-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="1">
-        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-        <blockquote>« […] des guides francophones cultivés qui ont su nous transmettre l’histoire du pays. »</blockquote>
-        <p class="pcard__who"><b>Marc R.</b><span>Novembre 2026</span></p>
-        <a class="pcard__link" href="https://www.tripadvisor.fr/Attraction_Review-g293924-d11641267-Reviews-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote>« Merci à Hugo pour le bon service: explications claires, réponses rapides et super serviable. J'ai vraiment apprécié mon séjour! »</blockquote>
+        <p class="pcard__who"><b>Isabelle</b><span>Novembre 2026</span></p>
+        <a class="pcard__link" href="https://www.google.com/maps?cid=1341434872081713468" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="2">
-        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-        <blockquote>« […] mon circuit dans le Nord Ouest du Vietnam était bien équilibré entre randonnée dans les montagnes et découverte des ethnies minoritaires. »</blockquote>
-        <p class="pcard__who"><b>Renversez</b><span>Novembre 2026</span></p>
-        <a class="pcard__link" href="https://fr.trustpilot.com/review/authentikvietnam.com" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/tripadvisor.svg" alt="Tripadvisor" width="113" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote>« Nous avons fait le nord du Vietnam en 21 jours avec AUTHENTIK. […] Je recommande fortement. »</blockquote>
+        <p class="pcard__who"><b>Marie-josée L.</b><span>Novembre 2026</span></p>
+        <a class="pcard__link" href="https://www.tripadvisor.fr/ShowUserReviews-g293924-d11641267-r1086478692-Authentik_Vietnam_Travel-Hanoi.html" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
       <li class="pcard reveal" data-delay="3">
-        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/google.svg" alt="Google" width="74" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-        <blockquote>« Je remercie infiniment l’équipe d’Authentik Vietnam pour son professionnalisme ainsi que la gentillesse témoignée tout au long de notre séjour au Vietnam. »</blockquote>
-        <p class="pcard__who"><b>Nathalie B.</b><span>Septembre 2026</span></p>
-        <a class="pcard__link" href="https://www.google.com/maps/search/?api=1&amp;query=Authentik%20Vietnam%2062%20Y%C3%AAn%20Ph%E1%BB%A5%20H%C3%A0%20N%E1%BB%99i" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
+        <div class="pcard__top"><img class="pcard__logo" src="assets/img/logo/trustpilot.svg" alt="Trustpilot" width="98" height="24" loading="lazy" decoding="async"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+        <blockquote>« Merci, vraiment inoubliable, avec des rencontres en étant herbergé chez l'habitant. Visite du Vietnam du Nord au Sud. »</blockquote>
+        <p class="pcard__who"><b>Brig Jol</b><span>Novembre 2026</span></p>
+        <a class="pcard__link" href="https://fr.trustpilot.com/reviews/6b034b4fd416bc4a5ea6446c" target="_blank" rel="noopener">Lire l’avis <svg><use href="#i-arrow"/></svg></a>
       </li>
     </ul>
     <div class="paroles__foot">
-      <p class="ratings__note">Avis 5 étoiles les plus récents de chaque plateforme · notes relevées le 17 novembre 2026.</p>
-      <a class="link-arrow" href="https://authentikvietnam.com/avis-client">Tous les avis <svg><use href="#i-arrow"/></svg></a>
+      <p class="ratings__note">Avis 5 étoiles les plus récents de chaque plateforme · notes relevées le 26 novembre 2026.</p>
+      <a class="link-arrow" href="avis-client/index.html">Tous les avis <svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -581,7 +582,7 @@
         <ul>
           <li><a href="agence-voyage-locale-authentik-vietnam/index.html" data-nav="about">Qui sommes-nous&nbsp;?</a></li>
           <li><a href="agence-voyage-locale-authentik-vietnam/index.html#equipe">Notre équipe</a></li>
-          <li><a href="https://authentikvietnam.com/avis-client">Avis clients</a></li>
+          <li><a href="avis-client/index.html" data-nav="avis">Avis clients</a></li>
           <li><a href="https://authentikvietnam.com/authentik-vietnam-en-press">Presse</a></li>
           <li><a href="https://authentikvietnam.com/recrutement">Recrutement</a></li>
         </ul>
@@ -629,6 +630,6 @@
 </div>
 <!-- @/partial footer -->
 
-<script src="assets/js/main.js?v=1.10.1" defer></script>
+<script src="assets/js/main.js?v=1.11" defer></script>
 </body>
 </html>
